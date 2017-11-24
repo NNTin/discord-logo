@@ -1,13 +1,11 @@
 <template>
-  <div>
-    <svg class="discordcorner" width="120" height="120" viewBox="0 0 250 250">
+  <div >
+    <svg :color="discordcolor" :fill="discordfill" class="discordcorner" width="120" height="120" viewBox="0 0 250 250">
      <g>
-      <path d="M0,0 L0,250 L250,0 Z" :fill="discordfill"/>
+      <path d="M0,0 L0,250 L250,0 Z" fill="currentfill"/>
      </g>
     </svg>
-    <DiscordSwirl class="discordcorner discordswirl" width="60" height="60"/>
-
-
+    <DiscordSwirl :color="discordcolor" :fill="discordfill" class="discordcorner discordswirl" :width="60" :height="60" />
   </div>
 </template>
 
