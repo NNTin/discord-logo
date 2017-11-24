@@ -14,8 +14,8 @@ npm install
 npm run dev
 ```
 
-License/Acknowledgements
+## License/Acknowledgements
 
 This isn't built by Discord or endorsed by them.
 
-[The MIT License](https://github.com/NNTin/discord-logo/blob/master/license.md)
+[The MIT License](https://github.com/NNTin/discord-logo/blob/master/LICENSE)
