@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <GithubCorner/>
+    <DiscordCorner/>
     <DiscordSwirl/>
   </div>
 </template>
@@ -8,11 +9,13 @@
 <script>
 import DiscordSwirl from './components/DiscordSwirl.vue'
 import GithubCorner from './components/GithubCorner.vue'
+import DiscordCorner from './components/DiscordCorner.vue'
+
 
 export default {
   name: 'app',
   components: {
-    DiscordSwirl, GithubCorner
+    DiscordSwirl, GithubCorner, DiscordCorner
   }
 }
 </script>

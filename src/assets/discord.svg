@@ -71,10 +71,10 @@
     </g>
   </defs>
   <g class="discord-logo">
-    <use class="discord-original" xlink:href="#discord-logo" />
-    <use class="discord-outer-layer" xlink:href="#discord-logo" mask="url(#mask-outer-layer)" />
-    <use class="discord-middle-layer" xlink:href="#discord-logo" mask="url(#mask-middle-layer)" />
-    <use class="discord-inner-layer" xlink:href="#discord-logo" mask="url(#mask-inner-layer)" />
+    <use class="discord-original" href="#discord-logo" />
+    <use class="discord-outer-layer" href="#discord-logo" mask="url(#mask-outer-layer)" />
+    <use class="discord-middle-layer" href="#discord-logo" mask="url(#mask-middle-layer)" />
+    <use class="discord-inner-layer" href="#discord-logo" mask="url(#mask-inner-layer)" />
   </g>
 
 </svg>
