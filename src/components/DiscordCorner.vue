@@ -1,20 +1,18 @@
 <template>
-  <div>
-    <svg :color="discordcolor" :fill="discordfill" :idth="width" :height="height" viewBox="0 0 250 250">
-      <g>
-        <a v-if="this.customLink" v-bind:href="this.customLink">
-          <path d="M0,0 L0,250 L250,0 Z" :fill="discordfill"/>
-        </a>
-        <path v-else d="M0,0 L0,250 L250,0 Z" :fill="discordfill"/>
-      </g>
-      <g class="rotatethis">
-        <a v-if="this.customLink" v-bind:href="this.customLink">
-          <DiscordSwirl :color="discordcolor" :fill="discordfill" :width="120" :height="120" />
-        </a>
-        <DiscordSwirl v-else :color="discordcolor" :fill="discordfill" :width="120" :height="120" />
-      </g>
-    </svg>
-  </div>
+  <svg :color="discordcolor" :fill="discordfill" :width="width" :height="height" viewBox="0 0 250 250">
+    <g>
+      <a v-if="this.customLink" v-bind:href="this.customLink">
+        <path d="M0,0 L0,250 L250,0 Z" :fill="discordfill"/>
+      </a>
+      <path v-else d="M0,0 L0,250 L250,0 Z" :fill="discordfill"/>
+    </g>
+    <g class="rotatethis">
+      <a v-if="this.customLink" v-bind:href="this.customLink">
+        <DiscordSwirl :color="discordcolor" :fill="discordfill" :width="120" :height="120" />
+      </a>
+      <DiscordSwirl v-else :color="discordcolor" :fill="discordfill" :width="120" :height="120" />
+    </g>
+  </svg>
 </template>
 
 <script>
