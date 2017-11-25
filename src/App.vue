@@ -8,7 +8,7 @@
         <DiscordSwirl :discordfill="colors.discordfill" :discordcolor="colors.discordcolor"/>
       </a>
     </div>
-    <MainBody/>
+    <MainBody ref="mainbody"/>
   </div>
 </template>
 
@@ -35,6 +35,7 @@ export default {
   methods: {
     onColorChange (value) {
       this.colors = value
+      this.$refs.mainbody.changeColor(this.colors.discordcolor, this.colors.discordfill)
     }
   },
   computed: {

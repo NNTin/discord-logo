@@ -1,8 +1,11 @@
-# discord-logo
+# Animated Discord Logo
 
-Adding some animations to the Discord logo. Discord template retrieved from [here](https://discordapp.com/branding).
+This project was inspired by [Discord's loading logo](https://canary.discordapp.com/assets/0bdc0497eb3a19e66f2b1e3d5741634c.webm).
 
-SVG/CSS implementation of Discord's swirl animation ([video](https://canary.discordapp.com/assets/0bdc0497eb3a19e66f2b1e3d5741634c.webm)).
+Since the loading logo is a video you have less control over its behavior. This project recreates the animated logo in **S**caleable **V**ector **G**raphics. By using **SVG**, all edges are clean and sharp. You can have any size and color. It consumes less ressources compared to a video. Original SVG and color palette were retrieved from [Discord](https://discordapp.com/branding).
+
+If you need help, feel free joining [my server](https://discord.gg/gDHs8AV). Visit my [github page](https://github.com/NNTin/discord-logo) to create your own animated Discord logo.
+
 
 ## Build Setup
 
@@ -16,6 +19,8 @@ npm run dev
 
 ## License/Acknowledgements
 
-This isn't built by Discord or endorsed by them.
+This project is neither build nor endorsed by Discord.
+
+Github corner template: [tholman](https://github.com/tholman/github-corners)
 
 [The MIT License](https://github.com/NNTin/discord-logo/blob/master/LICENSE)
