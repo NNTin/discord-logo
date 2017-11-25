@@ -1,9 +1,14 @@
 <template>
-  <div id="app" :style="getBackgroundColor">
-    <GithubCorner :discordcolor="colors.discordfill" :discordfill="colors.discordcolor"/>
-    <DiscordCorner :discordcolor="colors.discordfill" :discordfill="colors.discordcolor"/>
-    <ColorSelector @colorChange="onColorChange"/>
-    <DiscordSwirl :discordfill="colors.discordfill" :discordcolor="colors.discordcolor"/>
+  <div id="app">
+    <div id="top" :style="getBackgroundColor">
+      <GithubCorner :discordcolor="colors.discordfill" :discordfill="colors.discordcolor"/>
+      <DiscordCorner customLink="https://discord.gg/gDHs8AV" id="discordcorner" :discordcolor="colors.discordfill" :discordfill="colors.discordcolor"/>
+      <ColorSelector @colorChange="onColorChange"/>
+      <a href="https://discord.gg/gDHs8AV">
+        <DiscordSwirl :discordfill="colors.discordfill" :discordcolor="colors.discordcolor"/>
+      </a>
+    </div>
+    <MainBody/>
   </div>
 </template>
 
@@ -12,11 +17,12 @@ import DiscordSwirl from './components/DiscordSwirl.vue'
 import GithubCorner from './components/GithubCorner.vue'
 import DiscordCorner from './components/DiscordCorner.vue'
 import ColorSelector from './components/ColorSelector.vue'
+import MainBody from './components/MainBody.vue'
 
 export default {
   name: 'app',
   components: {
-    DiscordSwirl, GithubCorner, DiscordCorner, ColorSelector
+    DiscordSwirl, GithubCorner, DiscordCorner, ColorSelector, MainBody
   },
   data () {
   		return {
@@ -55,5 +61,11 @@ html,body {
   text-align: center;
   color: #2c3e50;
   height: 100%;
+}
+#discordcorner {
+	position: absolute;
+	top: 0;
+	left: 0;
+	border: 0;
 }
 </style>

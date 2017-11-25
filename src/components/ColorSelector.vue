@@ -1,35 +1,11 @@
 <template>
   <div class="buttons">
     <a href="#" v-on:click="setColor('#7289DA','#FFFFFF')"><DiscordSwirl :width="48" :height="48" discordfill="#7289DA" discordcolor="#FFFFFF"/></a>
-    <a href="#" v-on:click="setColor('#7289DA','#99AAB5')"><DiscordSwirl :width="48" :height="48" discordfill="#7289DA" discordcolor="#99AAB5"/></a>
-    <a href="#" v-on:click="setColor('#7289DA','#2C2F33')"><DiscordSwirl :width="48" :height="48" discordfill="#7289DA" discordcolor="#2C2F33"/></a>
-    <a href="#" v-on:click="setColor('#7289DA','#23272A')"><DiscordSwirl :width="48" :height="48" discordfill="#7289DA" discordcolor="#23272A"/></a>
-    <br/>
-
+    <a href="#" v-on:click="setColor('#7289DA','#2C2F33')"><DiscordSwirl :width="48" :height="48" discordfill="#7289DA" discordcolor="#2C2F33"/></a><br/>
     <a href="#" v-on:click="setColor('#FFFFFF','#7289DA')"><DiscordSwirl :width="48" :height="48" discordfill="#FFFFFF" discordcolor="#7289DA"/></a>
-    <a href="#" v-on:click="setColor('#FFFFFF','#99AAB5')"><DiscordSwirl :width="48" :height="48" discordfill="#FFFFFF" discordcolor="#99AAB5"/></a>
-    <a href="#" v-on:click="setColor('#FFFFFF','#2C2F33')"><DiscordSwirl :width="48" :height="48" discordfill="#FFFFFF" discordcolor="#2C2F33"/></a>
-    <a href="#" v-on:click="setColor('#FFFFFF','#23272A')"><DiscordSwirl :width="48" :height="48" discordfill="#FFFFFF" discordcolor="#23272A"/></a>
-    <br/>
-
-    <a href="#" v-on:click="setColor('#99AAB5','#7289DA')"><DiscordSwirl :width="48" :height="48" discordfill="#99AAB5" discordcolor="#7289DA"/></a>
-    <a href="#" v-on:click="setColor('#99AAB5','#FFFFFF')"><DiscordSwirl :width="48" :height="48" discordfill="#99AAB5" discordcolor="#FFFFFF"/></a>
-    <a href="#" v-on:click="setColor('#99AAB5','#2C2F33')"><DiscordSwirl :width="48" :height="48" discordfill="#99AAB5" discordcolor="#2C2F33"/></a>
-    <a href="#" v-on:click="setColor('#99AAB5','#23272A')"><DiscordSwirl :width="48" :height="48" discordfill="#99AAB5" discordcolor="#23272A"/></a>
-    <br/>
-
+    <a href="#" v-on:click="setColor('#FFFFFF','#2C2F33')"><DiscordSwirl :width="48" :height="48" discordfill="#FFFFFF" discordcolor="#2C2F33"/></a><br/>
     <a href="#" v-on:click="setColor('#2C2F33','#7289DA')"><DiscordSwirl :width="48" :height="48" discordfill="#2C2F33" discordcolor="#7289DA"/></a>
     <a href="#" v-on:click="setColor('#2C2F33','#FFFFFF')"><DiscordSwirl :width="48" :height="48" discordfill="#2C2F33" discordcolor="#FFFFFF"/></a>
-    <a href="#" v-on:click="setColor('#2C2F33','#99AAB5')"><DiscordSwirl :width="48" :height="48" discordfill="#2C2F33" discordcolor="#99AAB5"/></a>
-    <a href="#" v-on:click="setColor('#2C2F33','#23272A')"><DiscordSwirl :width="48" :height="48" discordfill="#2C2F33" discordcolor="#23272A"/></a>
-    <br/>
-
-    <a href="#" v-on:click="setColor('#23272A','#7289DA')"><DiscordSwirl :width="48" :height="48" discordfill="#23272A" discordcolor="#7289DA"/></a>
-    <a href="#" v-on:click="setColor('#23272A','#FFFFFF')"><DiscordSwirl :width="48" :height="48" discordfill="#23272A" discordcolor="#FFFFFF"/></a>
-    <a href="#" v-on:click="setColor('#23272A','#99AAB5')"><DiscordSwirl :width="48" :height="48" discordfill="#23272A" discordcolor="#99AAB5"/></a>
-    <a href="#" v-on:click="setColor('#23272A','#2C2F33')"><DiscordSwirl :width="48" :height="48" discordfill="#23272A" discordcolor="#2C2F33"/></a>
-    <br/>
-    <br/>
   </div>
 </template>
 
@@ -64,14 +40,7 @@ export default {
   .buttons {
     display: inline-block;
     width: 32%;
-  }
-  .buttons .button {
-    width: 40%;
-    font-size: 12px;
-    padding: 10px 20px 10px 20px;
-    border: transparent;
-    border: solid #000000 3px;
-    margin-top: 7px;
-    margin-right: 0px;
+    position:relative;
+    bottom: 80px;
   }
 </style>

@@ -12,7 +12,9 @@
   },
   "dependencies": {
     "vue": "^2.5.2",
-    "vue-gh-pages": "^1.6.4"
+    "vue-color": "^2.4.3",
+    "vue-gh-pages": "^1.6.4",
+    "vue-slider-component": "^2.4.5"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

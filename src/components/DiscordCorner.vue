@@ -1,11 +1,19 @@
 <template>
-  <div >
-    <svg :color="discordcolor" :fill="discordfill" class="discordcorner" width="120" height="120" viewBox="0 0 250 250">
-     <g>
-      <path d="M0,0 L0,250 L250,0 Z" fill="currentfill"/>
-     </g>
+  <div>
+    <svg :color="discordcolor" :fill="discordfill" :idth="width" :height="height" viewBox="0 0 250 250">
+      <g>
+        <a v-if="this.customLink" v-bind:href="this.customLink">
+          <path d="M0,0 L0,250 L250,0 Z" :fill="discordfill"/>
+        </a>
+        <path v-else d="M0,0 L0,250 L250,0 Z" :fill="discordfill"/>
+      </g>
+      <g class="rotatethis">
+        <a v-if="this.customLink" v-bind:href="this.customLink">
+          <DiscordSwirl :color="discordcolor" :fill="discordfill" :width="120" :height="120" />
+        </a>
+        <DiscordSwirl v-else :color="discordcolor" :fill="discordfill" :width="120" :height="120" />
+      </g>
     </svg>
-    <DiscordSwirl :color="discordcolor" :fill="discordfill" class="discordcorner discordswirl" :width="60" :height="60" />
   </div>
 </template>
 
@@ -22,6 +30,14 @@ export default {
     }
   },
   props: {
+		width: {
+			type: Number,
+			default: 120
+		},
+		height: {
+			type: Number,
+			default: 120
+		},
     discordcolor: {
       type: String,
       default: '#7289DA'
@@ -29,6 +45,10 @@ export default {
     discordfill: {
       type: String,
       default: '#23272A'
+    },
+    customLink: {
+      type: String,
+      default: ''//https://discord.gg/gDHs8AV
     }
   }
 }
@@ -36,13 +56,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
-.discordcorner {
-	position: absolute;
-	top: 0;
-	left: 0;
-	border: 0;
-}
-.discordswirl {
+.rotatethis {
   transform: rotate(-45deg);
+  transform-origin: 60px 60px;
 }
 </style>
