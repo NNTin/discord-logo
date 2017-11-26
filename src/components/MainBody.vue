@@ -14,7 +14,6 @@
             <toggle-button class="button" :color="{checked: '#7289DA', unchecked: '#2C2F33'}" v-model="isSquare" :labels="{checked: 'cquare', unchecked: 'corner'}" :width="100"/>
             <toggle-button class="button" :color="{checked: '#DA7272', unchecked: '#7289DA'}" :disabled="isSquare" v-model="isLeft" :labels="{checked: 'left', unchecked: 'right'}" :width="100"/>
             <toggle-button class="button" :color="{checked: '#DA7272', unchecked: '#7289DA'}" :disabled="isSquare" v-model="isTop" :labels="{checked: 'top', unchecked: 'bottom'}" :width="100"/>
-            <toggle-button class="button" :color="{checked: '#770CA7', unchecked: '#4793C7'}" :disabled="isSquare" v-model="isAbsolutePosition" :labels="{checked: 'absolute', unchecked: 'relative'}" :width="100"/>
             <toggle-button class="button" :color="{checked: '#2BA027', unchecked: '#B9B6B6'}" v-model="isClickable" :sync="true" :disabled="true" :labels="{checked: 'clickable link', unchecked: 'no link'}" :width="100"/>
             <input :size="30" v-model="customLink" class="text" placeholder="insert link (e.g. discord invite link)"/>
           </div>
@@ -65,8 +64,7 @@ export default {
       isSquare: false,
       isLeft: true,
       isTop: true,
-      isAbsolutePosition: true,
-      rotation: "position: absolute; bottom: 0; right: 0; border: 0;",
+      rotation: "",
 
       colors: {
         discordcolor: {
@@ -145,21 +143,17 @@ export default {
         }
         if (!this.isLeft && this.isTop) {
           this.rotation = 'transform: rotateY(180deg);'
-          this.rotation += this.isAbsolutePosition ? " position: absolute; top: 0; right: 0; border: 0;" : ""
           returnThis.transform = "rotateY(180deg)"
           return returnThis
         } else if (!this.isLeft && !this.isTop) {
           this.rotation = 'transform: rotateY(180deg) rotateX(180deg);'
-          this.rotation += this.isAbsolutePosition ? " position: absolute; bottom: 0; right: 0; border: 0;" : ""
           returnThis.transform = "rotateY(180deg) rotateX(180deg)"
           return returnThis
         } else if (this.isLeft && !this.isTop) {
           this.rotation = 'transform: rotateX(180deg);'
-          this.rotation += this.isAbsolutePosition ? " position: absolute; bottom: 0; left: 0; border: 0;" : ""
           returnThis.transform = "rotateX(180deg)"
           return returnThis
         } else {
-          this.rotation = this.isAbsolutePosition ? 'position: absolute; top: 0; left: 0; border: 0;' : ''
           return returnThis
         }
       }
@@ -181,9 +175,6 @@ export default {
       this.updatePreviewCode();
     },
     isTop: function () {
-      this.updatePreviewCode();
-    },
-    isAbsolutePosition: function () {
       this.updatePreviewCode();
     },
     colors: {
