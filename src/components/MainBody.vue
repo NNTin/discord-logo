@@ -22,11 +22,11 @@
             <a v-if="isSquare" :href="customLink">
               <DiscordSwirl class="previewbox" v-if="isSquare" :width="size" :height="size" :discordfill="colors.discordfill.hex" :discordcolor="colors.discordcolor.hex" />
             </a>
-            <DiscordCorner :customLink="customLink" :style="getRotation" class="previewbox verticalFlip" v-else :width="size" :height="size" :discordfill="colors.discordfill.hex" :discordcolor="colors.discordcolor.hex" />
+            <DiscordCorner :customLink="customLink" :style="getStyle" class="previewbox verticalFlip" v-else :width="size" :height="size" :discordfill="colors.discordfill.hex" :discordcolor="colors.discordcolor.hex" />
           </div>
           <div v-else>
             <DiscordSwirl class="previewbox" v-if="isSquare" :width="size" :height="size" :discordfill="colors.discordfill.hex" :discordcolor="colors.discordcolor.hex" />
-            <DiscordCorner :style="getRotation" class="previewbox verticalFlip" v-else :width="size" :height="size" :discordfill="colors.discordfill.hex" :discordcolor="colors.discordcolor.hex" />
+            <DiscordCorner :style="getStyle" class="previewbox verticalFlip" v-else :width="size" :height="size" :discordfill="colors.discordfill.hex" :discordcolor="colors.discordcolor.hex" />
           </div>
         </div>
       </div>
@@ -121,30 +121,32 @@ export default {
     }
   },
   computed: {
-    getRotation: {
+    getStyle: {
       get: function() {
+        var returnThis = {transform: "rotate(0deg)", backgroundColor: "#FFFFFF"}
+        if (this.colors.discordfill.hex == "#FFFFFF") {
+          returnThis.backgroundColor = this.colors.discordcolor.hex
+        } else {
+          returnThis.backgroundColor = '#FFFFFF'
+        }
         if (!this.isLeft && this.isTop) {
           this.rotation = 'transform: rotateY(180deg);'
           this.rotation += this.isAbsolutePosition ? " position: absolute; top: 0; right: 0; border: 0;" : ""
-          return {
-            transform: "rotateY(180deg)"
-          }
+          returnThis.transform = "rotateY(180deg)"
+          return returnThis
         } else if (!this.isLeft && !this.isTop) {
           this.rotation = 'transform: rotateY(180deg) rotateX(180deg);'
           this.rotation += this.isAbsolutePosition ? " position: absolute; bottom: 0; right: 0; border: 0;" : ""
-          return {
-            transform: "rotateY(180deg) rotateX(180deg)"
-          }
+          returnThis.transform = "rotateY(180deg) rotateX(180deg)"
+          return returnThis
         } else if (this.isLeft && !this.isTop) {
           this.rotation = 'transform: rotateX(180deg);'
           this.rotation += this.isAbsolutePosition ? " position: absolute; bottom: 0; left: 0; border: 0;" : ""
-          return {
-            transform: "rotateX(180deg)"
-          }
+          returnThis.transform = "rotateX(180deg)"
+          return returnThis
         } else {
           this.rotation = this.isAbsolutePosition ? 'position: absolute; top: 0; left: 0; border: 0;' : ''
-          return {
-          }
+          return returnThis
         }
       }
     },
