@@ -8,21 +8,14 @@
     </header>
     <section>
       <div class="left">
-        <vueSlider :reverse="true" direction="vertical" :width="4" :height="482" v-model="size" :min="18" :max="235"/>
+        <vueSlider :reverse="true" direction="vertical" :width="4" :height="482" v-model="size" :min="18" :max="250"/>
         <div class="stack">
-          <div class="checkboxes">
-            <input type="checkbox" v-model="isSquare"><label>toggle square/corner</label>
-            <br/>
-            <div v-if="!isSquare">
-              <input type="checkbox" v-model="isLeft"><label>toggle left/right</label>
-              <br/>
-              <input type="checkbox" v-model="isTop"><label>toggle top/bottom</label>
-              <br/>
-              <input type="checkbox" v-model="isAbsolutePosition"><label>toggle absolute position</label>
-              <br/>
-            </div>
-            <input type="checkbox" v-model="isClickable" :disabled="true"><label>clickable icon</label>
-            <br/>
+          <div>
+            <toggle-button class="button" :color="{checked: '#7289DA', unchecked: '#2C2F33'}" v-model="isSquare" :labels="{checked: 'cquare', unchecked: 'corner'}" :width="100"/>
+            <toggle-button class="button" :color="{checked: '#DA7272', unchecked: '#7289DA'}" :disabled="isSquare" v-model="isLeft" :labels="{checked: 'left', unchecked: 'right'}" :width="100"/>
+            <toggle-button class="button" :color="{checked: '#DA7272', unchecked: '#7289DA'}" :disabled="isSquare" v-model="isTop" :labels="{checked: 'top', unchecked: 'bottom'}" :width="100"/>
+            <toggle-button class="button" :color="{checked: '#770CA7', unchecked: '#4793C7'}" :disabled="isSquare" v-model="isAbsolutePosition" :labels="{checked: 'absolute', unchecked: 'relative'}" :width="100"/>
+            <toggle-button class="button" :color="{checked: '#2BA027', unchecked: '#B9B6B6'}" v-model="isClickable" :sync="true" :disabled="true" :labels="{checked: 'clickable link', unchecked: 'no link'}" :width="100"/>
             <input :size="30" v-model="customLink" class="text" placeholder="insert link (e.g. discord invite link)"/>
           </div>
           <div v-if="isClickable">
@@ -195,11 +188,27 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
+header {
+  padding-right: 20px;
+  padding-left: 20px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  max-width: 580px;
+  margin: auto;
+  text-align: left;
+}
+
 .previewbox {
   border: 2px solid black;
+  margin-top: 8px;
   display: inline-block;
 }
 section {
+  padding-right: 20px;
+  padding-left: 50px;
+  padding-bottom: 50px;
+  max-width: 1200px;
+  margin: auto;
   display: flex
 }
 .left {
@@ -208,8 +217,19 @@ section {
 }
 .left .stack {
   text-align: left;
+  width: 262px;
 }
+
+.button {
+  padding-bottom: 5px;
+}
+
 textarea {
+  margin-left: 5px;
   width: 100%;
+}
+footer {
+  font-size: 15px;
+  padding-bottom: 5px;
 }
 </style>

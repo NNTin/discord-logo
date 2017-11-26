@@ -14,6 +14,7 @@
     "vue": "^2.5.2",
     "vue-color": "^2.4.3",
     "vue-gh-pages": "^1.6.4",
+    "vue-js-toggle-button": "^1.2.0",
     "vue-slider-component": "^2.4.5"
   },
   "devDependencies": {
