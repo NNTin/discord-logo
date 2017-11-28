@@ -2,7 +2,7 @@
   <div>
     <div class="discordtext">
       <DiscordSwirl :height="height *2" :width="height *2" :discordfill="discordfill" :discordcolor="discordcolor"/>
-      <svg id="svgElementContainer" :height="height">  <!--viewBox="0 0 185 200"-->
+      <svg preserveAspectRatio="xMinYMin" id="svgElementContainer" :height="height">
         <g>
           <svg id="svgElement2" preserveAspectRatio="none" :x="53" :height="200" viewBox="0 0 100 200">
               <path d="m100,0l-100,0l0,176.4l100,0l0,-176.4z" fill="white" id="svg_1"/>
@@ -18,7 +18,7 @@
       </svg>
     </div>
     <!-- <input type="text" v-model="standardText" /> -->
-</div>
+  </div>
 </template>
 
 <script>
@@ -31,7 +31,7 @@ export default {
   },
   data () {
     return {
-      standardText: "code generator for speech bubble coming soon.......",
+      standardText: "fork me",
       width: 0
     }
   },
@@ -50,12 +50,23 @@ export default {
     }
 	},
   methods: {
+    updateSpeechBubble: function () {
+      var myArray = ['code generator for speech bubble coming soon......',
+                    'click top right github corner to fork!',
+                    'check out the corners!',
+                    'code generator below',
+                    'animation or style ideas? Raise an issue on GitHub!',
+                    'created with ♥ by NNTin'];
+      var rand = myArray[Math.floor(Math.random() * myArray.length)];
+      console.log(rand)
+      this.standardText = rand
+    },
     updateSVG: function () {
       this.$nextTick(function () {
         var svgElement = document.getElementById("svgElement2");
         var textElement = document.getElementById("textElement2");
         textElement.textContent = this.standardText;
-        this.width = Math.max(textElement.getComputedTextLength() + 60, this.height);
+        this.width = textElement.getComputedTextLength() + 60;
         svgElement.setAttribute("width", this.width);
         var svgElementContainer = document.getElementById("svgElementContainer");
         var vb=[0, 0, this.width+100, 200];
@@ -79,6 +90,7 @@ export default {
   },
   created: function() {
     this.updateSVG();
+    setInterval(this.updateSpeechBubble, 3000);
   }
 }
 </script>
@@ -88,6 +100,10 @@ export default {
 position: relative;
 top: 50%;
 transform: translateY(-50%);
+
+}
+.discordtext #svgElementContainer {
+text-align: left;
 }
 
 </style>
