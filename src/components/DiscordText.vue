@@ -5,13 +5,13 @@
       <svg preserveAspectRatio="xMinYMin" id="svgElementContainer" :height="height">
         <g>
           <svg id="svgElement2" preserveAspectRatio="none" :x="53" :height="200" viewBox="0 0 100 200">
-              <path d="m100,0l-100,0l0,176.4l100,0l0,-176.4z" fill="white" id="svg_1"/>
+              <path d="m100,0l-100,0l0,176.4l100,0l0,-176.4z" :fill="discordcolor" id="svg_1"/>
           </svg>
           <svg>
-            <path transform="scale(-1,1)" transform-origin="center" fill="white" d="m39.5,0l-39.5,0l0,176.4l18.9,0l-5.3,-18.5l12.8,11.9l12.1,11.2l21.5,19l0,-179.4c0,-11.4 -9.2,-20.6 -20.5,-20.6z" />
+            <path transform="scale(-1,1)" transform-origin="center" :fill="discordcolor" d="m39.5,0l-39.5,0l0,176.4l18.9,0l-5.3,-18.5l12.8,11.9l12.1,11.2l21.5,19l0,-179.4c0,-11.4 -9.2,-20.6 -20.5,-20.6z" />
           </svg>
           <svg :x="width">
-            <path transform="scale(-1,1)" transform-origin="center" fill="white" d="m55,0l-34.5,0c-11.3,0 -20.5,9.2 -20.5,20.6l0,135.2c0,11.4 9.2,20.6 20.5,20.6l34.5,0l0,-176.4z" />
+            <path transform="scale(-1,1)" transform-origin="center" :fill="discordcolor" d="m55,0l-34.5,0c-11.3,0 -20.5,9.2 -20.5,20.6l0,135.2c0,11.4 9.2,20.6 20.5,20.6l34.5,0l0,-176.4z" />
           </svg>
           <text :fill="discordfill" font-size="90" id="textElement2" x="50" y="57%">{{standardText}}</text>
         </g>

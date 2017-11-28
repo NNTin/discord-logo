@@ -8,7 +8,7 @@
         <DiscordSwirl :discordfill="colors.discordfill" :discordcolor="colors.discordcolor"/>
       </a>
       <br/>
-      <DiscordText />
+      <DiscordText :discordfill="colors.discordfill" :discordcolor="colors.discordcolor" />
     </div>
     <MainBody ref="mainbody"/>
   </div>
