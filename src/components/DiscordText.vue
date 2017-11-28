@@ -84,6 +84,7 @@ export default {
 </script>
 <style>
 
+.discordtext, .discordtext #svgElementContainer {
 position: relative;
 top: 50%;
 transform: translateY(-50%);
