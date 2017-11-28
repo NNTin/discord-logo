@@ -187,9 +187,9 @@ export default {
       this.updatePreviewCode();
     }
   },
-    created: function() {
-      this.updatePreviewCode()
-    }
+  created: function() {
+    this.updatePreviewCode()
+  }
 }
 </script>
 

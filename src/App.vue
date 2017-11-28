@@ -7,6 +7,8 @@
       <a href="https://discord.gg/gDHs8AV">
         <DiscordSwirl :discordfill="colors.discordfill" :discordcolor="colors.discordcolor"/>
       </a>
+      <br/>
+      <DiscordText />
     </div>
     <MainBody ref="mainbody"/>
   </div>
@@ -18,11 +20,12 @@ import GithubCorner from './components/GithubCorner.vue'
 import DiscordCorner from './components/DiscordCorner.vue'
 import ColorSelector from './components/ColorSelector.vue'
 import MainBody from './components/MainBody.vue'
+import DiscordText from './components/DiscordText.vue'
 
 export default {
   name: 'app',
   components: {
-    DiscordSwirl, GithubCorner, DiscordCorner, ColorSelector, MainBody
+    DiscordSwirl, GithubCorner, DiscordCorner, ColorSelector, MainBody, DiscordText
   },
   data () {
   		return {
