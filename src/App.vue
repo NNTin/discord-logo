@@ -8,7 +8,7 @@
         <DiscordSwirl :discordfill="colors.discordfill" :discordcolor="colors.discordcolor"/>
       </a>
       <br/>
-      <DiscordText :discordfill="colors.discordfill" :discordcolor="colors.discordcolor" />
+      <DiscordText ref="discordtext" :standardText="standardText" customLink="#" @click.native="updateSpeechBubble()" :discordfill="colors.discordfill" :discordcolor="colors.discordcolor" />
     </div>
     <MainBody ref="mainbody" :previewDiscordType="previewDiscordType"/>
   </div>
@@ -29,6 +29,8 @@ export default {
   },
   data () {
   		return {
+        // isTyping: false,
+        standardText: 'Join us on Discord',
         previewDiscordType: 'standard',
         colors: {
           discordcolor: '#FFFFFF',
@@ -37,6 +39,16 @@ export default {
   		}
   	},
   methods: {
+    updateSpeechBubble: function () {
+      var myArray = ['Code generator for speech bubble coming soon......',
+                    'Click top right GitHub corner to fork!',
+                    'Animation or style ideas? Raise an issue on GitHub!',
+                    'Created with ♥ by NNTin.',
+                    'Click on the Discord corner to get the code.',
+                    "All discord logos are clickable and will not redirect you!"];
+      var rand = myArray[Math.floor(Math.random() * myArray.length)];
+      this.standardText = rand;
+    },
     onColorChange (value) {
       this.colors = value
       this.$refs.mainbody.changeColor(this.colors.discordcolor, this.colors.discordfill)
@@ -54,6 +66,9 @@ export default {
 				}
 			}
 		}
+  },
+  created: function() {
+    this.updateSpeechBubble()
   }
 }
 </script>

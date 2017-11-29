@@ -1,13 +1,20 @@
 <template>
   <div>
     <div class="discordtext">
-      <a href="#" @click="updateSpeechBubble()">
+      <a v-if="customLink" :href="this.customLink">
         <DiscordSwirl :height="height *2" :width="height *2" :discordfill="discordfill" :discordcolor="discordcolor"/>
         <svg v-show="standardText" id="svgElement" class="speechbubble" :height="height" preserveAspectRatio="xMinYMin">
           <path transform="scale(-1,1)" id="pathElement" :fill="discordcolor" d="M 154.5,0 L 20.5,0 C 9.2,0 0,9.2 0,20.6 L 0,155.8 C 0,167.2 9.2,177 20.5,176.4 L 133.9,176.4 L 128.6,157.9 L 141.4,169.8 L 153.5,181 L 175,200 L 175,20.6 C 175,9.2 165.8,0 154.5,0 Z"/>
-          <text :fill="discordfill" font-size="90" id="textElement" x="95" y="57%">{{standardText}}</text>
+          <text :fill="discordfill" font-size="90" id="textElement" x="95" y="57%">{{bubbleText}}</text>
         </svg>
       </a>
+      <div v-else>
+        <DiscordSwirl :height="height *2" :width="height *2" :discordfill="discordfill" :discordcolor="discordcolor"/>
+        <svg v-show="standardText" id="svgElement" class="speechbubble" :height="height" preserveAspectRatio="xMinYMin">
+          <path transform="scale(-1,1)" id="pathElement" :fill="discordcolor" d="M 154.5,0 L 20.5,0 C 9.2,0 0,9.2 0,20.6 L 0,155.8 C 0,167.2 9.2,177 20.5,176.4 L 133.9,176.4 L 128.6,157.9 L 141.4,169.8 L 153.5,181 L 175,200 L 175,20.6 C 175,9.2 165.8,0 154.5,0 Z"/>
+          <text :fill="discordfill" font-size="90" id="textElement" x="95" y="57%">{{bubbleText}}</text>
+        </svg>
+      </div>
     </div>
     <!-- <br/>
     <input type="text" v-model="standardText" /> -->
@@ -24,8 +31,9 @@ export default {
   },
   data () {
     return {
+      delay: 60,
       isTyping: false,
-      standardText: '',
+      bubbleText: '',
       width: 0
     }
   },
@@ -41,33 +49,30 @@ export default {
     discordfill: {
       type: String,
       default: '#7289DA'
+    },
+    customLink: {
+      type: String,
+      default: ''//https://discord.gg/gDHs8AV
+    },
+    standardText: {
+      type: String,
+      default: 'Join us on Discord!'
     }
 	},
   methods: {
-    updateSpeechBubble: function () {
-      var myArray = ['Code generator for speech bubble coming soon......',
-                    'Click top right GitHub corner to fork!',
-                    'Animation or style ideas? Raise an issue on GitHub!',
-                    'Created with ♥ by NNTin.',
-                    'Click on the Discord corner to get the code.',
-                    "All discord logos are clickable and will not redirect you!"];
-      var rand = myArray[Math.floor(Math.random() * myArray.length)];
-
-      if (!this.isTyping) {
-        this.isTyping = true;
-        this.standardText = '';
-        this.typeText(rand, 0);
-      }
-    },
-    typeText: function(text, position) {
-      if (position < text.length) {
-        this.standardText += text.charAt(position)
-        this.sleep(60).then(() => {
-            this.typeText(text, position+1);
+    typeText: function(position, text) {
+      if (position == 0) {
+        this.isTyping = true,
+        this.bubbleText = '';
+      } if (position < text.length) {
+        this.bubbleText += text.charAt(position)
+        this.sleep(this.delay).then(() => {
+            this.typeText(position+1, text);
         });
       } else {
-        this.isTyping = false;
+        this.isTyping = false
       }
+      this.updateSVG();
     },
     sleep: function(ms) {
       return new Promise(resolve => setTimeout(resolve, ms));
@@ -80,8 +85,8 @@ export default {
         var vb=[0, 0, newWidth+190, 200];
         svgElement.setAttribute("viewBox", vb.join(" ") );
 
-        var d = "M 154.5,0 L 20.5,0 C 9.2,0 0,9.2 0,20.6 L 0,155.8 C 0,167.2 9.2,177 20.5,176.4 L 133.9,176.4 L 128.6,157.9 L 141.4,169.8 L 153.5,181 L 175,200 L 175,20.6 C 175,9.2 165.8,0 154.5,0 Z"
-        var d = d.split(" ");
+        var original_d = "M 154.5,0 L 20.5,0 C 9.2,0 0,9.2 0,20.6 L 0,155.8 C 0,167.2 9.2,177 20.5,176.4 L 133.9,176.4 L 128.6,157.9 L 141.4,169.8 L 153.5,181 L 175,200 L 175,20.6 C 175,9.2 165.8,0 154.5,0 Z"
+        var d = original_d.split(" ");
         var new_d = [];
         for (var i = 0; i < d.length; i++){
           switch(d[i]) {
@@ -118,13 +123,18 @@ export default {
   },
   watch: {
     standardText: function () {
-      this.updateSVG();
+      if (!this.isTyping) {
+        this.typeText(0, this.standardText);
+      } else {
+        this.delay = 0;
+        this.sleep(500).then(() => {
+          this.delay = 60;
+        })
+      }
     }
   },
   created: function() {
-    this.updateSVG();
-    // setInterval(this.updateSpeechBubble, 5000);
-    this.updateSpeechBubble()
+    this.typeText(0, this.standardText);
   }
 }
 </script>
@@ -143,6 +153,8 @@ display: inline-block
 .discordtext:hover {
 opacity: 1;
 }
-
+.discordtext a {
+  text-decoration: none;
+}
 
 </style>
