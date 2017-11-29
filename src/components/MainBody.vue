@@ -11,21 +11,20 @@
         <vueSlider :reverse="true" direction="vertical" :width="4" :height="482" v-model="size" :min="18" :max="250"/>
         <div class="stack">
           <div>
-            <toggle-button class="button" :color="{checked: '#7289DA', unchecked: '#2C2F33'}" v-model="isSquare" :labels="{checked: 'cquare', unchecked: 'corner'}" :width="100"/>
-            <toggle-button class="button" :color="{checked: '#DA7272', unchecked: '#7289DA'}" :disabled="isSquare" v-model="isLeft" :labels="{checked: 'left', unchecked: 'right'}" :width="100"/>
-            <toggle-button class="button" :color="{checked: '#DA7272', unchecked: '#7289DA'}" :disabled="isSquare" v-model="isTop" :labels="{checked: 'top', unchecked: 'bottom'}" :width="100"/>
+            <toggle-button class="button" :color="{checked: '#76DA72', unchecked: '#DA7272'}" :disabled="previewDiscordType != 'corner'" v-model="isLeft" :labels="{checked: 'left', unchecked: 'right'}" :width="100"/>
+            <toggle-button class="button" :color="{checked: '#7289DA', unchecked: '#D4DA72'}" :disabled="previewDiscordType != 'corner'" v-model="isTop" :labels="{checked: 'top', unchecked: 'bottom'}" :width="100"/>
             <toggle-button class="button" :color="{checked: '#2BA027', unchecked: '#B9B6B6'}" v-model="isClickable" :sync="true" :disabled="true" :labels="{checked: 'clickable link', unchecked: 'no link'}" :width="100"/>
             <input :size="30" v-model="customLink" class="text" placeholder="insert link (e.g. discord invite link)"/>
           </div>
           <div ref="preview" class="preview">
             <div v-if="isClickable">
-              <a v-if="isSquare" :href="customLink">
-                <DiscordSwirl class="previewbox" v-if="isSquare" :width="size" :height="size" :discordfill="colors.discordfill.hex" :discordcolor="colors.discordcolor.hex" />
+              <a v-if="previewDiscordType == 'standard'" :href="customLink">
+                <DiscordSwirl class="previewbox" v-if="previewDiscordType == 'standard'" :width="size" :height="size" :discordfill="colors.discordfill.hex" :discordcolor="colors.discordcolor.hex" />
               </a>
               <DiscordCorner :customLink="customLink" :style="getStyle" class="previewbox" v-else :width="size" :height="size" :discordfill="colors.discordfill.hex" :discordcolor="colors.discordcolor.hex" />
             </div>
             <div v-else>
-              <DiscordSwirl class="previewbox" v-if="isSquare" :width="size" :height="size" :discordfill="colors.discordfill.hex" :discordcolor="colors.discordcolor.hex" />
+              <DiscordSwirl class="previewbox" v-if="previewDiscordType == 'standard'" :width="size" :height="size" :discordfill="colors.discordfill.hex" :discordcolor="colors.discordcolor.hex" />
               <DiscordCorner :style="getStyle" class="previewbox" v-else :width="size" :height="size" :discordfill="colors.discordfill.hex" :discordcolor="colors.discordcolor.hex" />
             </div>
           </div>
@@ -61,7 +60,6 @@ export default {
     return {
       previewCode: "",
       size: 100,
-      isSquare: false,
       isLeft: true,
       isTop: true,
       rotation: "",
@@ -115,6 +113,12 @@ export default {
       customLink: ""
     }
   },
+  props: {
+    previewDiscordType: {
+      type: String,
+      default: "corner" //valid: standard, corner(, speechbubble)
+    }
+  },
   methods: {
     changeColor: function (discordcolor, discordfill) {
       this.colors.discordcolor = {hex: discordcolor, a: 1}
@@ -166,9 +170,6 @@ export default {
   },
   watch: {
     size: function () {
-      this.updatePreviewCode();
-    },
-    isSquare: function () {
       this.updatePreviewCode();
     },
     isLeft: function () {

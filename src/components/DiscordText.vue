@@ -1,23 +1,16 @@
 <template>
   <div>
     <div class="discordtext">
-      <DiscordSwirl :height="height *2" :width="height *2" :discordfill="discordfill" :discordcolor="discordcolor"/>
-      <svg preserveAspectRatio="xMinYMin" id="svgElementContainer" :height="height">
-        <g>
-          <svg id="svgElement2" preserveAspectRatio="none" :x="53" :height="200" viewBox="0 0 100 200">
-              <path d="m100,0l-100,0l0,176.4l100,0l0,-176.4z" :fill="discordcolor" id="svg_1"/>
-          </svg>
-          <svg>
-            <path transform="scale(-1,1)" transform-origin="center" :fill="discordcolor" d="m39.5,0l-39.5,0l0,176.4l18.9,0l-5.3,-18.5l12.8,11.9l12.1,11.2l21.5,19l0,-179.4c0,-11.4 -9.2,-20.6 -20.5,-20.6z" />
-          </svg>
-          <svg :x="width">
-            <path transform="scale(-1,1)" transform-origin="center" :fill="discordcolor" d="m55,0l-34.5,0c-11.3,0 -20.5,9.2 -20.5,20.6l0,135.2c0,11.4 9.2,20.6 20.5,20.6l34.5,0l0,-176.4z" />
-          </svg>
-          <text :fill="discordfill" font-size="90" id="textElement2" x="50" y="57%">{{standardText}}</text>
-        </g>
-      </svg>
+      <a href="#" @click="updateSpeechBubble()">
+        <DiscordSwirl :height="height *2" :width="height *2" :discordfill="discordfill" :discordcolor="discordcolor"/>
+        <svg v-show="standardText" id="svgElement" class="speechbubble" :height="height" preserveAspectRatio="xMinYMin">
+          <path transform="scale(-1,1)" id="pathElement" :fill="discordcolor" d="M 154.5,0 L 20.5,0 C 9.2,0 0,9.2 0,20.6 L 0,155.8 C 0,167.2 9.2,177 20.5,176.4 L 133.9,176.4 L 128.6,157.9 L 141.4,169.8 L 153.5,181 L 175,200 L 175,20.6 C 175,9.2 165.8,0 154.5,0 Z"/>
+          <text :fill="discordfill" font-size="90" id="textElement" x="95" y="57%">{{standardText}}</text>
+        </svg>
+      </a>
     </div>
-    <!-- <input type="text" v-model="standardText" /> -->
+    <!-- <br/>
+    <input type="text" v-model="standardText" /> -->
   </div>
 </template>
 
@@ -31,14 +24,15 @@ export default {
   },
   data () {
     return {
-      standardText: "fork me",
+      isTyping: false,
+      standardText: '',
       width: 0
     }
   },
 	props: {
     height: {
       type: Number,
-      default: 30
+      default: 40
     },
 		discordcolor: {
       type: String,
@@ -51,26 +45,65 @@ export default {
 	},
   methods: {
     updateSpeechBubble: function () {
-      var myArray = ['code generator for speech bubble coming soon......',
-                    'click top right github corner to fork!',
-                    'check out the corners!',
-                    'code generator below',
-                    'animation or style ideas? Raise an issue on GitHub!',
-                    'created with ♥ by NNTin'];
+      var myArray = ['Code generator for speech bubble coming soon......',
+                    'Click top right GitHub corner to fork!',
+                    'Animation or style ideas? Raise an issue on GitHub!',
+                    'Created with ♥ by NNTin.',
+                    'Click on the Discord corner to get the code.',
+                    "All discord logos are clickable and will not redirect you!"];
       var rand = myArray[Math.floor(Math.random() * myArray.length)];
-      console.log(rand)
-      this.standardText = rand
+
+      if (!this.isTyping) {
+        this.isTyping = true;
+        this.standardText = '';
+        this.typeText(rand, 0);
+      }
+    },
+    typeText: function(text, position) {
+      if (position < text.length) {
+        this.standardText += text.charAt(position)
+        this.sleep(60).then(() => {
+            this.typeText(text, position+1);
+        });
+      } else {
+        this.isTyping = false;
+      }
+    },
+    sleep: function(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
     },
     updateSVG: function () {
       this.$nextTick(function () {
-        var svgElement = document.getElementById("svgElement2");
-        var textElement = document.getElementById("textElement2");
-        textElement.textContent = this.standardText;
-        this.width = textElement.getComputedTextLength() + 60;
-        svgElement.setAttribute("width", this.width);
-        var svgElementContainer = document.getElementById("svgElementContainer");
-        var vb=[0, 0, this.width+100, 200];
-        svgElementContainer.setAttribute("viewBox", vb.join(" ") );
+        var svgElement = document.getElementById("svgElement");
+        var textElement = document.getElementById("textElement");
+        var newWidth = textElement.getComputedTextLength();
+        var vb=[0, 0, newWidth+190, 200];
+        svgElement.setAttribute("viewBox", vb.join(" ") );
+
+        var d = "M 154.5,0 L 20.5,0 C 9.2,0 0,9.2 0,20.6 L 0,155.8 C 0,167.2 9.2,177 20.5,176.4 L 133.9,176.4 L 128.6,157.9 L 141.4,169.8 L 153.5,181 L 175,200 L 175,20.6 C 175,9.2 165.8,0 154.5,0 Z"
+        var d = d.split(" ");
+        var new_d = [];
+        for (var i = 0; i < d.length; i++){
+          switch(d[i]) {
+            case 'M':
+            case 'C':
+            case 'L':
+            case 'Z':
+              new_d.push(d[i]);
+              break;
+            default:
+              var coordinates = d[i].split(',');
+              if (coordinates[0] < 50) {
+                new_d.push(coordinates.join(","));
+              } else {
+                new_d.push([(parseFloat(coordinates[0]) + parseFloat(newWidth)).toString(), coordinates[1]].join(","));
+              }
+          }
+        }
+        var pathElement = document.getElementById("pathElement");
+        pathElement.setAttribute("d", new_d.join(" "))
+        pathElement.setAttribute("transform-origin", (parseFloat(newWidth+190)/2).toString() + "100px")
+
       })
     },
     updateSVGContainer: function () {
@@ -90,20 +123,26 @@ export default {
   },
   created: function() {
     this.updateSVG();
-    setInterval(this.updateSpeechBubble, 3000);
+    // setInterval(this.updateSpeechBubble, 5000);
+    this.updateSpeechBubble()
   }
 }
 </script>
 <style>
 
-.discordtext, .discordtext #svgElementContainer {
+.speechbubble {
 position: relative;
 top: 50%;
 transform: translateY(-50%);
 
 }
-.discordtext #svgElementContainer {
-text-align: left;
+.discordtext {
+opacity: 0.75;
+display: inline-block
 }
+.discordtext:hover {
+opacity: 1;
+}
+
 
 </style>

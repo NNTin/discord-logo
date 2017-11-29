@@ -2,15 +2,15 @@
   <div id="app">
     <div id="top" :style="getBackgroundColor">
       <GithubCorner :discordcolor="colors.discordfill" :discordfill="colors.discordcolor"/>
-      <DiscordCorner customLink="https://discord.gg/gDHs8AV" id="discordcorner" :discordcolor="colors.discordfill" :discordfill="colors.discordcolor"/>
+      <DiscordCorner @click.native="setPreviewType('corner')" customLink="#" id="discordcorner" :discordcolor="colors.discordfill" :discordfill="colors.discordcolor"/>
       <ColorSelector @colorChange="onColorChange"/>
-      <a href="https://discord.gg/gDHs8AV">
+      <a href="#" @click="setPreviewType('standard')">
         <DiscordSwirl :discordfill="colors.discordfill" :discordcolor="colors.discordcolor"/>
       </a>
       <br/>
       <DiscordText :discordfill="colors.discordfill" :discordcolor="colors.discordcolor" />
     </div>
-    <MainBody ref="mainbody"/>
+    <MainBody ref="mainbody" :previewDiscordType="previewDiscordType"/>
   </div>
 </template>
 
@@ -29,6 +29,7 @@ export default {
   },
   data () {
   		return {
+        previewDiscordType: 'standard',
         colors: {
           discordcolor: '#FFFFFF',
           discordfill: '#7289DA'
@@ -39,6 +40,10 @@ export default {
     onColorChange (value) {
       this.colors = value
       this.$refs.mainbody.changeColor(this.colors.discordcolor, this.colors.discordfill)
+    },
+    setPreviewType (value) {
+      console.log(value)
+      this.previewDiscordType = value;
     }
   },
   computed: {
