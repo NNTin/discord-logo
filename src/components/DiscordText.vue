@@ -6,14 +6,12 @@
         <g class="pathElementGroup">
           <path transform="scale(-1,1)" class="pathElement" :fill="discordcolor" d="M 154.5,0 L 20.5,0 C 9.2,0 0,9.2 0,20.6 L 0,155.8 C 0,167.2 9.2,177 20.5,176.4 L 133.9,176.4 L 128.6,157.9 L 141.4,169.8 L 153.5,181 L 175,200 L 175,20.6 C 175,9.2 165.8,0 154.5,0 Z"/>
         </g>
-        <text :fill="discordfill" font-size="90" class="textElement" x="95" y="57%">{{bubbleText}}</text>
+        <text :fill="discordfill" font-size="90" class="textElement" x="95" y="57%" >{{bubbleText}}</text>
         <a v-if="customLink" :href="customLink">
           <rect width="100%" height="100%" fill-opacity="0" />
         </a>
       </svg>
     </div>
-    <!-- <br/>
-    <input type="text" v-model="standardText" /> -->
   </div>
 </template>
 
@@ -48,26 +46,36 @@ export default {
     },
     customLink: {
       type: String,
-      default: ''//https://discord.gg/gDHs8AV
+      default: ''
     },
     standardText: {
       type: String,
       default: 'Join us on Discord!'
+    },
+    writeText: {
+      type: Boolean,
+      default: true
     }
 	},
   methods: {
     typeText: function(position, text) {
-      if (position == 0) {
-        this.isTyping = true,
-        this.bubbleText = '';
-      } if (position < text.length) {
-        this.bubbleText += text.charAt(position)
-        this.sleep(this.delay).then(() => {
-            this.typeText(position+1, text);
-        });
-      } else {
-        this.isTyping = false
+      if (this.writeText) {
+        if (position == 0) {
+          this.isTyping = true,
+          this.bubbleText = '';
+        } if (position < text.length) {
+          this.bubbleText += text.charAt(position)
+          this.sleep(this.delay).then(() => {
+              this.typeText(position+1, text);
+          });
+        } else {
+          this.isTyping = false
+        }
       }
+      else {
+        this.bubbleText = text;
+      }
+
       this.updateSVG();
     },
     sleep: function(ms) {
@@ -104,11 +112,11 @@ export default {
         }
         var pathElement = rootElement.getElementsByClassName("pathElement")[0];
         pathElement.setAttribute("d", new_d.join(" "))
-        //pathElement.setAttribute("transform-origin", (parseFloat(newWidth+190)/2).toString() + "100px")   // transform-origin not supported by firefox
         var pathElementGroup = rootElement.getElementsByClassName("pathElementGroup")[0];
         pathElementGroup.setAttribute("transform", 'translate(' + (parseFloat(newWidth+190)).toString() + ', 0)')
 
       })
+      this.$emit('htmlModified');
     },
     updateSVGContainer: function () {
     }
@@ -142,7 +150,6 @@ export default {
 .speechbubble {
 position: relative;
 transform: translateY(-50%);
-
 }
 .discordtext {
 opacity: 0.75;

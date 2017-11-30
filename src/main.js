@@ -3,8 +3,10 @@
 import Vue from 'vue'
 import App from './App'
 import ToggleButton from 'vue-js-toggle-button'
+import PortalVue from 'portal-vue'
 
 Vue.use(ToggleButton)
+Vue.use(PortalVue)
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

@@ -6,20 +6,27 @@
       <p>Since the loading logo is a video you have less control over its behavior. This project recreates the animated logo in <b>S</b>caleable <b>V</b>ector <b>G</b>raphics. By using <b>SVG</b>, all edges are clean and sharp. You can have any size and color. It consumes less resources compared to a video. Original SVG and color palette were retrieved from <a href="https://discordapp.com/branding">Discord</a>.</p>
       <p>If you need help, feel free joining <a href="https://discord.gg/gDHs8AV">my server</a>. Below is a code generator:</p>
     </header>
+    <portal-target name="destination">
+    </portal-target>
     <section>
       <div class="left">
-        <vueSlider :reverse="true" direction="vertical" :width="4" :height="482" v-model="size" :min="18" :max="250"/>
+        <vueSlider ref="vueSlider" :reverse="true" direction="vertical" :width="4" :height="482" v-model="size" :min="18" :max="250"/>
         <div class="stack">
-          <div>
+          <div class="input">
             <toggle-button class="button" :color="{checked: '#76DA72', unchecked: '#DA7272'}" :disabled="previewDiscordType != 'corner'" v-model="isLeft" :labels="{checked: 'left', unchecked: 'right'}" :width="100"/>
             <toggle-button class="button" :color="{checked: '#7289DA', unchecked: '#D4DA72'}" :disabled="previewDiscordType != 'corner'" v-model="isTop" :labels="{checked: 'top', unchecked: 'bottom'}" :width="100"/>
             <toggle-button class="button" :color="{checked: '#2BA027', unchecked: '#B9B6B6'}" v-model="isClickable" :sync="true" :disabled="true" :labels="{checked: 'clickable link', unchecked: 'no link'}" :width="100"/>
             <input :size="30" v-model="customLink" class="text" placeholder="insert link (e.g. discord invite link)"/>
+            <input :size="30" v-model="bubbleText" class="text" placeholder="insert text"/>
           </div>
-          <div ref="preview" class="preview">
-            <DiscordSwirl v-if="previewDiscordType == 'standard'" :customLink="customLink" class="previewbox" :width="size" :height="size" :discordfill="colors.discordfill.hex" :discordcolor="colors.discordcolor.hex" />
-            <DiscordCorner v-else :customLink="customLink" :style="getStyle" class="previewbox" :width="size" :height="size" :discordfill="colors.discordfill.hex" :discordcolor="colors.discordcolor.hex" />
-          </div>
+
+          <portal to="destination" :disabled="previewDiscordType != 'speechbubble'">
+            <div ref="preview" id="preview">
+              <DiscordSwirl v-if="previewDiscordType == 'standard'" :customLink="customLink" class="previewbox" :width="size" :height="size" :discordfill="colors.discordfill.hex" :discordcolor="colors.discordcolor.hex" />
+              <DiscordText @htmlModified="onHtmlModified" :style="getDTextStyle" v-else-if="previewDiscordType == 'speechbubble'" :customLink="customLink" ref="discordtext" :height="size/4" :standardText="bubbleText" :discordfill="colors.discordfill.hex" :discordcolor="colors.discordcolor.hex" class="previewbox previewDiscordText" :writeText="false"/>
+              <DiscordCorner v-else :customLink="customLink" :style="getDCornerStyle" class="previewbox" :width="size" :height="size" :discordfill="colors.discordfill.hex" :discordcolor="colors.discordcolor.hex" />
+            </div>
+          </portal>
         </div>
       </div>
       <div class="color-picker">
@@ -44,6 +51,7 @@ import { Chrome } from 'vue-color'
 export default {
   name: 'MainBody',
   components: {
+    DiscordText,
     DiscordSwirl,
     DiscordCorner,
     vueSlider,
@@ -51,6 +59,7 @@ export default {
   },
   data () {
     return {
+      bubbleText: 'Join us on Discord!',
       previewCode: "",
       size: 100,
       isLeft: true,
@@ -109,10 +118,13 @@ export default {
   props: {
     previewDiscordType: {
       type: String,
-      default: "corner" //valid: standard, corner(, speechbubble)
+      default: "corner"
     }
   },
   methods: {
+    onHtmlModified: function () {
+      this.updatePreviewCode();
+    },
     changeColor: function (discordcolor, discordfill) {
       this.colors.discordcolor = {hex: discordcolor, a: 1}
       this.colors.discordfill = {hex: discordfill, a: 1}
@@ -124,13 +136,18 @@ export default {
           this.previewCode = ""
         } else {
           this.previewCode = this.$refs.preview.innerHTML
-          this.previewCode += "\n\n<style type='text/css'>.rotatethis { transform: rotate(-45deg); transform-origin: 60px 60px; } .discord-logo { transform: scale(0.7); transform-origin: 24px 24px; } .discord-logo .discord-outer-layer { transition: transform 800ms cubic-bezier(0.7, 1, 0.7, 1); transform-origin: 50% 50%; } .discord-logo-container:hover .discord-outer-layer { transform: scale(1.5) rotate(360deg); } .discord-logo .discord-middle-layer { transition: transform 800ms cubic-bezier(0.5, 1, 0.5, 1); transform-origin: 50% 50%; } .discord-logo-container:hover .discord-middle-layer { transform: scale(1.4) rotate(360deg); } .discord-logo .discord-inner-layer { transition: transform 800ms cubic-bezier(0.3, 1, 0.3, 1); transform-origin: 50% 50%; } .discord-logo-container:hover .discord-inner-layer { transform: scale(1.3) rotate(360deg); } .discord-logo .discord-original { transition: visibility 0ms; transition-delay: 800ms; } .discord-logo-container:hover .discord-original { visibility: hidden; transition-delay: 0ms; }</style>"
+          this.previewCode += "\n\n<style type='text/css'> * { font-family: 'Avenir', Helvetica, Arial, sans-serif; } .rotatethis { transform: rotate(-45deg); transform-origin: 60px 60px; } .discord-logo { transform: scale(0.7); transform-origin: 24px 24px; } .discord-logo .discord-outer-layer { transition: transform 800ms cubic-bezier(0.7, 1, 0.7, 1); transform-origin: 50% 50%; } .discord-logo-container:hover .discord-outer-layer { transform: scale(1.5) rotate(360deg); } .discord-logo .discord-middle-layer { transition: transform 800ms cubic-bezier(0.5, 1, 0.5, 1); transform-origin: 50% 50%; } .discord-logo-container:hover .discord-middle-layer { transform: scale(1.4) rotate(360deg); } .discord-logo .discord-inner-layer { transition: transform 800ms cubic-bezier(0.3, 1, 0.3, 1); transform-origin: 50% 50%; } .discord-logo-container:hover .discord-inner-layer { transform: scale(1.3) rotate(360deg); } .discord-logo .discord-original { transition: visibility 0ms; transition-delay: 800ms; } .discord-logo-container:hover .discord-original { visibility: hidden; transition-delay: 0ms; } .speechbubble { position: relative; transform: translateY(-50%); } .discordtext { opacity: 0.75; } .discordtext:hover { opacity: 1; } .discordtext a { text-decoration: none; }</style>"
         }
       })
     }
   },
   computed: {
-    getStyle: {
+    getDTextStyle: {
+      get: function () {
+        return { backgroundColor: this.colors.discordfill.hex }
+      }
+    },
+    getDCornerStyle: {
       get: function() {
         var returnThis = {transform: "rotate(0deg)", backgroundColor: "#FFFFFF"}
         if (this.colors.discordfill.hex == "#FFFFFF") {
@@ -201,18 +218,26 @@ header {
   padding-right: 20px;
   padding-left: 20px;
   padding-top: 50px;
-  padding-bottom: 50px;
+  padding-bottom: 15px;
   max-width: 580px;
   margin: auto;
   text-align: left;
 }
 
+
+#preview {
+  display: inline-block;
+}
+
 .previewbox {
-  border: 2px solid black;
   margin-top: 8px;
   display: inline-block;
 }
+.previewDiscordText {
+  padding-right: 20px;
+}
 section {
+  padding-top: 50px;
   padding-right: 20px;
   padding-left: 50px;
   padding-bottom: 50px;
@@ -229,8 +254,8 @@ section {
   width: 262px;
 }
 
-.button {
-  padding-bottom: 5px;
+.button, .input input {
+ margin-bottom: 5px;
 }
 
 textarea {

@@ -43,7 +43,7 @@ export default {
     },
     customLink: {
       type: String,
-      default: ''//https://discord.gg/gDHs8AV
+      default: ''
     }
   }
 }

@@ -11,6 +11,7 @@
     "deploy": "node ./node_modules/vue-gh-pages/index.js"
   },
   "dependencies": {
+    "portal-vue": "^1.1.1",
     "vue": "^2.5.2",
     "vue-color": "^2.4.3",
     "vue-gh-pages": "^1.6.4",

@@ -27,7 +27,6 @@ export default {
   },
   data () {
   		return {
-        // isTyping: false,
         standardText: 'Join us on Discord',
         previewDiscordType: 'standard',
         colors: {
@@ -38,7 +37,7 @@ export default {
   	},
   methods: {
     updateSpeechBubble: function () {
-      var myArray = ['Code generator for speech bubble coming soon......',
+      var myArray = ['Click me to get the speech bubble code generator!',
                     'Click top right GitHub corner to fork!',
                     'Animation or style ideas? Raise an issue on GitHub!',
                     'Created with ♥ by NNTin.',

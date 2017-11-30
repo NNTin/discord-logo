@@ -28,7 +28,7 @@ export default {
   props: {
     customLink: {
       type: String,
-      default: ''//https://discord.gg/gDHs8AV
+      default: ''
     }
   },
 	methods: {
