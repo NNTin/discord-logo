@@ -122,6 +122,11 @@ export default {
     }
   },
   methods: {
+    refreshSlider: function () {
+      this.$nextTick(function () {
+        this.$refs.vueSlider.refresh();
+      })
+    },
     onHtmlModified: function () {
       this.updatePreviewCode();
     },

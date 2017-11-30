@@ -51,8 +51,10 @@ export default {
       this.$refs.mainbody.changeColor(this.colors.discordcolor, this.colors.discordfill)
     },
     setPreviewType (value) {
-      console.log(value)
-      this.previewDiscordType = value;
+    this.previewDiscordType = value;
+      this.$nextTick(function () {
+        this.$refs.mainbody.refreshSlider();
+      })
     }
   },
   computed: {
