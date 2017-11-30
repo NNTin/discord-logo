@@ -162,6 +162,9 @@ export default {
     }
   },
   watch: {
+    previewDiscordType: function () {
+      this.updatePreviewCode();
+    },
     size: function () {
       this.updatePreviewCode();
     },

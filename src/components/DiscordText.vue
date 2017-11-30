@@ -3,7 +3,9 @@
     <div class="discordtext">
       <DiscordSwirl :customLink="customLink" :height="height *2" :width="height *2" :discordfill="discordfill" :discordcolor="discordcolor"/>
       <svg v-show="standardText" id="svgElement" class="speechbubble" :height="height" preserveAspectRatio="xMinYMin">
-        <path transform="scale(-1,1)" id="pathElement" :fill="discordcolor" d="M 154.5,0 L 20.5,0 C 9.2,0 0,9.2 0,20.6 L 0,155.8 C 0,167.2 9.2,177 20.5,176.4 L 133.9,176.4 L 128.6,157.9 L 141.4,169.8 L 153.5,181 L 175,200 L 175,20.6 C 175,9.2 165.8,0 154.5,0 Z"/>
+        <g id="pathElementGroup">
+          <path transform="scale(-1,1)" id="pathElement" :fill="discordcolor" d="M 154.5,0 L 20.5,0 C 9.2,0 0,9.2 0,20.6 L 0,155.8 C 0,167.2 9.2,177 20.5,176.4 L 133.9,176.4 L 128.6,157.9 L 141.4,169.8 L 153.5,181 L 175,200 L 175,20.6 C 175,9.2 165.8,0 154.5,0 Z"/>
+        </g>
         <text :fill="discordfill" font-size="90" id="textElement" x="95" y="57%">{{bubbleText}}</text>
         <a v-if="customLink" :href="customLink">
           <rect width="100%" height="100%" fill-opacity="0" />
@@ -101,7 +103,9 @@ export default {
         }
         var pathElement = document.getElementById("pathElement");
         pathElement.setAttribute("d", new_d.join(" "))
-        pathElement.setAttribute("transform-origin", (parseFloat(newWidth+190)/2).toString() + "100px")
+        //pathElement.setAttribute("transform-origin", (parseFloat(newWidth+190)/2).toString() + "100px")   // transform-origin not supported by firefox
+        var pathElementGroup = document.getElementById("pathElementGroup");
+        pathElementGroup.setAttribute("transform", 'translate(' + (parseFloat(newWidth+190)).toString() + ', 0)')
 
       })
     },
@@ -136,19 +140,19 @@ export default {
 
 .speechbubble {
 position: relative;
-top: 50%;
 transform: translateY(-50%);
 
 }
 .discordtext {
 opacity: 0.75;
-display: inline-block
 }
 .discordtext:hover {
 opacity: 1;
 }
 .discordtext a {
   text-decoration: none;
+}
+#svgElement {
 }
 
 </style>
