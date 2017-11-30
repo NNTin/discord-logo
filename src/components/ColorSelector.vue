@@ -1,11 +1,11 @@
 <template>
   <div class="buttons">
-    <a href="#" v-on:click="setColor('#7289DA','#FFFFFF')"><DiscordSwirl :width="48" :height="48" discordfill="#7289DA" discordcolor="#FFFFFF"/></a>
-    <a href="#" v-on:click="setColor('#7289DA','#2C2F33')"><DiscordSwirl :width="48" :height="48" discordfill="#7289DA" discordcolor="#2C2F33"/></a><br/>
-    <a href="#" v-on:click="setColor('#FFFFFF','#7289DA')"><DiscordSwirl :width="48" :height="48" discordfill="#FFFFFF" discordcolor="#7289DA"/></a>
-    <a href="#" v-on:click="setColor('#FFFFFF','#2C2F33')"><DiscordSwirl :width="48" :height="48" discordfill="#FFFFFF" discordcolor="#2C2F33"/></a><br/>
-    <a href="#" v-on:click="setColor('#2C2F33','#7289DA')"><DiscordSwirl :width="48" :height="48" discordfill="#2C2F33" discordcolor="#7289DA"/></a>
-    <a href="#" v-on:click="setColor('#2C2F33','#FFFFFF')"><DiscordSwirl :width="48" :height="48" discordfill="#2C2F33" discordcolor="#FFFFFF"/></a>
+    <DiscordSwirl :customLink="customLink" @click.native="setColor('#7289DA','#FFFFFF')" :width="48" :height="48" discordfill="#7289DA" discordcolor="#FFFFFF"/>
+    <DiscordSwirl :customLink="customLink" @click.native="setColor('#7289DA','#2C2F33')" :width="48" :height="48" discordfill="#7289DA" discordcolor="#2C2F33"/><br/>
+    <DiscordSwirl :customLink="customLink" @click.native="setColor('#FFFFFF','#7289DA')" :width="48" :height="48" discordfill="#FFFFFF" discordcolor="#7289DA"/>
+    <DiscordSwirl :customLink="customLink" @click.native="setColor('#FFFFFF','#2C2F33')" :width="48" :height="48" discordfill="#FFFFFF" discordcolor="#2C2F33"/><br/>
+    <DiscordSwirl :customLink="customLink" @click.native="setColor('#2C2F33','#7289DA')" :width="48" :height="48" discordfill="#2C2F33" discordcolor="#7289DA"/>
+    <DiscordSwirl :customLink="customLink" @click.native="setColor('#2C2F33','#FFFFFF')" :width="48" :height="48" discordfill="#2C2F33" discordcolor="#FFFFFF"/>
   </div>
 </template>
 
@@ -26,6 +26,10 @@ export default {
     }
   },
   props: {
+    customLink: {
+      type: String,
+      default: ''//https://discord.gg/gDHs8AV
+    }
   },
 	methods: {
     setColor: function (backgroundColor, textColor) {

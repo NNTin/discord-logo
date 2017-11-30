@@ -1,5 +1,5 @@
 <template>
-  <svg :color="discordcolor" :fill="discordfill" :width="width" :height="height" xmlns:xlink="http://www.w3.org/1999/xlink" class="discord-logo-container" viewBox="0 0 48 48">
+  <svg :color="discordcolor" :fill="discordfill" :width="width" :height="height" class="discord-logo-container" viewBox="0 0 48 48">
     <rect width="100%" height="100%" fill="currentfill" />
     <defs>
       <g>
@@ -21,11 +21,14 @@
       </g>
     </defs>
     <g class="discord-logo">
-          <use class="discord-original" href="#discord-logo" />
-          <use class="discord-outer-layer" href="#discord-logo" mask="url(#mask-outer-layer)" />
-          <use class="discord-middle-layer" href="#discord-logo" mask="url(#mask-middle-layer)" />
-          <use class="discord-inner-layer" href="#discord-logo" mask="url(#mask-inner-layer)" />
+      <use class="discord-original" href="#discord-logo" />
+      <use class="discord-outer-layer" href="#discord-logo" mask="url(#mask-outer-layer)" />
+      <use class="discord-middle-layer" href="#discord-logo" mask="url(#mask-middle-layer)" />
+      <use class="discord-inner-layer" href="#discord-logo" mask="url(#mask-inner-layer)" />
     </g>
+    <a v-if="customLink" :href="customLink">
+      <rect width="100%" height="100%" fill-opacity="0" />
+    </a>
   </svg>
 </template>
 
@@ -52,6 +55,10 @@ export default {
     discordfill: {
       type: String,
       default: '#23272A'
+    },
+    customLink: {
+      type: String,
+      default: ''//https://discord.gg/gDHs8AV
     }
 	}
 }

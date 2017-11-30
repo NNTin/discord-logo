@@ -17,16 +17,8 @@
             <input :size="30" v-model="customLink" class="text" placeholder="insert link (e.g. discord invite link)"/>
           </div>
           <div ref="preview" class="preview">
-            <div v-if="isClickable">
-              <a v-if="previewDiscordType == 'standard'" :href="customLink">
-                <DiscordSwirl class="previewbox" v-if="previewDiscordType == 'standard'" :width="size" :height="size" :discordfill="colors.discordfill.hex" :discordcolor="colors.discordcolor.hex" />
-              </a>
-              <DiscordCorner :customLink="customLink" :style="getStyle" class="previewbox" v-else :width="size" :height="size" :discordfill="colors.discordfill.hex" :discordcolor="colors.discordcolor.hex" />
-            </div>
-            <div v-else>
-              <DiscordSwirl class="previewbox" v-if="previewDiscordType == 'standard'" :width="size" :height="size" :discordfill="colors.discordfill.hex" :discordcolor="colors.discordcolor.hex" />
-              <DiscordCorner :style="getStyle" class="previewbox" v-else :width="size" :height="size" :discordfill="colors.discordfill.hex" :discordcolor="colors.discordcolor.hex" />
-            </div>
+            <DiscordSwirl v-if="previewDiscordType == 'standard'" :customLink="customLink" class="previewbox" :width="size" :height="size" :discordfill="colors.discordfill.hex" :discordcolor="colors.discordcolor.hex" />
+            <DiscordCorner v-else :customLink="customLink" :style="getStyle" class="previewbox" :width="size" :height="size" :discordfill="colors.discordfill.hex" :discordcolor="colors.discordcolor.hex" />
           </div>
         </div>
       </div>
@@ -46,6 +38,7 @@
 import DiscordSwirl from '../components/DiscordSwirl.vue'
 import DiscordCorner from '../components/DiscordCorner.vue'
 import vueSlider from 'vue-slider-component'
+import DiscordText from '../components/DiscordText.vue'
 import { Chrome } from 'vue-color'
 
 export default {

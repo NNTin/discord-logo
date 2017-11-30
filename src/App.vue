@@ -2,13 +2,11 @@
   <div id="app">
     <div id="top" :style="getBackgroundColor">
       <GithubCorner :discordcolor="colors.discordfill" :discordfill="colors.discordcolor"/>
-      <DiscordCorner @click.native="setPreviewType('corner')" customLink="#" id="discordcorner" :discordcolor="colors.discordfill" :discordfill="colors.discordcolor"/>
-      <ColorSelector @colorChange="onColorChange"/>
-      <a href="#" @click="setPreviewType('standard')">
-        <DiscordSwirl :discordfill="colors.discordfill" :discordcolor="colors.discordcolor"/>
-      </a>
+      <DiscordCorner customLink="#" @click.native="setPreviewType('corner')" id="discordcorner" :discordcolor="colors.discordfill" :discordfill="colors.discordcolor"/>
+      <ColorSelector customLink="#" @colorChange="onColorChange"/>
+      <DiscordSwirl customLink="#" @click.native="setPreviewType('standard')" :discordfill="colors.discordfill" :discordcolor="colors.discordcolor"/>
       <br/>
-      <DiscordText ref="discordtext" :standardText="standardText" customLink="#" @click.native="updateSpeechBubble()" :discordfill="colors.discordfill" :discordcolor="colors.discordcolor" />
+      <DiscordText customLink="#" ref="discordtext" :standardText="standardText" @click.native="updateSpeechBubble() + setPreviewType('speechbubble')" :discordfill="colors.discordfill" :discordcolor="colors.discordcolor" />
     </div>
     <MainBody ref="mainbody" :previewDiscordType="previewDiscordType"/>
   </div>
