@@ -32,6 +32,9 @@
     <g v-else-if="style == 'rotateX'" class="discord-logo rotateX-animation">
       <use class="discord-original" href="#discord-logo" />
     </g>
+    <g v-else-if="style == 'shake'" class="discord-logo shake-animation">
+      <use class="discord-original" href="#discord-logo" />
+    </g>
     <a v-if="customLink" :href="customLink">
       <rect width="100%" height="100%" fill-opacity="0" />
     </a>
@@ -68,7 +71,7 @@ export default {
     },
     style: {
       type: String,
-      default: 'rotateY'
+      default: 'swirl'
     }
 	}
 }
@@ -79,6 +82,88 @@ export default {
 .discord-logo {
   transform: scale(0.7);
   transform-origin: 24px 24px;
+}
+
+.discord-logo.rotateY-animation .discord-original {
+  transition: transform 300ms linear;
+  transform-origin: 50% 50%;
+}
+
+.discord-logo-container:hover .rotateY-animation .discord-original {
+  transform: rotateY(180deg);
+}
+
+.discord-logo.rotateX-animation .discord-original {
+  transition: transform 300ms linear;
+  transform-origin: 50% 50%;
+}
+
+.discord-logo-container:hover .rotateX-animation .discord-original {
+  transform: rotateX(360deg);
+}
+
+.discord-logo.shake-animation .discord-original {
+}
+
+.discord-logo-container:hover .shake-animation .discord-original {
+  animation-name:shake;
+  animation-duration:100ms;
+  animation-timing-function:ease-in-out;
+  animation-iteration-count:infinite
+}
+
+@keyframes shake
+{
+  2% {transform:translate(.5px, 1.5px) rotate(1.5deg)}
+  4% {transform:translate(.5px, 1.5px) rotate(1.5deg)}
+  6% {transform:translate(-1.5px, -1.5px) rotate(-.5deg)}
+  8% {transform:translate(.5px, -.5px) rotate(.5deg)}
+  10% {transform:translate(.5px, 2.5px) rotate(.5deg)}
+  12% {transform:translate(2.5px, 1.5px) rotate(-.5deg)}
+  14% {transform:translate(-1.5px, 2.5px) rotate(-.5deg)}
+  16% {transform:translate(-.5px, .5px) rotate(.5deg)}
+  18% {transform:translate(.5px, 2.5px) rotate(1.5deg)}
+  20% {transform:translate(-.5px, -.5px) rotate(.5deg)}
+  22% {transform:translate(2.5px, .5px) rotate(-.5deg)}
+  24% {transform:translate(-1.5px, -1.5px) rotate(.5deg)}
+  26% {transform:translate(2.5px, -.5px) rotate(-.5deg)}
+  28% {transform:translate(1.5px, -.5px) rotate(.5deg)}
+  30% {transform:translate(.5px, .5px) rotate(-.5deg)}
+  32% {transform:translate(-1.5px, .5px) rotate(-.5deg)}
+  34% {transform:translate(.5px, 2.5px) rotate(-.5deg)}
+  36% {transform:translate(-.5px, -.5px) rotate(1.5deg)}
+  38% {transform:translate(-1.5px, -1.5px) rotate(.5deg)}
+  40% {transform:translate(-1.5px, 1.5px) rotate(1.5deg)}
+  42% {transform:translate(.5px, -1.5px) rotate(1.5deg)}
+  44% {transform:translate(.5px, .5px) rotate(.5deg)}
+  46% {transform:translate(-1.5px, -1.5px) rotate(1.5deg)}
+  48% {transform:translate(.5px, -1.5px) rotate(.5deg)}
+  50% {transform:translate(2.5px, .5px) rotate(-.5deg)}
+  52% {transform:translate(-.5px, 2.5px) rotate(-.5deg)}
+  54% {transform:translate(.5px, .5px) rotate(.5deg)}
+  56% {transform:translate(-1.5px, 2.5px) rotate(.5deg)}
+  58% {transform:translate(2.5px, .5px) rotate(.5deg)}
+  60% {transform:translate(-1.5px, 2.5px) rotate(.5deg)}
+  62% {transform:translate(1.5px, -.5px) rotate(-.5deg)}
+  64% {transform:translate(1.5px, -1.5px) rotate(1.5deg)}
+  66% {transform:translate(1.5px, -1.5px) rotate(-.5deg)}
+  68% {transform:translate(.5px, 2.5px) rotate(-.5deg)}
+  70% {transform:translate(1.5px, -1.5px) rotate(1.5deg)}
+  72% {transform:translate(1.5px, 1.5px) rotate(-.5deg)}
+  74% {transform:translate(-.5px, 1.5px) rotate(1.5deg)}
+  76% {transform:translate(1.5px, 2.5px) rotate(.5deg)}
+  78% {transform:translate(-.5px, .5px) rotate(.5deg)}
+  80% {transform:translate(-1.5px, 2.5px) rotate(.5deg)}
+  82% {transform:translate(.5px, 2.5px) rotate(-.5deg)}
+  84% {transform:translate(2.5px, -.5px) rotate(.5deg)}
+  86% {transform:translate(1.5px, .5px) rotate(.5deg)}
+  88% {transform:translate(-.5px, -1.5px) rotate(-.5deg)}
+  90% {transform:translate(1.5px, -.5px) rotate(1.5deg)}
+  92% {transform:translate(.5px, 2.5px) rotate(.5deg)}
+  94% {transform:translate(2.5px, .5px) rotate(-.5deg)}
+  96% {transform:translate(.5px, 2.5px) rotate(.5deg)}
+  98% {transform:translate(2.5px, -1.5px) rotate(1.5deg)}
+  0%,100% {transform:translate(0, 0) rotate(0)}
 }
 
 .discord-logo.swirl-animation .discord-outer-layer {
