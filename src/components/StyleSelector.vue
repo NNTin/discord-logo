@@ -1,10 +1,9 @@
 <template>
   <div class="buttons">
-    <DiscordLogo :customLink="customLink" animationStyle="swirl" :width="48" :height="48" :discordfill="discordfill" :discordcolor="discordcolor"/>
-    <DiscordLogo :customLink="customLink" animationStyle="rotateX" :width="48" :height="48" :discordfill="discordfill" :discordcolor="discordcolor"/>
-    <DiscordLogo :customLink="customLink" animationStyle="rotateY" :width="48" :height="48" :discordfill="discordfill" :discordcolor="discordcolor"/>
-    <DiscordLogo :customLink="customLink" animationStyle="shake" :width="48" :height="48" :discordfill="discordfill" :discordcolor="discordcolor"/>
-
+    <DiscordLogo :customLink="customLink" @click.native="setStyle('swirl')" animationStyle="swirl" :width="48" :height="48" :discordfill="discordfill" :discordcolor="discordcolor"/>
+    <DiscordLogo :customLink="customLink" @click.native="setStyle('rotateX')" animationStyle="rotateX" :width="48" :height="48" :discordfill="discordfill" :discordcolor="discordcolor"/>
+    <DiscordLogo :customLink="customLink" @click.native="setStyle('rotateY')" animationStyle="rotateY" :width="48" :height="48" :discordfill="discordfill" :discordcolor="discordcolor"/>
+    <DiscordLogo :customLink="customLink" @click.native="setStyle('shake')" animationStyle="shake" :width="48" :height="48" :discordfill="discordfill" :discordcolor="discordcolor"/>
   </div>
 </template>
 
@@ -35,6 +34,9 @@ export default {
     }
   },
 	methods: {
+    setStyle: function (animationStyle) {
+      this.$emit('styleChange', animationStyle);
+		}
   }
 }
 </script>

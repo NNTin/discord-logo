@@ -7,7 +7,7 @@
       <path v-else d="M0,0 L0,250 L250,0 Z" :fill="discordfill"/>
     </g>
     <g class="rotatethis">
-      <DiscordLogo :customLink="customLink" :color="discordcolor" :fill="discordfill" :width="120" :height="120" />
+      <DiscordLogo :animationStyle="animationStyle" :customLink="customLink" :color="discordcolor" :fill="discordfill" :width="120" :height="120" />
     </g>
   </svg>
 </template>
@@ -44,6 +44,10 @@ export default {
     customLink: {
       type: String,
       default: ''
+    },
+    animationStyle: {
+      type: String,
+      default: 'swirl'
     }
   }
 }

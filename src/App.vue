@@ -2,14 +2,14 @@
   <div id="app">
     <div id="top" :style="getBackgroundColor">
       <GithubCorner :discordcolor="colors.discordfill" :discordfill="colors.discordcolor"/>
-      <DiscordCorner customLink="#" @click.native="setPreviewType('corner')" id="discordcorner" :discordcolor="colors.discordfill" :discordfill="colors.discordcolor"/>
-      <ColorSelector customLink="#" @colorChange="onColorChange"/>
-      <StyleSelector customLink="#" :discordfill="colors.discordfill" :discordcolor="colors.discordcolor" />
-      <DiscordLogo customLink="#" @click.native="setPreviewType('standard')" :discordfill="colors.discordfill" :discordcolor="colors.discordcolor"/>
+      <DiscordCorner customLink="#" :animationStyle="animationStyle" @click.native="setPreviewType('corner')" id="discordcorner" :discordcolor="colors.discordfill" :discordfill="colors.discordcolor"/>
+      <ColorSelector customLink="#" :animationStyle="animationStyle" @colorChange="onColorChange"/>
+      <StyleSelector customLink="#" @styleChange="onStyleChange" :discordfill="colors.discordfill" :discordcolor="colors.discordcolor" />
+      <DiscordLogo customLink="#" :animationStyle="animationStyle" @click.native="setPreviewType('standard')" :discordfill="colors.discordfill" :discordcolor="colors.discordcolor"/>
       <br/>
-      <DiscordText customLink="#" ref="discordtext" :standardText="standardText" @click.native="updateSpeechBubble() + setPreviewType('speechbubble')" :discordfill="colors.discordfill" :discordcolor="colors.discordcolor" />
+      <DiscordText customLink="#" :animationStyle="animationStyle" ref="discordtext" :standardText="standardText" @click.native="updateSpeechBubble() + setPreviewType('speechbubble')" :discordfill="colors.discordfill" :discordcolor="colors.discordcolor" />
     </div>
-    <MainBody ref="mainbody" :previewDiscordType="previewDiscordType"/>
+    <MainBody ref="mainbody" :animationStyle="animationStyle" :previewDiscordType="previewDiscordType"/>
   </div>
 </template>
 
@@ -29,6 +29,7 @@ export default {
   },
   data () {
   		return {
+        animationStyle: 'swirl',
         standardText: 'Join us on Discord',
         previewDiscordType: 'standard',
         colors: {
@@ -51,6 +52,10 @@ export default {
     onColorChange (value) {
       this.colors = value
       this.$refs.mainbody.changeColor(this.colors.discordcolor, this.colors.discordfill)
+    },
+    onStyleChange (value) {
+      console.log(value)
+      this.animationStyle = value;
     },
     setPreviewType (value) {
     this.previewDiscordType = value;
