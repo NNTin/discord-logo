@@ -3,9 +3,11 @@
     <div id="top" :style="getBackgroundColor">
       <GithubCorner :discordcolor="colors.discordfill" :discordfill="colors.discordcolor"/>
       <DiscordCorner customLink="#" :animationStyle="animationStyle" @click.native="setPreviewType('corner')" id="discordcorner" :discordcolor="colors.discordfill" :discordfill="colors.discordcolor"/>
-      <ColorSelector customLink="#" :animationStyle="animationStyle" @colorChange="onColorChange"/>
-      <StyleSelector customLink="#" @styleChange="onStyleChange" :discordfill="colors.discordfill" :discordcolor="colors.discordcolor" />
-      <DiscordLogo customLink="#" :animationStyle="animationStyle" @click.native="setPreviewType('standard')" :discordfill="colors.discordfill" :discordcolor="colors.discordcolor"/>
+      <div id="container">
+        <ColorSelector class="box" customLink="#" :animationStyle="animationStyle" @colorChange="onColorChange"/>
+        <StyleSelector class="box" customLink="#" @styleChange="onStyleChange" :discordfill="colors.discordfill" :discordcolor="colors.discordcolor" />
+        <DiscordLogo class="box" customLink="#" :animationStyle="animationStyle" @click.native="setPreviewType('standard')" :discordfill="colors.discordfill" :discordcolor="colors.discordcolor"/>
+      </div>
       <br/>
       <DiscordText customLink="#" :animationStyle="animationStyle" ref="discordtext" :standardText="standardText" @click.native="updateSpeechBubble() + setPreviewType('speechbubble')" :discordfill="colors.discordfill" :discordcolor="colors.discordcolor" />
     </div>
@@ -85,6 +87,16 @@ export default {
 html,body {
   height: 100%;
   margin: 0px;
+}
+#container {
+    display: table;
+    width:100%;
+}
+.box {
+    display:inline-block;
+    width:33%;
+    max-width: 300px;
+    text-align:center;
 }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;

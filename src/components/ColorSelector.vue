@@ -48,7 +48,6 @@ export default {
 <style>
   .buttons {
     display: inline-block;
-    width: 32%;
     position:relative;
     bottom: 80px;
   }

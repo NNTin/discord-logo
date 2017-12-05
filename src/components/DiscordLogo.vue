@@ -89,7 +89,7 @@ export default {
   transform-origin: 50% 50%;
 }
 
-.discord-logo-container:hover .rotateY-animation .discord-original {
+.discord-logo-container:hover .rotateY-animation .discord-original, .animated .rotateY-animation .discord-original {
   transform: rotateY(180deg);
 }
 
@@ -98,14 +98,14 @@ export default {
   transform-origin: 50% 50%;
 }
 
-.discord-logo-container:hover .rotateX-animation .discord-original {
+.discord-logo-container:hover .rotateX-animation .discord-original, .animated .rotateX-animation .discord-original {
   transform: rotateX(360deg);
 }
 
 .discord-logo.shake-animation .discord-original {
 }
 
-.discord-logo-container:hover .shake-animation .discord-original {
+.discord-logo-container:hover .shake-animation .discord-original, .animated .shake-animation .discord-original {
   animation-name:shake;
   animation-duration:100ms;
   animation-timing-function:ease-in-out;
@@ -171,7 +171,7 @@ export default {
   transform-origin: 50% 50%;
 }
 
-.discord-logo-container:hover .swirl-animation .discord-outer-layer {
+.discord-logo-container:hover .swirl-animation .discord-outer-layer, .animated .swirl-animation .discord-outer-layer {
   transform: scale(1.5) rotate(360deg);
 }
 
@@ -180,7 +180,7 @@ export default {
   transform-origin: 50% 50%;
 }
 
-.discord-logo-container:hover .swirl-animation .discord-middle-layer {
+.discord-logo-container:hover .swirl-animation .discord-middle-layer, .animated .swirl-animation .discord-middle-layer {
   transform: scale(1.4) rotate(360deg);
 }
 
@@ -189,7 +189,7 @@ export default {
   transform-origin: 50% 50%;
 }
 
-.discord-logo-container:hover .swirl-animation .discord-inner-layer {
+.discord-logo-container:hover .swirl-animation .discord-inner-layer, .animated .swirl-animation .discord-inner-layer {
   transform: scale(1.3) rotate(360deg);
 }
 
@@ -198,7 +198,7 @@ export default {
   transition-delay: 800ms;
 }
 
-.discord-logo-container:hover .swirl-animation .discord-original {
+.discord-logo-container:hover .swirl-animation .discord-original, .animated .swirl-animation .discord-original {
   visibility: hidden;
   transition-delay: 0ms;
 }
