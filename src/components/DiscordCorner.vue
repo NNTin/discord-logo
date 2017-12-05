@@ -7,18 +7,18 @@
       <path v-else d="M0,0 L0,250 L250,0 Z" :fill="discordfill"/>
     </g>
     <g class="rotatethis">
-      <DiscordSwirl :customLink="customLink" :color="discordcolor" :fill="discordfill" :width="120" :height="120" />
+      <DiscordLogo :customLink="customLink" :color="discordcolor" :fill="discordfill" :width="120" :height="120" />
     </g>
   </svg>
 </template>
 
 <script>
-import DiscordSwirl from '../components/DiscordSwirl.vue'
+import DiscordLogo from '../components/DiscordLogo.vue'
 
 export default {
   name: 'DiscordCorner',
   components: {
-    DiscordSwirl
+    DiscordLogo
   },
   data () {
     return {

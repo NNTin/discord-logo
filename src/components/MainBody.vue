@@ -22,7 +22,7 @@
 
           <portal to="destination" :disabled="previewDiscordType != 'speechbubble'">
             <div ref="preview" id="preview">
-              <DiscordSwirl v-if="previewDiscordType == 'standard'" :customLink="customLink" class="previewbox" :width="size" :height="size" :discordfill="colors.discordfill.hex" :discordcolor="colors.discordcolor.hex" />
+              <DiscordLogo v-if="previewDiscordType == 'standard'" :customLink="customLink" class="previewbox" :width="size" :height="size" :discordfill="colors.discordfill.hex" :discordcolor="colors.discordcolor.hex" />
               <DiscordText @htmlModified="onHtmlModified" :style="getDTextStyle" v-else-if="previewDiscordType == 'speechbubble'" :customLink="customLink" ref="discordtext" :height="size/4" :standardText="bubbleText" :discordfill="colors.discordfill.hex" :discordcolor="colors.discordcolor.hex" class="previewbox previewDiscordText" :writeText="false"/>
               <DiscordCorner v-else :customLink="customLink" :style="getDCornerStyle" class="previewbox" :width="size" :height="size" :discordfill="colors.discordfill.hex" :discordcolor="colors.discordcolor.hex" />
             </div>
@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import DiscordSwirl from '../components/DiscordSwirl.vue'
+import DiscordLogo from '../components/DiscordLogo.vue'
 import DiscordCorner from '../components/DiscordCorner.vue'
 import vueSlider from 'vue-slider-component'
 import DiscordText from '../components/DiscordText.vue'
@@ -52,7 +52,7 @@ export default {
   name: 'MainBody',
   components: {
     DiscordText,
-    DiscordSwirl,
+    DiscordLogo,
     DiscordCorner,
     vueSlider,
     'chrome-picker': Chrome

@@ -34,7 +34,7 @@
 
 <script>
 export default {
-  name: 'DiscordSwirl',
+  name: 'DiscordLogo',
   data () {
     return {
     }

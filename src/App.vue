@@ -4,7 +4,7 @@
       <GithubCorner :discordcolor="colors.discordfill" :discordfill="colors.discordcolor"/>
       <DiscordCorner customLink="#" @click.native="setPreviewType('corner')" id="discordcorner" :discordcolor="colors.discordfill" :discordfill="colors.discordcolor"/>
       <ColorSelector customLink="#" @colorChange="onColorChange"/>
-      <DiscordSwirl customLink="#" @click.native="setPreviewType('standard')" :discordfill="colors.discordfill" :discordcolor="colors.discordcolor"/>
+      <DiscordLogo customLink="#" @click.native="setPreviewType('standard')" :discordfill="colors.discordfill" :discordcolor="colors.discordcolor"/>
       <br/>
       <DiscordText customLink="#" ref="discordtext" :standardText="standardText" @click.native="updateSpeechBubble() + setPreviewType('speechbubble')" :discordfill="colors.discordfill" :discordcolor="colors.discordcolor" />
     </div>
@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import DiscordSwirl from './components/DiscordSwirl.vue'
+import DiscordLogo from './components/DiscordLogo.vue'
 import GithubCorner from './components/GithubCorner.vue'
 import DiscordCorner from './components/DiscordCorner.vue'
 import ColorSelector from './components/ColorSelector.vue'
@@ -23,7 +23,7 @@ import DiscordText from './components/DiscordText.vue'
 export default {
   name: 'app',
   components: {
-    DiscordSwirl, GithubCorner, DiscordCorner, ColorSelector, MainBody, DiscordText
+    DiscordLogo, GithubCorner, DiscordCorner, ColorSelector, MainBody, DiscordText
   },
   data () {
   		return {
