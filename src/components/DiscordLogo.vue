@@ -20,11 +20,17 @@
         </mask>
       </g>
     </defs>
-    <g class="discord-logo">
+    <g v-if="style == 'swirl'" class="discord-logo swirl-animation">
       <use class="discord-original" href="#discord-logo" />
       <use class="discord-outer-layer" href="#discord-logo" mask="url(#mask-outer-layer)" />
       <use class="discord-middle-layer" href="#discord-logo" mask="url(#mask-middle-layer)" />
       <use class="discord-inner-layer" href="#discord-logo" mask="url(#mask-inner-layer)" />
+    </g>
+    <g v-else-if="style == 'rotateY'" class="discord-logo rotateY-animation">
+      <use class="discord-original" href="#discord-logo" />
+    </g>
+    <g v-else-if="style == 'rotateX'" class="discord-logo rotateX-animation">
+      <use class="discord-original" href="#discord-logo" />
     </g>
     <a v-if="customLink" :href="customLink">
       <rect width="100%" height="100%" fill-opacity="0" />
@@ -59,6 +65,10 @@ export default {
     customLink: {
       type: String,
       default: ''
+    },
+    style: {
+      type: String,
+      default: 'rotateY'
     }
 	}
 }
@@ -71,39 +81,39 @@ export default {
   transform-origin: 24px 24px;
 }
 
-.discord-logo .discord-outer-layer {
+.discord-logo.swirl-animation .discord-outer-layer {
   transition: transform 800ms cubic-bezier(0.7, 1, 0.7, 1);
   transform-origin: 50% 50%;
 }
 
-.discord-logo-container:hover .discord-outer-layer {
+.discord-logo-container:hover .swirl-animation .discord-outer-layer {
   transform: scale(1.5) rotate(360deg);
 }
 
-.discord-logo .discord-middle-layer {
+.discord-logo.swirl-animation .discord-middle-layer {
   transition: transform 800ms cubic-bezier(0.5, 1, 0.5, 1);
   transform-origin: 50% 50%;
 }
 
-.discord-logo-container:hover .discord-middle-layer {
+.discord-logo-container:hover .swirl-animation .discord-middle-layer {
   transform: scale(1.4) rotate(360deg);
 }
 
-.discord-logo .discord-inner-layer {
+.discord-logo.swirl-animation .discord-inner-layer {
   transition: transform 800ms cubic-bezier(0.3, 1, 0.3, 1);
   transform-origin: 50% 50%;
 }
 
-.discord-logo-container:hover .discord-inner-layer {
+.discord-logo-container:hover .swirl-animation .discord-inner-layer {
   transform: scale(1.3) rotate(360deg);
 }
 
-.discord-logo .discord-original {
+.discord-logo.swirl-animation .discord-original {
   transition: visibility 0ms;
   transition-delay: 800ms;
 }
 
-.discord-logo-container:hover .discord-original {
+.discord-logo-container:hover .swirl-animation .discord-original {
   visibility: hidden;
   transition-delay: 0ms;
 }
