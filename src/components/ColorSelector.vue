@@ -1,11 +1,11 @@
 <template>
   <div class="buttons">
-    <DiscordLogo :customLink="customLink" @click.native="setColor('#7289DA','#FFFFFF')" :width="48" :height="48" discordfill="#7289DA" discordcolor="#FFFFFF"/>
-    <DiscordLogo :customLink="customLink" @click.native="setColor('#7289DA','#2C2F33')" :width="48" :height="48" discordfill="#7289DA" discordcolor="#2C2F33"/><br/>
-    <DiscordLogo :customLink="customLink" @click.native="setColor('#FFFFFF','#7289DA')" :width="48" :height="48" discordfill="#FFFFFF" discordcolor="#7289DA"/>
-    <DiscordLogo :customLink="customLink" @click.native="setColor('#FFFFFF','#2C2F33')" :width="48" :height="48" discordfill="#FFFFFF" discordcolor="#2C2F33"/><br/>
-    <DiscordLogo :customLink="customLink" @click.native="setColor('#2C2F33','#7289DA')" :width="48" :height="48" discordfill="#2C2F33" discordcolor="#7289DA"/>
-    <DiscordLogo :customLink="customLink" @click.native="setColor('#2C2F33','#FFFFFF')" :width="48" :height="48" discordfill="#2C2F33" discordcolor="#FFFFFF"/>
+    <DiscordLogo :customLink="customLink" @click.native="setColor('#7289DA','#FFFFFF')" :width="size" :height="size" discordfill="#7289DA" discordcolor="#FFFFFF"/>
+    <DiscordLogo :customLink="customLink" @click.native="setColor('#7289DA','#2C2F33')" :width="size" :height="size" discordfill="#7289DA" discordcolor="#2C2F33"/><br/>
+    <DiscordLogo :customLink="customLink" @click.native="setColor('#FFFFFF','#7289DA')" :width="size" :height="size" discordfill="#FFFFFF" discordcolor="#7289DA"/>
+    <DiscordLogo :customLink="customLink" @click.native="setColor('#FFFFFF','#2C2F33')" :width="size" :height="size" discordfill="#FFFFFF" discordcolor="#2C2F33"/><br/>
+    <DiscordLogo :customLink="customLink" @click.native="setColor('#2C2F33','#7289DA')" :width="size" :height="size" discordfill="#2C2F33" discordcolor="#7289DA"/>
+    <DiscordLogo :customLink="customLink" @click.native="setColor('#2C2F33','#FFFFFF')" :width="size" :height="size" discordfill="#2C2F33" discordcolor="#FFFFFF"/>
   </div>
 </template>
 
@@ -19,6 +19,7 @@ export default {
   },
   data () {
     return {
+      size: 48,
       colors: {
         discordcolor: '#7289DA',
         discordfill: '#23272A',

@@ -20,19 +20,19 @@
         </mask>
       </g>
     </defs>
-    <g v-if="style == 'swirl'" class="discord-logo swirl-animation">
+    <g v-if="animationStyle == 'swirl'" class="discord-logo swirl-animation">
       <use class="discord-original" href="#discord-logo" />
       <use class="discord-outer-layer" href="#discord-logo" mask="url(#mask-outer-layer)" />
       <use class="discord-middle-layer" href="#discord-logo" mask="url(#mask-middle-layer)" />
       <use class="discord-inner-layer" href="#discord-logo" mask="url(#mask-inner-layer)" />
     </g>
-    <g v-else-if="style == 'rotateY'" class="discord-logo rotateY-animation">
+    <g v-else-if="animationStyle == 'rotateY'" class="discord-logo rotateY-animation">
       <use class="discord-original" href="#discord-logo" />
     </g>
-    <g v-else-if="style == 'rotateX'" class="discord-logo rotateX-animation">
+    <g v-else-if="animationStyle == 'rotateX'" class="discord-logo rotateX-animation">
       <use class="discord-original" href="#discord-logo" />
     </g>
-    <g v-else-if="style == 'shake'" class="discord-logo shake-animation">
+    <g v-else-if="animationStyle == 'shake'" class="discord-logo shake-animation">
       <use class="discord-original" href="#discord-logo" />
     </g>
     <a v-if="customLink" :href="customLink">
@@ -69,7 +69,7 @@ export default {
       type: String,
       default: ''
     },
-    style: {
+    animationStyle: {
       type: String,
       default: 'swirl'
     }
