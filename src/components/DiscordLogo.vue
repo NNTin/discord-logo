@@ -79,39 +79,39 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
+/* discrd logo */
 .discord-logo {
   transform: scale(0.7);
   transform-origin: 24px 24px;
 }
 
+/* ROTATEY animation */
 .discord-logo.rotateY-animation .discord-original {
   transition: transform 300ms linear;
   transform-origin: 50% 50%;
 }
-
 .discord-logo-container:hover .rotateY-animation .discord-original, .animated .rotateY-animation .discord-original {
   transform: rotateY(180deg);
 }
 
+/* ROTATEX animation */
 .discord-logo.rotateX-animation .discord-original {
   transition: transform 300ms linear;
   transform-origin: 50% 50%;
 }
-
 .discord-logo-container:hover .rotateX-animation .discord-original, .animated .rotateX-animation .discord-original {
   transform: rotateX(360deg);
 }
 
+/* SHAKE animation */
 .discord-logo.shake-animation .discord-original {
 }
-
 .discord-logo-container:hover .shake-animation .discord-original, .animated .shake-animation .discord-original {
   animation-name:shake;
   animation-duration:100ms;
   animation-timing-function:ease-in-out;
   animation-iteration-count:infinite
 }
-
 @keyframes shake
 {
   2% {transform:translate(.5px, 1.5px) rotate(1.5deg)}
@@ -166,38 +166,32 @@ export default {
   0%,100% {transform:translate(0, 0) rotate(0)}
 }
 
+/* SWIRL animation */
 .discord-logo.swirl-animation .discord-outer-layer {
   transition: transform 800ms cubic-bezier(0.7, 1, 0.7, 1);
   transform-origin: 50% 50%;
 }
-
 .discord-logo-container:hover .swirl-animation .discord-outer-layer, .animated .swirl-animation .discord-outer-layer {
   transform: scale(1.5) rotate(360deg);
 }
-
 .discord-logo.swirl-animation .discord-middle-layer {
   transition: transform 800ms cubic-bezier(0.5, 1, 0.5, 1);
   transform-origin: 50% 50%;
 }
-
 .discord-logo-container:hover .swirl-animation .discord-middle-layer, .animated .swirl-animation .discord-middle-layer {
   transform: scale(1.4) rotate(360deg);
 }
-
 .discord-logo.swirl-animation .discord-inner-layer {
   transition: transform 800ms cubic-bezier(0.3, 1, 0.3, 1);
   transform-origin: 50% 50%;
 }
-
 .discord-logo-container:hover .swirl-animation .discord-inner-layer, .animated .swirl-animation .discord-inner-layer {
   transform: scale(1.3) rotate(360deg);
 }
-
 .discord-logo.swirl-animation .discord-original {
   transition: visibility 0ms;
   transition-delay: 800ms;
 }
-
 .discord-logo-container:hover .swirl-animation .discord-original, .animated .swirl-animation .discord-original {
   visibility: hidden;
   transition-delay: 0ms;
