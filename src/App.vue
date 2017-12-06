@@ -57,7 +57,6 @@ export default {
       this.$refs.mainbody.changeColor(this.colors.discordcolor, this.colors.discordfill)
     },
     onStyleChange (value) {
-      console.log(value)
       this.animationStyle = value;
       this.$refs.mainbody.updatePreviewCode();
     },

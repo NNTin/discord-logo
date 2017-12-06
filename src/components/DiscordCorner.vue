@@ -6,7 +6,7 @@
       </a>
       <path v-else d="M0,0 L0,250 L250,0 Z" :fill="discordfill"/>
     </g>
-    <g class="rotatethis">
+    <g class="discord-corner">
       <DiscordLogo :animationStyle="animationStyle" :customLink="customLink" :color="discordcolor" :fill="discordfill" :width="120" :height="120" />
     </g>
   </svg>
@@ -55,7 +55,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
-.rotatethis {
+.discord-corner {
   transform: rotate(-45deg);
   transform-origin: 60px 60px;
 }
