@@ -47,8 +47,7 @@ export default {
                     'Animation or style ideas? Raise an issue on GitHub!',
                     'Created with ♥ by NNTin using Discord and Vue.js',
                     'Click on the Discord corner to get the code.',
-                    "All discord logos are clickable and will not redirect you!",
-                    "TODO: Slim down the code generation 😨"];
+                    "All discord logos are clickable and will not redirect you!"];
       var rand = myArray[Math.floor(Math.random() * myArray.length)];
       this.standardText = rand;
     },
