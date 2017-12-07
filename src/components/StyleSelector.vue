@@ -5,6 +5,7 @@
     <DiscordLogo class="button" :isRainbow="isRainbow" :customLink="customLink" :style="isActive('rotateY')" @click.native="setStyle('rotateY')" animationStyle="rotateY" :width="size" :height="size" :discordfill="discordfill" :discordcolor="discordcolor"/>
     <DiscordLogo class="button" :isRainbow="isRainbow" :customLink="customLink" :style="isActive('shake')" @click.native="setStyle('shake')" animationStyle="shake" :width="size" :height="size" :discordfill="discordfill" :discordcolor="discordcolor"/><br/>
     <DiscordLogo class="button" :isRainbow="isRainbow" :customLink="customLink" :style="isActive('softshake')" @click.native="setStyle('softshake')" animationStyle="softshake" :width="size" :height="size" :discordfill="discordfill" :discordcolor="discordcolor"/>
+    <DiscordLogo  animationStyle="none" :customLink="customLink" @click.native="setRainbow(true)"    :isRainbow="true"             :width="size" :height="size" :discordfill="discordfill" :style="isActive2" />
   </div>
 </template>
 
@@ -18,6 +19,7 @@ export default {
   },
   data () {
     return {
+      isRainbowSelected: false,
       activeStyle: 'swirl',
       size: 48
     }
@@ -69,9 +71,26 @@ export default {
       else {
         return {}
       }
-    }
+    },
+    setRainbow: function (value) {
+      if ( this.isRainbowSelected ? !value : value ) {
+        this.isRainbowSelected = value;
+        this.$emit('rainbowChange', value);
+      }
+      else if (value && this.isRainbowSelected) {
+        this.isRainbowSelected = !this.isRainbowSelected;
+        this.$emit('rainbowChange', this.isRainbowSelected);
+      }
+		}
   },
   computed: {
+    isActive2: {
+      get: function () {
+        if (this.isRainbowSelected) {
+          return { border: "solid 2px " + this.discordcolor}
+        }
+      }
+    }
   },
   created: function() {
     this.$nextTick(function () {

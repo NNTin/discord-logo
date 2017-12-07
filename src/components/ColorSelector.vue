@@ -5,8 +5,7 @@
     <DiscordLogo :animationStyle="animationStyle" :customLink="customLink" @click.native="setColor('#FFFFFF','#7289DA') + setRainbow(false)" :width="size" :height="size" discordfill="#FFFFFF" discordcolor="#7289DA"/>
     <DiscordLogo :animationStyle="animationStyle" :customLink="customLink" @click.native="setColor('#FFFFFF','#2C2F33') + setRainbow(false)" :width="size" :height="size" discordfill="#FFFFFF" discordcolor="#2C2F33"/><br/>
     <DiscordLogo :animationStyle="animationStyle" :customLink="customLink" @click.native="setColor('#2C2F33','#7289DA') + setRainbow(false)" :width="size" :height="size" discordfill="#2C2F33" discordcolor="#7289DA"/>
-    <DiscordLogo :animationStyle="animationStyle" :customLink="customLink" @click.native="setColor('#2C2F33','#FFFFFF') + setRainbow(false)" :width="size" :height="size" discordfill="#2C2F33" discordcolor="#FFFFFF"/><br />
-    <DiscordLogo  animationStyle="none"           :customLink="customLink" @click.native="setRainbow(true)"    :isRainbow="true"             :width="size" :height="size" :discordfill="colors.discordfill" :style="isActive" />
+    <DiscordLogo :animationStyle="animationStyle" :customLink="customLink" @click.native="setColor('#2C2F33','#FFFFFF') + setRainbow(false)" :width="size" :height="size" discordfill="#2C2F33" discordcolor="#FFFFFF"/>
   </div>
 </template>
 
@@ -20,7 +19,6 @@ export default {
   },
   data () {
     return {
-      isRainbowSelected: false,
       size: 48,
       colors: {
         discordcolor: '#FFFFFF',
@@ -45,24 +43,10 @@ export default {
       this.$emit('colorChange', this.colors);
 		},
     setRainbow: function (value) {
-      if ( this.isRainbowSelected ? !value : value ) {
-        this.isRainbowSelected = value;
-        this.$emit('rainbowChange', value);
-      }
-      else if (value && this.isRainbowSelected) {
-        this.isRainbowSelected = !this.isRainbowSelected;
-        this.$emit('rainbowChange', this.isRainbowSelected);
-      }
+      this.$emit('rainbowChange', value);
 		}
   },
   computed: {
-    isActive: {
-      get: function () {
-        if (this.isRainbowSelected) {
-          return { border: "solid 2px " + this.colors.discordcolor}
-        }
-      }
-    }
   }
 }
 </script>

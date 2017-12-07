@@ -5,7 +5,7 @@
       <DiscordCorner customLink="#" :isRainbow="isRainbow" :animationStyle="animationStyle" @click.native="setPreviewType('corner')" id="discordcorner" :discordcolor="colors.discordfill" :discordfill="colors.discordcolor"/>
       <div id="container">
         <ColorSelector class="box" customLink="#" :animationStyle="animationStyle" @colorChange="onColorChange" @rainbowChange="onRainbowChange"/>
-        <StyleSelector class="box" customLink="#" :isRainbow="isRainbow" @styleChange="onStyleChange" :discordfill="colors.discordfill" :discordcolor="colors.discordcolor" />
+        <StyleSelector ref="styleselector" class="box" customLink="#" :isRainbow="isRainbow"  @rainbowChange="onRainbowChange" @styleChange="onStyleChange" :discordfill="colors.discordfill" :discordcolor="colors.discordcolor" />
         <DiscordLogo class="box" customLink="#" :animationStyle="animationStyle" :isRainbow="isRainbow" @click.native="setPreviewType('standard')" :discordfill="colors.discordfill" :discordcolor="colors.discordcolor"/>
       </div>
       <br/>
@@ -58,7 +58,9 @@ export default {
     },
     onRainbowChange (value) {
       this.isRainbow = value
-      console.log(value)
+      this.$nextTick(function () {
+        this.$refs.styleselector.isRainbowSelected = value;
+      })
     },
     onStyleChange (value) {
       this.animationStyle = value;
