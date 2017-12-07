@@ -2,16 +2,16 @@
   <div id="app">
     <div id="top" :style="getBackgroundColor">
       <GithubCorner :discordcolor="colors.discordfill" :discordfill="colors.discordcolor"/>
-      <DiscordCorner customLink="#" :animationStyle="animationStyle" @click.native="setPreviewType('corner')" id="discordcorner" :discordcolor="colors.discordfill" :discordfill="colors.discordcolor"/>
+      <DiscordCorner customLink="#" :isRainbow="isRainbow" :animationStyle="animationStyle" @click.native="setPreviewType('corner')" id="discordcorner" :discordcolor="colors.discordfill" :discordfill="colors.discordcolor"/>
       <div id="container">
-        <ColorSelector class="box" customLink="#" :animationStyle="animationStyle" @colorChange="onColorChange"/>
-        <StyleSelector class="box" customLink="#" @styleChange="onStyleChange" :discordfill="colors.discordfill" :discordcolor="colors.discordcolor" />
-        <DiscordLogo class="box" customLink="#" :animationStyle="animationStyle" @click.native="setPreviewType('standard')" :discordfill="colors.discordfill" :discordcolor="colors.discordcolor"/>
+        <ColorSelector class="box" customLink="#" :animationStyle="animationStyle" @colorChange="onColorChange" @rainbowChange="onRainbowChange"/>
+        <StyleSelector class="box" customLink="#" :isRainbow="isRainbow" @styleChange="onStyleChange" :discordfill="colors.discordfill" :discordcolor="colors.discordcolor" />
+        <DiscordLogo class="box" customLink="#" :animationStyle="animationStyle" :isRainbow="isRainbow" @click.native="setPreviewType('standard')" :discordfill="colors.discordfill" :discordcolor="colors.discordcolor"/>
       </div>
       <br/>
-      <DiscordText customLink="#" :animationStyle="animationStyle" ref="discordtext" :standardText="standardText" @click.native="updateSpeechBubble() + setPreviewType('speechbubble')" :discordfill="colors.discordfill" :discordcolor="colors.discordcolor" />
+      <DiscordText :isRainbow="isRainbow" customLink="#" :animationStyle="animationStyle" ref="discordtext" :standardText="standardText" @click.native="updateSpeechBubble() + setPreviewType('speechbubble')" :discordfill="colors.discordfill" :discordcolor="colors.discordcolor" />
     </div>
-    <MainBody ref="mainbody" :animationStyle="animationStyle" :previewDiscordType="previewDiscordType"/>
+    <MainBody ref="mainbody" :animationStyle="animationStyle" :isRainbow="isRainbow" :previewDiscordType="previewDiscordType"/>
   </div>
 </template>
 
@@ -31,6 +31,7 @@ export default {
   },
   data () {
   		return {
+        isRainbow: false,
         animationStyle: 'swirl',
         standardText: 'Join us on Discord',
         previewDiscordType: 'standard',
@@ -54,6 +55,10 @@ export default {
     onColorChange (value) {
       this.colors = value
       this.$refs.mainbody.changeColor(this.colors.discordcolor, this.colors.discordfill)
+    },
+    onRainbowChange (value) {
+      this.isRainbow = value
+      console.log(value)
     },
     onStyleChange (value) {
       this.animationStyle = value;
