@@ -5,7 +5,7 @@
     <DiscordLogo class="button" :isRainbow="isRainbow" :customLink="customLink" :style="isActive('rotateY')" @click.native="setStyle('rotateY')" animationStyle="rotateY" :width="size" :height="size" :discordfill="discordfill" :discordcolor="discordcolor"/>
     <DiscordLogo class="button" :isRainbow="isRainbow" :customLink="customLink" :style="isActive('shake')" @click.native="setStyle('shake')" animationStyle="shake" :width="size" :height="size" :discordfill="discordfill" :discordcolor="discordcolor"/><br/>
     <DiscordLogo class="button" :isRainbow="isRainbow" :customLink="customLink" :style="isActive('softshake')" @click.native="setStyle('softshake')" animationStyle="softshake" :width="size" :height="size" :discordfill="discordfill" :discordcolor="discordcolor"/>
-    <DiscordLogo  animationStyle="none" :customLink="customLink" @click.native="setRainbow(true)"    :isRainbow="true"             :width="size" :height="size" :discordfill="discordfill" :style="isActive2" />
+    <DiscordLogo class="button" :isRainbow="true"      :customLink="customLink" :style="rainbowActiveStyle" @click.native="setRainbow(true)" animationStyle="none" :width="size" :height="size" :discordfill="discordfill" />
   </div>
 </template>
 
@@ -84,7 +84,7 @@ export default {
 		}
   },
   computed: {
-    isActive2: {
+    rainbowActiveStyle: {
       get: function () {
         if (this.isRainbowSelected) {
           return { border: "solid 2px " + this.discordcolor}

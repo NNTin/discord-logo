@@ -60,6 +60,7 @@ export default {
       this.isRainbow = value
       this.$nextTick(function () {
         this.$refs.styleselector.isRainbowSelected = value;
+        this.$refs.mainbody.updatePreviewCode();
       })
     },
     onStyleChange (value) {
