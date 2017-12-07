@@ -20,7 +20,7 @@ export default {
   },
   data () {
     return {
-      isRainbow: false,
+      isRainbowSelected: false,
       size: 48,
       colors: {
         discordcolor: '#FFFFFF',
@@ -45,20 +45,20 @@ export default {
       this.$emit('colorChange', this.colors);
 		},
     setRainbow: function (value) {
-      if ( value ? !this.isRainbow : this.isRainbow ) {
-        this.isRainbow = value;
+      if ( this.isRainbowSelected ? !value : value ) {
+        this.isRainbowSelected = value;
         this.$emit('rainbowChange', value);
       }
-      else if (value && this.isRainbow) {
-        this.isRainbow = !this.isRainbow;
-        this.$emit('rainbowChange', this.isRainbow);
+      else if (value && this.isRainbowSelected) {
+        this.isRainbowSelected = !this.isRainbowSelected;
+        this.$emit('rainbowChange', this.isRainbowSelected);
       }
 		}
   },
   computed: {
     isActive: {
       get: function () {
-        if (this.isRainbow) {
+        if (this.isRainbowSelected) {
           return { border: "solid 2px " + this.colors.discordcolor}
         }
       }
