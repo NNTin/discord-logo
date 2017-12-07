@@ -126,11 +126,6 @@ export default {
     }
   },
   computed: {
-    getTextHeight: {
-      get: function () {
-        return this.height/2
-      }
-    }
   },
   watch: {
     standardText: function () {
