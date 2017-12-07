@@ -6,7 +6,7 @@
     <DiscordLogo :animationStyle="animationStyle" :customLink="customLink" @click.native="setColor('#FFFFFF','#2C2F33') + setRainbow(false)" :width="size" :height="size" discordfill="#FFFFFF" discordcolor="#2C2F33"/><br/>
     <DiscordLogo :animationStyle="animationStyle" :customLink="customLink" @click.native="setColor('#2C2F33','#7289DA') + setRainbow(false)" :width="size" :height="size" discordfill="#2C2F33" discordcolor="#7289DA"/>
     <DiscordLogo :animationStyle="animationStyle" :customLink="customLink" @click.native="setColor('#2C2F33','#FFFFFF') + setRainbow(false)" :width="size" :height="size" discordfill="#2C2F33" discordcolor="#FFFFFF"/><br />
-    <DiscordLogo  animationStyle="none"           :customLink="customLink" @click.native="setRainbow(true)"    :isRainbow="isRainbow"       :width="size" :height="size" :discordfill="colors.discordfill"/>
+    <DiscordLogo  animationStyle="none"           :customLink="customLink" @click.native="setRainbow(true)"    :isRainbow="true"             :width="size" :height="size" :discordfill="colors.discordfill" :style="isActive" />
   </div>
 </template>
 
@@ -20,10 +20,11 @@ export default {
   },
   data () {
     return {
+      isRainbow: false,
       size: 48,
       colors: {
-        discordcolor: '#7289DA',
-        discordfill: '#23272A',
+        discordcolor: '#FFFFFF',
+        discordfill: '#7289DA',
       }
     }
   },
@@ -35,10 +36,6 @@ export default {
     animationStyle: {
       type: String,
       default: 'swirl'
-    },
-    isRainbow: {
-      type: Boolean,
-      default: true
     }
   },
 	methods: {
@@ -48,8 +45,24 @@ export default {
       this.$emit('colorChange', this.colors);
 		},
     setRainbow: function (value) {
-      this.$emit('rainbowChange', value);
+      if ( value ? !this.isRainbow : this.isRainbow ) {
+        this.isRainbow = value;
+        this.$emit('rainbowChange', value);
+      }
+      else if (value && this.isRainbow) {
+        this.isRainbow = !this.isRainbow;
+        this.$emit('rainbowChange', this.isRainbow);
+      }
 		}
+  },
+  computed: {
+    isActive: {
+      get: function () {
+        if (this.isRainbow) {
+          return { border: "solid 2px " + this.colors.discordcolor}
+        }
+      }
+    }
   }
 }
 </script>
