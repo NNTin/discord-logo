@@ -1,9 +1,10 @@
 <template>
   <div ref="rootElement" class="buttons">
-    <DiscordLogo class="button" :customLink="customLink" @click.native="setStyle('swirl')" animationStyle="swirl" :width="size" :height="size" :discordfill="discordfill" :discordcolor="discordcolor"/>
-    <DiscordLogo class="button" :customLink="customLink" @click.native="setStyle('rotateX')" animationStyle="rotateX" :width="size" :height="size" :discordfill="discordfill" :discordcolor="discordcolor"/><br/>
-    <DiscordLogo class="button" :customLink="customLink" @click.native="setStyle('rotateY')" animationStyle="rotateY" :width="size" :height="size" :discordfill="discordfill" :discordcolor="discordcolor"/>
-    <DiscordLogo class="button" :customLink="customLink" @click.native="setStyle('shake')" animationStyle="shake" :width="size" :height="size" :discordfill="discordfill" :discordcolor="discordcolor"/>
+    <DiscordLogo class="button" :customLink="customLink" :style="isActive('swirl')" @click.native="setStyle('swirl')" animationStyle="swirl" :width="size" :height="size" :discordfill="discordfill" :discordcolor="discordcolor"/>
+    <DiscordLogo class="button" :customLink="customLink" :style="isActive('rotateX')" @click.native="setStyle('rotateX')" animationStyle="rotateX" :width="size" :height="size" :discordfill="discordfill" :discordcolor="discordcolor"/><br/>
+    <DiscordLogo class="button" :customLink="customLink" :style="isActive('rotateY')" @click.native="setStyle('rotateY')" animationStyle="rotateY" :width="size" :height="size" :discordfill="discordfill" :discordcolor="discordcolor"/>
+    <DiscordLogo class="button" :customLink="customLink" :style="isActive('shake')" @click.native="setStyle('shake')" animationStyle="shake" :width="size" :height="size" :discordfill="discordfill" :discordcolor="discordcolor"/><br/>
+    <DiscordLogo class="button" :customLink="customLink" :style="isActive('softshake')" @click.native="setStyle('softshake')" animationStyle="softshake" :width="size" :height="size" :discordfill="discordfill" :discordcolor="discordcolor"/>
   </div>
 </template>
 
@@ -17,7 +18,8 @@ export default {
   },
   data () {
     return {
-      size: 70
+      activeStyle: 'swirl',
+      size: 48
     }
   },
   props: {
@@ -36,6 +38,7 @@ export default {
   },
 	methods: {
     setStyle: function (animationStyle) {
+      this.activeStyle = animationStyle;
       this.$emit('styleChange', animationStyle);
 		},
     sleep: function(ms) {
@@ -54,7 +57,17 @@ export default {
       for (var i = 0; i < discordLogos.length; i++) {
         discordLogos[i].classList.remove("animated");
       }
+    },
+    isActive: function(value) {
+      if (this.activeStyle == value) {
+        return { border: "solid 2px " + this.discordcolor}
+      }
+      else {
+        return {}
+      }
     }
+  },
+  computed: {
   },
   created: function() {
     this.$nextTick(function () {
