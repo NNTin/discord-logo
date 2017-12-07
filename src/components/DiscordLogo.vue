@@ -35,9 +35,16 @@
     <g v-else-if="animationStyle == 'shake'" class="discord-logo shake-animation">
       <use class="discord-original" href="#discord-logo" />
     </g>
+    <g v-else-if="animationStyle == 'softshake'" class="discord-logo softshake-animation">
+      <use class="discord-original" href="#discord-logo" />
+    </g>
+    <g v-else class="discord-logo">
+      <use class="discord-original" href="#discord-logo" />
+    </g>
     <a v-if="customLink" :href="customLink">
       <rect width="100%" height="100%" fill-opacity="0" />
     </a>
+    <animate v-if="isRainbow" fill="freeze" dur="4000ms" begin="0s" values="#DA7272;#DABF72;#A6DA72;#72DA8C;#72DADA;#728CDA;#A672DA;#DA72C0;#DA7272" calMode="linear" attributeName="color" repeatCount="indefinite" />
   </svg>
 </template>
 
@@ -72,6 +79,10 @@ export default {
     animationStyle: {
       type: String,
       default: 'swirl'
+    },
+    isRainbow: {
+      type: Boolean,
+      default: false
     }
 	}
 }
@@ -164,6 +175,39 @@ export default {
   96% {transform:translate(.5px, 2.5px) rotate(.5deg)}
   98% {transform:translate(2.5px, -1.5px) rotate(1.5deg)}
   0%,100% {transform:translate(0, 0) rotate(0)}
+}
+
+/* SOFTSHAKE animation */
+.discord-logo.softshake-animation .discord-original {
+  transform-origin: 24px 24px;
+}
+.discord-logo-container:hover .softshake-animation .discord-original, .animated .softshake-animation .discord-original {
+  animation: softshake 2000ms linear forwards;
+}
+@keyframes softshake
+{
+  0%,66%,100% {transform:rotate( 0deg)}
+   3% {transform:rotate(-18.0deg)}
+   6% {transform:rotate( 14.4deg)}
+   9% {transform:rotate(-11.5deg)}
+  12% {transform:rotate( 9.21deg)}
+  15% {transform:rotate(-7.37deg)}
+  18% {transform:rotate( 5.89deg)}
+  21% {transform:rotate(-4.71deg)}
+  24% {transform:rotate( 3.77deg)}
+  27% {transform:rotate(-3.02deg)}
+  30% {transform:rotate( 2.41deg)}
+  33% {transform:rotate(-1.93deg)}
+  36% {transform:rotate( 1.54deg)}
+  39% {transform:rotate(-1.23deg)}
+  42% {transform:rotate( 0.99deg)}
+  45% {transform:rotate(-0.79deg)}
+  48% {transform:rotate( 0.63deg)}
+  51% {transform:rotate(-0.50deg)}
+  54% {transform:rotate( 0.40deg)}
+  57% {transform:rotate(-0.32deg)}
+  60% {transform:rotate( 0.25deg)}
+  63% {transform:rotate(-0.20deg)}
 }
 
 /* SWIRL animation */
