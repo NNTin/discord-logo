@@ -69,7 +69,7 @@ export default {
         return { border: "solid 2px " + this.discordcolor}
       }
       else {
-        return {}
+        return { border: "solid 2px transparent" }
       }
     },
     setRainbow: function (value) {
@@ -88,6 +88,9 @@ export default {
       get: function () {
         if (this.isRainbowSelected) {
           return { border: "solid 2px " + this.discordcolor}
+        }
+        else {
+          return { border: "solid 2px transparent" }
         }
       }
     }

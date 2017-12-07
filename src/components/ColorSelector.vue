@@ -1,11 +1,11 @@
 <template>
   <div class="buttons">
-    <DiscordLogo :animationStyle="animationStyle" :customLink="customLink" @click.native="setColor('#7289DA','#FFFFFF') + setRainbow(false)" :width="size" :height="size" discordfill="#7289DA" discordcolor="#FFFFFF"/>
-    <DiscordLogo :animationStyle="animationStyle" :customLink="customLink" @click.native="setColor('#7289DA','#2C2F33') + setRainbow(false)" :width="size" :height="size" discordfill="#7289DA" discordcolor="#2C2F33"/><br/>
-    <DiscordLogo :animationStyle="animationStyle" :customLink="customLink" @click.native="setColor('#FFFFFF','#7289DA') + setRainbow(false)" :width="size" :height="size" discordfill="#FFFFFF" discordcolor="#7289DA"/>
-    <DiscordLogo :animationStyle="animationStyle" :customLink="customLink" @click.native="setColor('#FFFFFF','#2C2F33') + setRainbow(false)" :width="size" :height="size" discordfill="#FFFFFF" discordcolor="#2C2F33"/><br/>
-    <DiscordLogo :animationStyle="animationStyle" :customLink="customLink" @click.native="setColor('#2C2F33','#7289DA') + setRainbow(false)" :width="size" :height="size" discordfill="#2C2F33" discordcolor="#7289DA"/>
-    <DiscordLogo :animationStyle="animationStyle" :customLink="customLink" @click.native="setColor('#2C2F33','#FFFFFF') + setRainbow(false)" :width="size" :height="size" discordfill="#2C2F33" discordcolor="#FFFFFF"/>
+    <DiscordLogo class="button" :animationStyle="animationStyle" :customLink="customLink" @click.native="setColor('#7289DA','#FFFFFF') + setRainbow(false)" :width="size" :height="size" discordfill="#7289DA" discordcolor="#FFFFFF"/>
+    <DiscordLogo class="button" :animationStyle="animationStyle" :customLink="customLink" @click.native="setColor('#7289DA','#2C2F33') + setRainbow(false)" :width="size" :height="size" discordfill="#7289DA" discordcolor="#2C2F33"/><br/>
+    <DiscordLogo class="button" :animationStyle="animationStyle" :customLink="customLink" @click.native="setColor('#FFFFFF','#7289DA') + setRainbow(false)" :width="size" :height="size" discordfill="#FFFFFF" discordcolor="#7289DA"/>
+    <DiscordLogo class="button" :animationStyle="animationStyle" :customLink="customLink" @click.native="setColor('#FFFFFF','#2C2F33') + setRainbow(false)" :width="size" :height="size" discordfill="#FFFFFF" discordcolor="#2C2F33"/><br/>
+    <DiscordLogo class="button" :animationStyle="animationStyle" :customLink="customLink" @click.native="setColor('#2C2F33','#7289DA') + setRainbow(false)" :width="size" :height="size" discordfill="#2C2F33" discordcolor="#7289DA"/>
+    <DiscordLogo class="button" :animationStyle="animationStyle" :customLink="customLink" @click.native="setColor('#2C2F33','#FFFFFF') + setRainbow(false)" :width="size" :height="size" discordfill="#2C2F33" discordcolor="#FFFFFF"/>
   </div>
 </template>
 
@@ -51,9 +51,12 @@ export default {
 }
 </script>
 <style>
-  .buttons {
-    display: inline-block;
-    position:relative;
-    bottom: 80px;
-  }
+.buttons {
+  display: inline-block;
+  position:relative;
+  bottom: 60px;
+}
+.buttons .button {
+  padding: 2px;
+}
 </style>
