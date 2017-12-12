@@ -73,6 +73,7 @@ export default {
     this.previewDiscordType = value;
       this.$nextTick(function () {
         this.$refs.mainbody.refreshSlider();
+        this.$refs.mainbody.updatePreviewCode();
       })
     }
   },

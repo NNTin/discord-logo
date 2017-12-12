@@ -94,6 +94,10 @@ export default {
     }
 	},
   methods: {
+    update: function() {
+      this.updateAnimation();
+      this.updateEyes();
+    },
     updateAnimation: function () {
       this.$nextTick(function () {
         var svgns = "http://www.w3.org/2000/svg";
@@ -154,8 +158,7 @@ export default {
     }
   },
   created: function() {
-    this.updateAnimation();
-    this.updateEyes();
+    this.update();
   },
   watch: {
     animationStyle: function () {
