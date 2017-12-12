@@ -1,5 +1,5 @@
 <template>
-  <div ref="rootElement" class="buttons">
+  <div class="eyeSelector">
     <DiscordLogo :style="isActive('wink')"   @click.native="setEye('wink')"   discordEyes="wink"   :customLink="customLink" :width="size" :height="size" :discordfill="discordfill" :discordcolor="discordcolor" :animationStyle="animationStyle" :isRainbow="isRainbow"/>
     <DiscordLogo :style="isActive('none')"   @click.native="setEye('none')"   discordEyes="none"   :customLink="customLink" :width="size" :height="size" :discordfill="discordfill" :discordcolor="discordcolor" :animationStyle="animationStyle" :isRainbow="isRainbow"/>
     <DiscordLogo :style="isActive('angry')"  @click.native="setEye('angry')"  discordEyes="angry"  :customLink="customLink" :width="size" :height="size" :discordfill="discordfill" :discordcolor="discordcolor" :animationStyle="animationStyle" :isRainbow="isRainbow"/>
@@ -67,4 +67,8 @@ export default {
 }
 </script>
 <style>
+.eyeSelector {
+  margin-top: 0px;
+  margin-bottom: 15px;
+}
 </style>

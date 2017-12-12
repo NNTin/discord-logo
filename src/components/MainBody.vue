@@ -22,9 +22,9 @@
 
           <portal to="destination" :disabled="previewDiscordType != 'speechbubble'">
             <div ref="preview" id="preview">
-              <DiscordLogo v-if="previewDiscordType == 'standard'" :isRainbow="isRainbow" :animationStyle="animationStyle" :customLink="customLink" class="previewbox" :width="size" :height="size" :discordfill="colors.discordfill.hex" :discordcolor="colors.discordcolor.hex" />
-              <DiscordText @htmlModified="onHtmlModified" :isRainbow="isRainbow" :animationStyle="animationStyle" :style="getDTextStyle" v-else-if="previewDiscordType == 'speechbubble'" :customLink="customLink" ref="discordtext" :height="size/4" :standardText="bubbleText" :discordfill="colors.discordfill.hex" :discordcolor="colors.discordcolor.hex" class="previewbox previewDiscordText" :writeText="false"/>
-              <DiscordCorner v-else :customLink="customLink" :isRainbow="isRainbow" :animationStyle="animationStyle" :style="getDCornerStyle" class="previewbox" :width="size" :height="size" :discordfill="colors.discordfill.hex" :discordcolor="colors.discordcolor.hex" />
+              <DiscordLogo :discordEyes="discordEyes" v-if="previewDiscordType == 'standard'" :isRainbow="isRainbow" :animationStyle="animationStyle" :customLink="customLink" class="previewbox" :width="size" :height="size" :discordfill="colors.discordfill.hex" :discordcolor="colors.discordcolor.hex" />
+              <DiscordText :discordEyes="discordEyes" @htmlModified="onHtmlModified" :isRainbow="isRainbow" :animationStyle="animationStyle" :style="getDTextStyle" v-else-if="previewDiscordType == 'speechbubble'" :customLink="customLink" ref="discordtext" :height="size/4" :standardText="bubbleText" :discordfill="colors.discordfill.hex" :discordcolor="colors.discordcolor.hex" class="previewbox previewDiscordText" :writeText="false"/>
+              <DiscordCorner :discordEyes="discordEyes" v-else :customLink="customLink" :isRainbow="isRainbow" :animationStyle="animationStyle" :style="getDCornerStyle" class="previewbox" :width="size" :height="size" :discordfill="colors.discordfill.hex" :discordcolor="colors.discordcolor.hex" />
             </div>
           </portal>
         </div>
@@ -127,6 +127,10 @@ export default {
     isRainbow: {
       type: Boolean,
       default: false
+    },
+    discordEyes: {
+      type: String,
+      default: 'none' //none wink angry noeyes
     }
   },
   methods: {

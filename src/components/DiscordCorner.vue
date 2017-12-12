@@ -7,7 +7,7 @@
       <path v-else d="M0,0 L0,250 L250,0 Z" :fill="discordfill"/>
     </g>
     <g class="discord-corner">
-      <DiscordLogo :isRainbow="isRainbow" :animationStyle="animationStyle" :customLink="customLink" :color="discordcolor" :fill="discordfill" :width="120" :height="120" />
+      <DiscordLogo :discordEyes="discordEyes" :isRainbow="isRainbow" :animationStyle="animationStyle" :customLink="customLink" :color="discordcolor" :fill="discordfill" :width="120" :height="120" />
     </g>
   </svg>
 </template>
@@ -52,6 +52,10 @@ export default {
     isRainbow: {
       type: Boolean,
       default: false
+    },
+    discordEyes: {
+      type: String,
+      default: 'none' //none wink angry noeyes
     }
   }
 }
