@@ -1,5 +1,5 @@
 <template>
-  <svg :color="discordcolor" :fill="discordfill" :width="width" :height="height" class="discord-logo-container" viewBox="0 0 48 48">
+  <svg ref="discordLogoRootElement" :color="discordcolor" :fill="discordfill" :width="width" :height="height" class="discord-logo-container" viewBox="0 0 48 48">
     <rect width="100%" height="100%" fill="currentfill" />
     <defs>
       <g>
@@ -48,27 +48,7 @@
         </mask>
       </g>
     </defs>
-    <g v-if="animationStyle == 'swirl'" class="discord-logo swirl-animation">
-      <use class="discord-original" href="#discord-logo" />
-      <use class="discord-outer-layer" href="#discord-logo" mask="url(#mask-outer-layer)" />
-      <use class="discord-middle-layer" href="#discord-logo" mask="url(#mask-middle-layer)" />
-      <use class="discord-inner-layer" href="#discord-logo" mask="url(#mask-inner-layer)" />
-    </g>
-    <g v-else-if="animationStyle == 'rotateY'" class="discord-logo rotateY-animation">
-      <use class="discord-original" href="#discord-logo" />
-    </g>
-    <g v-else-if="animationStyle == 'rotateX'" class="discord-logo rotateX-animation">
-      <use class="discord-original" href="#discord-logo" />
-    </g>
-    <g v-else-if="animationStyle == 'shake'" class="discord-logo shake-animation">
-      <use class="discord-original" href="#discord-logo" />
-    </g>
-    <g v-else-if="animationStyle == 'softshake'" class="discord-logo softshake-animation">
-      <use class="discord-original" href="#discord-logo" />
-    </g>
-    <g v-else class="discord-logo">
-      <use class="discord-original" href="#discord-logo" />
-    </g>
+    <g class="discord-logo" />
     <a v-if="customLink" :href="customLink">
       <rect width="100%" height="100%" fill-opacity="0" />
     </a>
@@ -78,6 +58,7 @@
 
 <script>
 export default {
+//TODO: add animationStyle and angry/wink discord logo via JavaScript! (define a root element, get ID from there)
   name: 'DiscordLogo',
   data () {
     return {
@@ -114,9 +95,44 @@ export default {
     },
     discordEyes: {
       type: String,
-      default: 'wink' //none wink angry
+      default: 'none' //none wink angry
     }
-	}
+	},
+  methods: {
+    updateAnimation: function () {
+      this.$nextTick(function () {
+        var svgns = "http://www.w3.org/2000/svg";
+        var xlinkns = "http://www.w3.org/1999/xlink";
+        var discordLogoRootElement = this.$refs.discordLogoRootElement
+        var discordLogo = discordLogoRootElement.getElementsByClassName("discord-logo")[0]
+        while (discordLogo.firstChild) {
+          discordLogo.removeChild(discordLogo.firstChild);
+        }
+        discordLogo.setAttribute("class", "discord-logo " + this.animationStyle + "-animation");
+        var useElement = document.createElementNS(svgns, "use");
+        useElement.setAttribute("class", "discord-original");
+        useElement.setAttributeNS(xlinkns, "href", "#discord-logo");
+        discordLogo.appendChild(useElement)
+        if (this.animationStyle == "swirl") {
+          ["inner", "middle", "outer"].map(function(item) {
+            var useElement = document.createElementNS(svgns, "use");
+            useElement.setAttribute("class", "discord-" + item + "-layer");
+            useElement.setAttributeNS(xlinkns, "href", "#discord-logo");
+            useElement.setAttribute("mask", "url(#mask-" + item + "-layer)");
+            discordLogo.appendChild(useElement)
+          })
+        }
+      })
+    }
+  },
+  created: function() {
+    this.updateAnimation()
+  },
+  watch: {
+    animationStyle: function () {
+      this.updateAnimation();
+    }
+  }
 }
 </script>
 

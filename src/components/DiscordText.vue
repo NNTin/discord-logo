@@ -1,5 +1,5 @@
 <template>
-  <div ref="rootElement">
+  <div ref="discordTextRootElement">
     <div class="discordtext">
       <DiscordLogo :isRainbow="isRainbow" :animationStyle="animationStyle" :customLink="customLink" :height="height *2" :width="height *2" :discordfill="discordfill" :discordcolor="discordcolor"/>
       <svg v-show="standardText" class="speechbubble" :height="height" preserveAspectRatio="xMinYMin">
@@ -91,9 +91,9 @@ export default {
     },
     updateSVG: function () {
       this.$nextTick(function () {
-        var rootElement = this.$refs.rootElement;
-        var speechbubble = rootElement.getElementsByClassName("speechbubble")[0];
-        var textElement = rootElement.getElementsByClassName("textElement")[0];
+        var discordTextRootElement = this.$refs.discordTextRootElement;
+        var speechbubble = discordTextRootElement.getElementsByClassName("speechbubble")[0];
+        var textElement = discordTextRootElement.getElementsByClassName("textElement")[0];
         var newWidth = textElement.getComputedTextLength();
         var vb=[0, 0, newWidth+190, 200];
         speechbubble.setAttribute("viewBox", vb.join(" ") );
@@ -118,9 +118,9 @@ export default {
               }
           }
         }
-        var pathElement = rootElement.getElementsByClassName("pathElement")[0];
+        var pathElement = discordTextRootElement.getElementsByClassName("pathElement")[0];
         pathElement.setAttribute("d", new_d.join(" "))
-        var pathElementGroup = rootElement.getElementsByClassName("pathElementGroup")[0];
+        var pathElementGroup = discordTextRootElement.getElementsByClassName("pathElementGroup")[0];
         pathElementGroup.setAttribute("transform", 'translate(' + (parseFloat(newWidth+190)).toString() + ', 0)')
 
       })

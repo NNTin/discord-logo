@@ -242,7 +242,9 @@ export default {
     }
   },
   created: function() {
-    this.updatePreviewCode()
+    this.$nextTick(function () {
+      this.updatePreviewCode()
+    })
   }
 }
 </script>

@@ -65,7 +65,9 @@ export default {
     },
     onStyleChange (value) {
       this.animationStyle = value;
-      this.$refs.mainbody.updatePreviewCode();
+      this.$nextTick(function () {
+        this.$refs.mainbody.updatePreviewCode();
+      })
     },
     setPreviewType (value) {
     this.previewDiscordType = value;
