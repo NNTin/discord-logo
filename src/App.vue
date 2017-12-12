@@ -23,11 +23,13 @@ import ColorSelector from './components/ColorSelector.vue'
 import StyleSelector from './components/StyleSelector.vue'
 import MainBody from './components/MainBody.vue'
 import DiscordText from './components/DiscordText.vue'
+import EyeSelector from './components/EyeSelector.vue'
 
 export default {
   name: 'app',
   components: {
-    DiscordLogo, GithubCorner, DiscordCorner, ColorSelector, StyleSelector, MainBody, DiscordText
+    DiscordLogo, GithubCorner, DiscordCorner, ColorSelector,
+    StyleSelector, MainBody, DiscordText, EyeSelector
   },
   data () {
   		return {
