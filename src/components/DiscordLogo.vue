@@ -10,7 +10,7 @@
             <path id="discord-def-face-right-eye" fill="currentfill" d="M30.5,30C28.567,30,27,28.209,27,26C27,23.791,28.567,22,30.5,22S34,23.791,34,26C34,28.209,32.433,30,30.5,30Z" />
           </g>
         </defs>
-        <g id="discord-logo">
+        <g :id="discordFaceID"> <!--id="discordLogoID"-->
           <use href="#discord-def-face" />
           <g id="discord-logo-eyes">
             <mask id="mask-right-eye-wink">
@@ -21,16 +21,7 @@
               <rect height="48" width="48" y="0" x="0" fill="#FFFFFF"/>
               <rect transform="rotate(45 24,14.5)" height="24" width="24" y="2.5" x="12" fill="#000000"/>
             </mask>
-            <g v-if="discordEyes == 'wink'">
-              <use href="#discord-def-face-left-eye" />
-              <use href="#discord-def-face-right-eye" mask="url(#mask-right-eye-wink)"/>
-            </g>
-            <g v-else-if="discordEyes == 'angry'">
-              <use href="#discord-def-face-eyes" mask="url(#mask-eyes-angry)"/>
-            </g>
-            <g v-else>
-              <use href="#discord-def-face-eyes"/>
-            </g>
+            <g class="discord-eyes"/>
           </g>
         </g>
         <mask id="mask-outer-layer">
@@ -62,7 +53,11 @@ export default {
   name: 'DiscordLogo',
   data () {
     return {
+      discordFaceID: null
     }
+  },
+  mounted() {
+    this.discordFaceID = "discordFaceID"+this._uid
   },
 	props: {
 		width: {
@@ -95,7 +90,7 @@ export default {
     },
     discordEyes: {
       type: String,
-      default: 'none' //none wink angry
+      default: 'none' //none wink angry noeyes
     }
 	},
   methods: {
@@ -111,26 +106,63 @@ export default {
         discordLogo.setAttribute("class", "discord-logo " + this.animationStyle + "-animation");
         var useElement = document.createElementNS(svgns, "use");
         useElement.setAttribute("class", "discord-original");
-        useElement.setAttributeNS(xlinkns, "href", "#discord-logo");
+        useElement.setAttributeNS(xlinkns, "href", "#" + this.discordFaceID);
         discordLogo.appendChild(useElement)
         if (this.animationStyle == "swirl") {
           ["inner", "middle", "outer"].map(function(item) {
             var useElement = document.createElementNS(svgns, "use");
             useElement.setAttribute("class", "discord-" + item + "-layer");
-            useElement.setAttributeNS(xlinkns, "href", "#discord-logo");
+            useElement.setAttributeNS(xlinkns, "href", "#" + this.discordFaceID);
             useElement.setAttribute("mask", "url(#mask-" + item + "-layer)");
             discordLogo.appendChild(useElement)
-          })
+          }, this)
+        }
+      })
+    },
+    updateEyes: function() {
+      this.$nextTick(function () {
+        var svgns = "http://www.w3.org/2000/svg";
+        var xlinkns = "http://www.w3.org/1999/xlink";
+        var discordLogoRootElement = this.$refs.discordLogoRootElement
+        var discordEyesSVG = discordLogoRootElement.getElementsByClassName("discord-eyes")[0]
+        while (discordEyesSVG.firstChild) {
+          discordEyesSVG.removeChild(discordEyesSVG.firstChild);
+        }
+        if (this.discordEyes == "angry") {
+          var useElement = document.createElementNS(svgns, "use");
+          useElement.setAttributeNS(xlinkns, "href", "#discord-def-face-eyes");
+          useElement.setAttribute("mask", "url(#mask-eyes-angry)");
+          discordEyesSVG.appendChild(useElement);
+        }
+        else if (this.discordEyes == "wink") {
+          var useElement = document.createElementNS(svgns, "use");
+          useElement.setAttributeNS(xlinkns, "href", "#discord-def-face-left-eye");
+          discordEyesSVG.appendChild(useElement);
+          var useElement = document.createElementNS(svgns, "use");
+          useElement.setAttributeNS(xlinkns, "href", "#discord-def-face-right-eye");
+          useElement.setAttribute("mask", "url(#mask-right-eye-wink)");
+          discordEyesSVG.appendChild(useElement);
+        }
+        else if (this.discordEyes == "none") {
+          var useElement = document.createElementNS(svgns, "use");
+          useElement.setAttributeNS(xlinkns, "href", "#discord-def-face-eyes");
+          discordEyesSVG.appendChild(useElement);
+        }
+        else if (this.discordEyes == "noeyes") {
         }
       })
     }
   },
   created: function() {
-    this.updateAnimation()
+    this.updateAnimation();
+    this.updateEyes();
   },
   watch: {
     animationStyle: function () {
       this.updateAnimation();
+    },
+    discordEyes: function () {
+      this.updateEyes();
     }
   }
 }
