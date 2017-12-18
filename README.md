@@ -22,7 +22,7 @@ npm run dev
 
 ## License/Acknowledgements
 
-This project is neither build nor endorsed by Discord.
+This project is neither built nor endorsed by Discord.
 
 Github corner template: [tholman](https://github.com/tholman/github-corners)
 

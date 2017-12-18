@@ -36,7 +36,7 @@
       <textarea v-model="previewCode"/>
     </section>
     <footer>
-      <p>This project is neither build nor endorsed by Discord.</p>
+      <p>This project is neither built nor endorsed by Discord.</p>
     </footer>
   </div>
 </template>
