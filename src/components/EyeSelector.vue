@@ -17,8 +17,7 @@ export default {
   },
   data () {
     return {
-      size: 100,
-      activeEye: 'none'
+      size: 100
     }
   },
   props: {
@@ -38,6 +37,10 @@ export default {
       type: Boolean,
       default: false
     },
+    discordEyes: {
+      type: String,
+      default: 'none' //none wink angry noeyes
+    },
     animationStyle: {
       type: String,
       default: 'swirl'
@@ -45,14 +48,13 @@ export default {
   },
 	methods: {
     setEye: function (eyeStyle) {
-      this.activeEye = eyeStyle;
       this.$emit('activeEyeChange', eyeStyle);
     },
     sleep: function(ms) {
       return new Promise(resolve => setTimeout(resolve, ms));
     },
     isActive: function(value) {
-      if (this.activeEye == value) {
+      if (this.discordEyes == value) {
         return { border: "solid 2px " + this.discordcolor}
       }
       else {

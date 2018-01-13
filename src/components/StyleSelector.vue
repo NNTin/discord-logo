@@ -19,8 +19,6 @@ export default {
   },
   data () {
     return {
-      isRainbowSelected: false,
-      activeStyle: 'swirl',
       size: 48
     }
   },
@@ -44,11 +42,14 @@ export default {
     discordEyes: {
       type: String,
       default: 'none' //none wink angry noeyes
+    },
+    animationStyle: {
+      type: String,
+      default: 'swirl'
     }
   },
 	methods: {
     setStyle: function (animationStyle) {
-      this.activeStyle = animationStyle;
       this.$emit('styleChange', animationStyle);
 		},
     sleep: function(ms) {
@@ -69,7 +70,7 @@ export default {
       }
     },
     isActive: function(value) {
-      if (this.activeStyle == value) {
+      if (this.animationStyle == value) {
         return { border: "solid 2px " + this.discordcolor}
       }
       else {
@@ -77,20 +78,18 @@ export default {
       }
     },
     setRainbow: function (value) {
-      if ( this.isRainbowSelected ? !value : value ) {
-        this.isRainbowSelected = value;
+      if ( this.isRainbow ? !value : value ) {
         this.$emit('rainbowChange', value);
       }
-      else if (value && this.isRainbowSelected) {
-        this.isRainbowSelected = !this.isRainbowSelected;
-        this.$emit('rainbowChange', this.isRainbowSelected);
+      else if (value && this.isRainbow) {
+        this.$emit('rainbowChange', !this.isRainbow);
       }
 		}
   },
   computed: {
     rainbowActiveStyle: {
       get: function () {
-        if (this.isRainbowSelected) {
+        if (this.isRainbow) {
           return { border: "solid 2px " + this.discordcolor}
         }
         else {

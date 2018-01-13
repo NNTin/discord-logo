@@ -5,10 +5,10 @@
       <DiscordCorner :discordEyes="discordEyes" customLink="#" :isRainbow="isRainbow" :animationStyle="animationStyle" @click.native="setPreviewType('corner')" id="discordcorner" :discordcolor="colors.discordfill" :discordfill="colors.discordcolor"/>
       <div id="container">
         <ColorSelector :discordEyes="discordEyes" class="box" customLink="#" :animationStyle="animationStyle" @colorChange="onColorChange" @rainbowChange="onRainbowChange"/>
-        <StyleSelector :discordEyes="discordEyes" ref="styleselector" class="box" customLink="#" :isRainbow="isRainbow"  @rainbowChange="onRainbowChange" @styleChange="onStyleChange" :discordfill="colors.discordfill" :discordcolor="colors.discordcolor" />
+        <StyleSelector :animationStyle="animationStyle" :discordEyes="discordEyes" ref="styleselector" class="box" customLink="#" :isRainbow="isRainbow"  @rainbowChange="onRainbowChange" @styleChange="onStyleChange" :discordfill="colors.discordfill" :discordcolor="colors.discordcolor" />
         <DiscordLogo :discordEyes="discordEyes" class="box" customLink="#" :animationStyle="animationStyle" :isRainbow="isRainbow" @click.native="setPreviewType('standard')" :discordfill="colors.discordfill" :discordcolor="colors.discordcolor"/>
       </div>
-      <EyeSelector :animationStyle="animationStyle" @activeEyeChange="onActiveEyeChange" customLink="#" :isRainbow="isRainbow" :discordfill="colors.discordfill" :discordcolor="colors.discordcolor"/>
+      <EyeSelector :discordEyes="discordEyes" :animationStyle="animationStyle" @activeEyeChange="onActiveEyeChange" customLink="#" :isRainbow="isRainbow" :discordfill="colors.discordfill" :discordcolor="colors.discordcolor"/>
       <br/>
       <DiscordText :discordEyes="discordEyes" :isRainbow="isRainbow" customLink="#" :animationStyle="animationStyle" ref="discordtext" :standardText="standardText" @click.native="updateSpeechBubble() + setPreviewType('speechbubble')" :discordfill="colors.discordfill" :discordcolor="colors.discordcolor" />
     </div>
@@ -34,11 +34,11 @@ export default {
   },
   data () {
   		return {
-        discordEyes: 'none',
-        isRainbow: false,
-        animationStyle: 'swirl',
+        discordEyes: new URL(document.URL).searchParams.get("eyes") ? new URL(document.URL).searchParams.get("eyes") : 'none', //none wink angry noeyes
+        isRainbow: new URL(document.URL).searchParams.get("rainbow") ? true : false,
+        animationStyle: new URL(document.URL).searchParams.get("animation") ? new URL(document.URL).searchParams.get("animation") : 'swirl', //swirl rotateX rotateY shake softshake
         standardText: 'Join us on Discord',
-        previewDiscordType: 'standard',
+        previewDiscordType: new URL(document.URL).searchParams.get("preview") ? new URL(document.URL).searchParams.get("preview") : 'standard', //corner standard speechbubble
         colors: {
           discordcolor: '#FFFFFF',
           discordfill: '#7289DA'
@@ -50,7 +50,7 @@ export default {
       var myArray = ['Click me to get the speech bubble code generator!',
                     'Click top right GitHub corner to fork!',
                     'Animation or style ideas? Raise an issue on GitHub!',
-                    'Created with ♥ by NNTin using Discord and Vue.js',
+                    'Created with ♥ by NNTin using Vue.js',
                     'Click on the Discord corner to get the code.',
                     'All discord logos are clickable and will not redirect you!'];
       var rand = myArray[Math.floor(Math.random() * myArray.length)];
