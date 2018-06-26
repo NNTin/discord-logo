@@ -26,4 +26,6 @@ This project is neither built nor endorsed by Discord.
 
 Github corner template: [tholman](https://github.com/tholman/github-corners)
 
+Starfield background: [cantelope](https://cantelope.ml/), [GitHub](https://github.com/srmcgann)
+
 [The MIT License](https://github.com/NNTin/discord-logo/blob/master/LICENSE)
