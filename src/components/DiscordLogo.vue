@@ -1,6 +1,11 @@
 <template>
-  <svg ref="discordLogoRootElement" :color="discordcolor" :fill="discordfill" :width="width" :height="height" class="discord-logo-container" viewBox="0 0 48 48">
+  <svg ref="discordLogoRootElement" :color="discordcolor" :fill="discordfill" :width="width" :height="height" class="discord-logo-container" viewBox="0 0 48 48" >
     <rect width="100%" height="100%" fill="currentfill" />
+    <foreignObject>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+        <canvas :ref="canvasID" style="width:100%; height:100%" id="discordCanvas"></canvas>
+      </body>
+    </foreignObject>
     <defs>
       <g>
         <defs>
@@ -53,11 +58,21 @@ export default {
   name: 'DiscordLogo',
   data () {
     return {
-      discordFaceID: null
+      discordFaceID: null,
+      canvasID: null,
+      canvas: '',
+      ctx: '',
+      frames: 0
     }
   },
   mounted() {
     this.discordFaceID = "discordFaceID"+this._uid
+    this.canvasID = "canvasID" + this._uid
+    this.$nextTick(function () {
+      this.canvas = this.$refs[this.canvasID];
+      this.ctx = this.canvas.getContext('2d');
+      this.draw()
+    });
   },
 	props: {
 		width: {
@@ -155,6 +170,22 @@ export default {
         else if (this.discordEyes == "noeyes") {
         }
       })
+    },
+    draw () {
+      this.canvas.style.width = "50px"
+      this.canvas.style.height = "50px"
+      this.canvas.width = 250
+      this.canvas.height = 250
+      this.ctx.fillStyle="#fffa"
+      for(let j=250, w=100, p=0; j--;){
+        let Z=1-(j*j/w+this.frames/100)%1
+        let s = 1 + Math.pow(3*(1-Z),2)
+        this.ctx.beginPath()
+        this.ctx.arc(w+(99-j%199)/Z,100+(99-j*j*7%198)/Z,s,0,7)
+        this.ctx.fill()
+      }
+      this.frames++;
+      requestAnimationFrame(this.draw)
     }
   },
   created: function() {
