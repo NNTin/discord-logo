@@ -1,11 +1,11 @@
 <template>
   <div class="buttons">
-    <DiscordLogo class="button" :discordEyes="discordEyes" :animationStyle="animationStyle" :customLink="customLink" @click.native="setColor('#7289DA','#FFFFFF') + setRainbow(false)" :width="size" :height="size" discordfill="#7289DA" discordcolor="#FFFFFF"/>
-    <DiscordLogo class="button" :discordEyes="discordEyes" :animationStyle="animationStyle" :customLink="customLink" @click.native="setColor('#7289DA','#2C2F33') + setRainbow(false)" :width="size" :height="size" discordfill="#7289DA" discordcolor="#2C2F33"/><br/>
-    <DiscordLogo class="button" :discordEyes="discordEyes" :animationStyle="animationStyle" :customLink="customLink" @click.native="setColor('#FFFFFF','#7289DA') + setRainbow(false)" :width="size" :height="size" discordfill="#FFFFFF" discordcolor="#7289DA"/>
-    <DiscordLogo class="button" :discordEyes="discordEyes" :animationStyle="animationStyle" :customLink="customLink" @click.native="setColor('#FFFFFF','#2C2F33') + setRainbow(false)" :width="size" :height="size" discordfill="#FFFFFF" discordcolor="#2C2F33"/><br/>
-    <DiscordLogo class="button" :discordEyes="discordEyes" :animationStyle="animationStyle" :customLink="customLink" @click.native="setColor('#2C2F33','#7289DA') + setRainbow(false)" :width="size" :height="size" discordfill="#2C2F33" discordcolor="#7289DA"/>
-    <DiscordLogo class="button" :discordEyes="discordEyes" :animationStyle="animationStyle" :customLink="customLink" @click.native="setColor('#2C2F33','#FFFFFF') + setRainbow(false)" :width="size" :height="size" discordfill="#2C2F33" discordcolor="#FFFFFF"/>
+    <DiscordLogo class="button" :background="background" :discordEyes="discordEyes" :animationStyle="animationStyle" :customLink="customLink" @click.native="setColor('#7289DA','#FFFFFF') + setRainbow(false)" :width="size" :height="size" discordfill="#7289DA" discordcolor="#FFFFFF"/>
+    <DiscordLogo class="button" :background="background" :discordEyes="discordEyes" :animationStyle="animationStyle" :customLink="customLink" @click.native="setColor('#7289DA','#2C2F33') + setRainbow(false)" :width="size" :height="size" discordfill="#7289DA" discordcolor="#2C2F33"/><br/>
+    <DiscordLogo class="button" :background="background" :discordEyes="discordEyes" :animationStyle="animationStyle" :customLink="customLink" @click.native="setColor('#FFFFFF','#7289DA') + setRainbow(false)" :width="size" :height="size" discordfill="#FFFFFF" discordcolor="#7289DA"/>
+    <DiscordLogo class="button" :background="background" :discordEyes="discordEyes" :animationStyle="animationStyle" :customLink="customLink" @click.native="setColor('#FFFFFF','#2C2F33') + setRainbow(false)" :width="size" :height="size" discordfill="#FFFFFF" discordcolor="#2C2F33"/><br/>
+    <DiscordLogo class="button" :background="background" :discordEyes="discordEyes" :animationStyle="animationStyle" :customLink="customLink" @click.native="setColor('#2C2F33','#7289DA') + setRainbow(false)" :width="size" :height="size" discordfill="#2C2F33" discordcolor="#7289DA"/>
+    <DiscordLogo class="button" :background="background" :discordEyes="discordEyes" :animationStyle="animationStyle" :customLink="customLink" @click.native="setColor('#2C2F33','#FFFFFF') + setRainbow(false)" :width="size" :height="size" discordfill="#2C2F33" discordcolor="#FFFFFF"/>
   </div>
 </template>
 
@@ -38,6 +38,10 @@ export default {
     discordEyes: {
       type: String,
       default: 'none' //none wink angry noeyes
+    },
+    background: {
+      type: String,
+      default: 'none'
     }
   },
 	methods: {

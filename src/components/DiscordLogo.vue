@@ -1,9 +1,9 @@
 <template>
   <svg ref="discordLogoRootElement" :color="discordcolor" :fill="discordfill" :width="width" :height="height" class="discord-logo-container" viewBox="0 0 48 48" >
     <rect width="100%" height="100%" fill="currentfill" />
-    <foreignObject>
+    <foreignObject  v-if="background !== 'none'">
       <body xmlns="http://www.w3.org/1999/xhtml">
-        <canvas :ref="canvasID" style="width:100%; height:100%" id="discordCanvas"></canvas>
+        <canvas :ref="canvasID" id="discordCanvas"></canvas>
       </body>
     </foreignObject>
     <defs>
@@ -62,17 +62,13 @@ export default {
       canvasID: null,
       canvas: '',
       ctx: '',
-      frames: 0
+      frames: 0,
+      RAF: null
     }
   },
   mounted() {
     this.discordFaceID = "discordFaceID"+this._uid
-    this.canvasID = "canvasID" + this._uid
-    this.$nextTick(function () {
-      this.canvas = this.$refs[this.canvasID];
-      this.ctx = this.canvas.getContext('2d');
-      this.draw()
-    });
+    this.wireUpCanvas()
   },
 	props: {
 		width: {
@@ -106,9 +102,24 @@ export default {
     discordEyes: {
       type: String,
       default: 'none' //none wink angry noeyes
+    },
+    background: {
+      type: String,
+      default: 'none'
     }
 	},
   methods: {
+    wireUpCanvas () {
+      if(this.background !== 'none') {
+        this.canvasID = "canvasID" + this._uid
+        this.$nextTick(function () {
+          this.canvas = this.$refs[this.canvasID]
+          this.ctx = this.canvas.getContext('2d')
+          if(this.RAF !== null ) cancelAnimationFrame(this.RAF)
+          this.draw()
+        });
+      }
+    },
     update: function() {
       this.updateAnimation();
       this.updateEyes();
@@ -185,7 +196,7 @@ export default {
         this.ctx.fill()
       }
       this.frames++;
-      requestAnimationFrame(this.draw)
+      this.RAF = requestAnimationFrame(this.draw)
     }
   },
   created: function() {
@@ -197,6 +208,9 @@ export default {
     },
     discordEyes: function () {
       this.updateEyes();
+    },
+    background: function (val) {
+      this.wireUpCanvas()
     }
   }
 }

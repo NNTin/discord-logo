@@ -22,9 +22,9 @@
 
           <portal to="destination" :disabled="previewDiscordType != 'speechbubble'">
             <div ref="preview" id="preview">
-              <DiscordLogo :discordEyes="discordEyes" v-if="previewDiscordType == 'standard'" :isRainbow="isRainbow" :animationStyle="animationStyle" :customLink="customLink" class="previewbox" :width="size" :height="size" :discordfill="colors.discordfill.hex" :discordcolor="colors.discordcolor.hex" />
-              <DiscordText :discordEyes="discordEyes" @htmlModified="onHtmlModified" :isRainbow="isRainbow" :animationStyle="animationStyle" :style="getDTextStyle" v-else-if="previewDiscordType == 'speechbubble'" :customLink="customLink" ref="discordtext" :height="size/4" :standardText="bubbleText" :discordfill="colors.discordfill.hex" :discordcolor="colors.discordcolor.hex" class="previewbox previewDiscordText" :writeText="false"/>
-              <DiscordCorner :discordEyes="discordEyes" v-else :customLink="customLink" :isRainbow="isRainbow" :animationStyle="animationStyle" :style="getDCornerStyle" class="previewbox" :width="size" :height="size" :discordfill="colors.discordfill.hex" :discordcolor="colors.discordcolor.hex" />
+              <DiscordLogo :background="background" :discordEyes="discordEyes" v-if="previewDiscordType == 'standard'" :isRainbow="isRainbow" :animationStyle="animationStyle" :customLink="customLink" class="previewbox" :width="size" :height="size" :discordfill="colors.discordfill.hex" :discordcolor="colors.discordcolor.hex" />
+              <DiscordText :background="background" :discordEyes="discordEyes" @htmlModified="onHtmlModified" :isRainbow="isRainbow" :animationStyle="animationStyle" :style="getDTextStyle" v-else-if="previewDiscordType == 'speechbubble'" :customLink="customLink" ref="discordtext" :height="size/4" :standardText="bubbleText" :discordfill="colors.discordfill.hex" :discordcolor="colors.discordcolor.hex" class="previewbox previewDiscordText" :writeText="false"/>
+              <DiscordCorner :background="background" :discordEyes="discordEyes" v-else :customLink="customLink" :isRainbow="isRainbow" :animationStyle="animationStyle" :style="getDCornerStyle" class="previewbox" :width="size" :height="size" :discordfill="colors.discordfill.hex" :discordcolor="colors.discordcolor.hex" />
             </div>
           </portal>
         </div>
@@ -55,7 +55,7 @@ export default {
     DiscordLogo,
     DiscordCorner,
     vueSlider,
-    'chrome-picker': Chrome
+    'chrome-picker': Chrome,
   },
   data () {
     return {
@@ -131,6 +131,10 @@ export default {
     discordEyes: {
       type: String,
       default: 'none' //none wink angry noeyes
+    },
+    background: {
+      type: String,
+      default: 'none'
     }
   },
   methods: {
@@ -145,6 +149,9 @@ export default {
     changeColor: function (discordcolor, discordfill) {
       this.colors.discordcolor = {hex: discordcolor, a: 1}
       this.colors.discordfill = {hex: discordfill, a: 1}
+    },
+    changeBackground: function (background) {
+      this.background = background
     },
     updatePreviewCode:  function() {
       this.$nextTick(function () {
@@ -178,7 +185,13 @@ export default {
             styleCode += ".discord-logo.softshake-animation .discord-original { transform-origin: 24px 24px; } .discord-logo-container:hover .softshake-animation .discord-original, .animated .softshake-animation .discord-original { animation: softshake 2000ms linear forwards; } @keyframes softshake { 0%,66%,100% {transform:rotate( 0deg)} 3% {transform:rotate(-18.0deg)} 6% {transform:rotate( 14.4deg)} 9% {transform:rotate(-11.5deg)} 12% {transform:rotate( 9.21deg)} 15% {transform:rotate(-7.37deg)} 18% {transform:rotate( 5.89deg)} 21% {transform:rotate(-4.71deg)} 24% {transform:rotate( 3.77deg)} 27% {transform:rotate(-3.02deg)} 30% {transform:rotate( 2.41deg)} 33% {transform:rotate(-1.93deg)} 36% {transform:rotate( 1.54deg)} 39% {transform:rotate(-1.23deg)} 42% {transform:rotate( 0.99deg)} 45% {transform:rotate(-0.79deg)} 48% {transform:rotate( 0.63deg)} 51% {transform:rotate(-0.50deg)} 54% {transform:rotate( 0.40deg)} 57% {transform:rotate(-0.32deg)} 60% {transform:rotate( 0.25deg)} 63% {transform:rotate(-0.20deg)} }"
           }
           this.previewCode += "\n\n<style type='text/css'>" + styleCode + "</style>"
-          this.previewCode += `\n\n<script>var discordCanvas = document.getElementById("discordCanvas");var discordCtx = discordCanvas.getContext("2d");var discordFrames = 0;(function drawDiscordAnimation () {discordCanvas.style.width = "50px";discordCanvas.style.height = "50px";discordCanvas.width = 250;discordCanvas.height = 250;discordCtx.fillStyle="#fff8";for(let j=250, w=100, p=0; j--;){let Z=1-(j*j/w+discordFrames/100)%1;let s = 1+Math.pow(5*(1-Z),2)/2;discordCtx.beginPath();discordCtx.arc(w+(99-j%199)/Z,100+(99-j*j*7%198)/Z,s,0,7);discordCtx.fill()};discordFrames++;requestAnimationFrame(drawDiscordAnimation)}());<`+'/script>'
+          switch(this.background) {
+            case 'starfield':
+              this.previewCode += `\n\n<script>var discordCanvas = document.getElementById("discordCanvas");var discordCtx = discordCanvas.getContext("2d");var discordFrames = 0;(function drawDiscordAnimation () {discordCanvas.style.width = "50px";discordCanvas.style.height = "50px";discordCanvas.width = 250;discordCanvas.height = 250;discordCtx.fillStyle="#fff8";for(let j=250, w=100, p=0; j--;){let Z=1-(j*j/w+discordFrames/100)%1;let s = 1+Math.pow(5*(1-Z),2)/2;discordCtx.beginPath();discordCtx.arc(w+(99-j%199)/Z,100+(99-j*j*7%198)/Z,s,0,7);discordCtx.fill()};discordFrames++;requestAnimationFrame(drawDiscordAnimation)}());<`+'/script>'
+            break;
+            default:
+            break;
+          }
         }
       })
     }
