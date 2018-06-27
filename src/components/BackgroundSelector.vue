@@ -1,7 +1,9 @@
 <template>
   <div ref="rootElement" class="buttons">
-    <DiscordLogo background="starfield" :animationStyle="animationStyle" :discordEyes="discordEyes" class="button" :customLink="customLink" @click.native="setBackground('starfield')" :width="size" :height="size" :discordfill="discordfill" :discordcolor="discordcolor" :style="isActive('starfield')" :isRainbow="isRainbow"/>
     <DiscordLogo background="none" :animationStyle="animationStyle" :discordEyes="discordEyes" class="button" :customLink="customLink" @click.native="setBackground('none')" :width="size" :height="size" :discordfill="discordfill" :discordcolor="discordcolor" :style="isActive('none')" :isRainbow="isRainbow"/><br/>
+    <DiscordLogo background="starfield" :animationStyle="animationStyle" :discordEyes="discordEyes" class="button" :customLink="customLink" @click.native="setBackground('starfield')" :width="size" :height="size" :discordfill="discordfill" :discordcolor="discordcolor" :style="isActive('starfield')" :isRainbow="isRainbow"/>
+    <DiscordLogo background="grid" :animationStyle="animationStyle" :discordEyes="discordEyes" class="button" :customLink="customLink" @click.native="setBackground('grid')" :width="size" :height="size" :discordfill="discordfill" :discordcolor="discordcolor" :style="isActive('grid')" :isRainbow="isRainbow"/><br/>
+    <DiscordLogo background="rush" :animationStyle="animationStyle" :discordEyes="discordEyes" class="button" :customLink="customLink" @click.native="setBackground('rush')" :width="size" :height="size" :discordfill="discordfill" :discordcolor="discordcolor" :style="isActive('rush')" :isRainbow="isRainbow"/><br/>
   </div>
 </template>
 
