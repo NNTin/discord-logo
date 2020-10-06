@@ -1,9 +1,9 @@
 <template>
   <div class="eyeSelector">
-    <DiscordLogo :background="background" :style="isActive('wink')"   @click.native="setEye('wink')"   discordEyes="wink"   :customLink="customLink" :width="size" :height="size" :discordfill="discordfill" :discordcolor="discordcolor" :animationStyle="animationStyle" :isRainbow="isRainbow"/>
-    <DiscordLogo :background="background" :style="isActive('none')"   @click.native="setEye('none')"   discordEyes="none"   :customLink="customLink" :width="size" :height="size" :discordfill="discordfill" :discordcolor="discordcolor" :animationStyle="animationStyle" :isRainbow="isRainbow"/>
-    <DiscordLogo :background="background" :style="isActive('angry')"  @click.native="setEye('angry')"  discordEyes="angry"  :customLink="customLink" :width="size" :height="size" :discordfill="discordfill" :discordcolor="discordcolor" :animationStyle="animationStyle" :isRainbow="isRainbow"/>
-    <DiscordLogo :background="background" :style="isActive('noeyes')" @click.native="setEye('noeyes')" discordEyes="noeyes" :customLink="customLink" :width="size" :height="size" :discordfill="discordfill" :discordcolor="discordcolor" :animationStyle="animationStyle" :isRainbow="isRainbow"/>
+    <DiscordLogo :style="isActive('wink')"   @click.native="setEye('wink')"   discordEyes="wink"   :customLink="customLink" :width="size" :height="size" :discordfill="discordfill" :discordcolor="discordcolor" :animationStyle="animationStyle" :isRainbow="isRainbow"/>
+    <DiscordLogo :style="isActive('none')"   @click.native="setEye('none')"   discordEyes="none"   :customLink="customLink" :width="size" :height="size" :discordfill="discordfill" :discordcolor="discordcolor" :animationStyle="animationStyle" :isRainbow="isRainbow"/>
+    <DiscordLogo :style="isActive('angry')"  @click.native="setEye('angry')"  discordEyes="angry"  :customLink="customLink" :width="size" :height="size" :discordfill="discordfill" :discordcolor="discordcolor" :animationStyle="animationStyle" :isRainbow="isRainbow"/>
+    <DiscordLogo :style="isActive('noeyes')" @click.native="setEye('noeyes')" discordEyes="noeyes" :customLink="customLink" :width="size" :height="size" :discordfill="discordfill" :discordcolor="discordcolor" :animationStyle="animationStyle" :isRainbow="isRainbow"/>
   </div>
 </template>
 
@@ -44,10 +44,6 @@ export default {
     animationStyle: {
       type: String,
       default: 'swirl'
-    },
-    background: {
-      type: String,
-      default: 'none'
     }
   },
 	methods: {

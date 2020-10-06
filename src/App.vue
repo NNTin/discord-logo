@@ -2,18 +2,17 @@
   <div id="app">
     <div id="top" :style="getBackgroundColor">
       <GithubCorner :discordcolor="colors.discordfill" :discordfill="colors.discordcolor"/>
-      <DiscordCorner :background="background" :discordEyes="discordEyes" customLink="#" :isRainbow="isRainbow" :animationStyle="animationStyle" @click.native="setPreviewType('corner')" id="discordcorner" :discordcolor="colors.discordfill" :discordfill="colors.discordcolor"/>
+      <DiscordCorner :discordEyes="discordEyes" customLink="#" :isRainbow="isRainbow" :animationStyle="animationStyle" @click.native="setPreviewType('corner')" id="discordcorner" :discordcolor="colors.discordfill" :discordfill="colors.discordcolor"/>
       <div id="container">
-        <ColorSelector :background="background" :discordEyes="discordEyes" class="box" customLink="#" :animationStyle="animationStyle" @colorChange="onColorChange" @rainbowChange="onRainbowChange"/>
-        <BackgroundSelector :background="background" :discordEyes="discordEyes" class="box" customLink="#" :animationStyle="animationStyle" @backgroundChange="onBackgroundChange" @rainbowChange="onRainbowChange" :discordfill="colors.discordfill" :discordcolor="colors.discordcolor" :isRainbow="isRainbow"/>
-        <StyleSelector :background="background" :animationStyle="animationStyle" :discordEyes="discordEyes" ref="styleselector" class="box" customLink="#" :isRainbow="isRainbow"  @rainbowChange="onRainbowChange" @styleChange="onStyleChange" :discordfill="colors.discordfill" :discordcolor="colors.discordcolor" />
-        <DiscordLogo :background="background" :discordEyes="discordEyes" class="box" customLink="#" :animationStyle="animationStyle" :isRainbow="isRainbow" @click.native="setPreviewType('standard')" :discordfill="colors.discordfill" :discordcolor="colors.discordcolor"/>
+        <ColorSelector :discordEyes="discordEyes" class="box" customLink="#" :animationStyle="animationStyle" @colorChange="onColorChange" @rainbowChange="onRainbowChange"/>
+        <StyleSelector :animationStyle="animationStyle" :discordEyes="discordEyes" ref="styleselector" class="box" customLink="#" :isRainbow="isRainbow"  @rainbowChange="onRainbowChange" @styleChange="onStyleChange" :discordfill="colors.discordfill" :discordcolor="colors.discordcolor" />
+        <DiscordLogo :discordEyes="discordEyes" class="box" customLink="#" :animationStyle="animationStyle" :isRainbow="isRainbow" @click.native="setPreviewType('standard')" :discordfill="colors.discordfill" :discordcolor="colors.discordcolor"/>
       </div>
-      <EyeSelector :background="background" :discordEyes="discordEyes" :animationStyle="animationStyle" @activeEyeChange="onActiveEyeChange" customLink="#" :isRainbow="isRainbow" :discordfill="colors.discordfill" :discordcolor="colors.discordcolor"/>
+      <EyeSelector :discordEyes="discordEyes" :animationStyle="animationStyle" @activeEyeChange="onActiveEyeChange" customLink="#" :isRainbow="isRainbow" :discordfill="colors.discordfill" :discordcolor="colors.discordcolor"/>
       <br/>
-      <DiscordText :background="background" :discordEyes="discordEyes" :isRainbow="isRainbow" customLink="#" :animationStyle="animationStyle" ref="discordtext" :standardText="standardText" @click.native="updateSpeechBubble() + setPreviewType('speechbubble')" :discordfill="colors.discordfill" :discordcolor="colors.discordcolor" />
+      <DiscordText :discordEyes="discordEyes" :isRainbow="isRainbow" customLink="#" :animationStyle="animationStyle" ref="discordtext" :standardText="standardText" @click.native="updateSpeechBubble() + setPreviewType('speechbubble')" :discordfill="colors.discordfill" :discordcolor="colors.discordcolor" />
     </div>
-    <MainBody :background="background" :discordEyes="discordEyes" ref="mainbody" :animationStyle="animationStyle" :isRainbow="isRainbow" :previewDiscordType="previewDiscordType"/>
+    <MainBody :discordEyes="discordEyes" ref="mainbody" :animationStyle="animationStyle" :isRainbow="isRainbow" :previewDiscordType="previewDiscordType"/>
   </div>
 </template>
 
@@ -26,17 +25,15 @@ import StyleSelector from './components/StyleSelector.vue'
 import MainBody from './components/MainBody.vue'
 import DiscordText from './components/DiscordText.vue'
 import EyeSelector from './components/EyeSelector.vue'
-import BackgroundSelector from './components/BackgroundSelector.vue'
 
 export default {
   name: 'app',
   components: {
     DiscordLogo, GithubCorner, DiscordCorner, ColorSelector,
-    StyleSelector, MainBody, DiscordText, EyeSelector, BackgroundSelector
+    StyleSelector, MainBody, DiscordText, EyeSelector
   },
   data () {
   		return {
-        background: new URL(document.URL).searchParams.get("background") ? new URL(document.URL).searchParams.get("background") : 'none',
         discordEyes: new URL(document.URL).searchParams.get("eyes") ? new URL(document.URL).searchParams.get("eyes") : 'none', //none wink angry noeyes
         isRainbow: new URL(document.URL).searchParams.get("rainbow") ? true : false,
         animationStyle: new URL(document.URL).searchParams.get("animation") ? new URL(document.URL).searchParams.get("animation") : 'swirl', //swirl rotateX rotateY shake softshake
@@ -59,18 +56,12 @@ export default {
       var rand = myArray[Math.floor(Math.random() * myArray.length)];
       this.standardText = rand;
     },
-    onActiveEyeChange (value) {
-      this.discordEyes = value;
-      this.$nextTick(function () {
-        this.$refs.mainbody.updatePreviewCode();
-      })
-    },
-    onBackgroundChange (value) {
-      this.background = value
-      this.$nextTick(function () {
-        this.$refs.mainbody.updatePreviewCode();
-      })
-    },
+onActiveEyeChange (value) {
+  this.discordEyes = value;
+  this.$nextTick(function () {
+    this.$refs.mainbody.updatePreviewCode();
+  })
+},
     onColorChange (value) {
       this.colors = value
       this.$refs.mainbody.changeColor(this.colors.discordcolor, this.colors.discordfill)
@@ -122,8 +113,8 @@ html,body {
 }
 .box {
     display:inline-block;
-    width:25%;
-    max-width: 250px;
+    width:33%;
+    max-width: 300px;
     text-align:center;
 }
 #app {
