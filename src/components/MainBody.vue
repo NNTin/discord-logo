@@ -187,13 +187,9 @@ export default {
           this.previewCode += "\n\n<style type='text/css'>" + styleCode + "</style>"
           switch(this.background) {
             case 'starfield':
-              this.previewCode += `\n\n<script>var discordCanvas = document.getElementById("discordCanvas");var discordCtx = discordCanvas.getContext("2d");var discordFrames = 0;(function drawDiscordAnimation () {discordCanvas.style.width = "50px";discordCanvas.style.height = "50px";discordCanvas.width = 250;discordCanvas.height = 250;discordCtx.fillStyle="#fff8";for(let j=250, w=100, p=0; j--;){let Z=1-(j*j/w+discordFrames/100)%1;let s=1+Math.pow(5*(1-Z),2)/2;discordCtx.beginPath();discordCtx.arc(w+(99-j%199)/Z,100+(99-j*j*7%198)/Z,s,0,7);discordCtx.fill()};discordFrames++;requestAnimationFrame(drawDiscordAnimation)}());<`+'/script>'
+              this.previewCode += `\n\n<script>var discordCanvas = document.getElementById("discordCanvas");var discordCtx = discordCanvas.getContext("2d");var discordFrames = 0;(function drawDiscordAnimation () {discordCanvas.style.width = "50px";discordCanvas.style.height = "50px";discordCanvas.width = 250;discordCanvas.height = 250;discordCtx.fillStyle="#fff8";for(let j=250, w=100, p=0; j--;){let Z=1-(j*j/w+discordFrames/100)%1;let s = 1+Math.pow(5*(1-Z),2)/2;discordCtx.beginPath();discordCtx.arc(w+(99-j%199)/Z,100+(99-j*j*7%198)/Z,s,0,7);discordCtx.fill()};discordFrames++;requestAnimationFrame(drawDiscordAnimation)}());<`+'/script>'
             break;
-            case 'grid':
-              this.previewCode += `\n\n<script>var discordCanvas = document.getElementById("discordCanvas");var discordCtx = discordCanvas.getContext("2d");var discordFrames = 0;(function drawDiscordAnimation () {discordCanvas.style.width = "50px";discordCanvas.style.height = "50px";discordCanvas.width = 250;discordCanvas.height = 250;discordCtx.strokeStyle="#fff4";var w=120,i=200,t=discordFrames/70,X=0,Z=0;var r=q=>discordCtx[q?"lineTo":"moveTo"](w+(X-7)/Z*w*2,2/Z*w);for(;i--;discordCtx.lineWidth=0.5+8/(1+Z),r(Z++),r(X--),discordCtx.stroke())discordCtx.beginPath(),X=(i+Math.sin(t)*4)%14,Z=1+(i/14|0)-t*5%1,r();discordFrames++;requestAnimationFrame(drawDiscordAnimation)}());<`+'/script>'
-            break;
-            case 'rush':
-              this.previewCode += `\n\n<script>var discordCanvas = document.getElementById("discordCanvas");var discordCtx = discordCanvas.getContext("2d");var discordFrames = 0;(function drawDiscordAnimation () {discordCanvas.style.width = "50px";discordCanvas.style.height = "50px";discordCanvas.width = 250;discordCanvas.height = 250;discordCtx.fillStyle="#fff3";var W=120,j=10,i=0,p=0,V=0,Z=0,s=0,t=discordFrames/200; for(;--j;)for(i=16;i--;discordCtx.fillRect(W+Math.sin(p=.39*i+j/8-6.03*V-Math.sin(t*2)*3)/Z*W-s/2,120+Math.cos(p)/Z*W-s/2,s,s))Z=.5+j/2-t*6+(V=(t*6)|0),s=200/(1+Z)/(1+Z)/(1+Z);discordFrames++;requestAnimationFrame(drawDiscordAnimation)}());<`+'/script>'
+            default:
             break;
           }
         }

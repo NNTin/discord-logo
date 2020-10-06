@@ -183,40 +183,17 @@ export default {
       })
     },
     draw () {
-      switch(this.background) {
-        case 'starfield':
-          this.canvas.style.width = "50px"
-          this.canvas.style.height = "50px"
-          this.canvas.width = 250
-          this.canvas.height = 250
-          this.ctx.fillStyle="#fffa"
-          for(let j=250, w=100, p=0; j--;){
-            let Z=1-(j*j/w+this.frames/100)%1
-            let s = 1 + Math.pow(3*(1-Z),2)
-            this.ctx.beginPath()
-            this.ctx.arc(w+(99-j%199)/Z,100+(99-j*j*7%198)/Z,s,0,7)
-            this.ctx.fill()
-          }
-        break;
-        case 'grid':
-          this.canvas.style.width = "50px"
-          this.canvas.style.height = "50px"
-          this.canvas.width = 250
-          this.canvas.height = 250
-          this.ctx.strokeStyle="#fff4"
-          let w=120,i=200,t=this.frames/70,X=0,Y=0,Z=0
-          let r=q=>this.ctx[q?"lineTo":"moveTo"](w+(X-7)/Z*w*2,2/Z*w)
-          for(;i--;this.ctx.lineWidth=0.5+8/(1+Z),r(Z++),r(X--),this.ctx.stroke())this.ctx.beginPath(),X=(i+Math.sin(t)*4)%14,Z=1+(i/14|0)-t*5%1,r()
-        break;
-        case 'rush':
-          this.canvas.style.width = "50px"
-          this.canvas.style.height = "50px"
-          this.canvas.width = 250
-          this.canvas.height = 250
-          this.ctx.fillStyle="#fff3"
-          var W=120,j=10,p=0,V=0,Z=0,s=0,t=this.frames/200
-          for(;--j;)for(let i=16;i--;this.ctx.fillRect(W+Math.sin(p=.39*i+j/8-6.03*V-Math.sin(t*2)*3)/Z*W-s/2,120+Math.cos(p)/Z*W-s/2,s,s))Z=.5+j/2-t*6+(V=(t*6)|0),s=200/(1+Z)/(1+Z)/(1+Z)
-        break;
+      this.canvas.style.width = "50px"
+      this.canvas.style.height = "50px"
+      this.canvas.width = 250
+      this.canvas.height = 250
+      this.ctx.fillStyle="#fffa"
+      for(let j=250, w=100, p=0; j--;){
+        let Z=1-(j*j/w+this.frames/100)%1
+        let s = 1 + Math.pow(3*(1-Z),2)
+        this.ctx.beginPath()
+        this.ctx.arc(w+(99-j%199)/Z,100+(99-j*j*7%198)/Z,s,0,7)
+        this.ctx.fill()
       }
       this.frames++;
       this.RAF = requestAnimationFrame(this.draw)
