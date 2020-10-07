@@ -1,18 +1,84 @@
 <template>
   <div id="app">
-    <div id="top" :style="getBackgroundColor">
-      <GithubCorner :discordcolor="colors.discordfill" :discordfill="colors.discordcolor"/>
-      <DiscordCorner :discordEyes="discordEyes" customLink="#" :isRainbow="isRainbow" :animationStyle="animationStyle" @click.native="setPreviewType('corner')" id="discordcorner" :discordcolor="colors.discordfill" :discordfill="colors.discordcolor"/>
+    <div
+      id="top"
+      :style="getBackgroundColor"
+    >
+      <GithubCorner
+        :discordcolor="colors.discordfill"
+        :discordfill="colors.discordcolor"
+      />
+      <DiscordCorner
+        id="discordcorner"
+        :discord-eyes="discordEyes"
+        custom-link="#"
+        :is-rainbow="isRainbow"
+        :animation-style="animationStyle"
+        :discordcolor="colors.discordfill"
+        :discordfill="colors.discordcolor"
+        @click.native="setPreviewType('corner')"
+      />
       <div id="container">
-        <ColorSelector :discordEyes="discordEyes" class="box" customLink="#" :animationStyle="animationStyle" @colorChange="onColorChange" @rainbowChange="onRainbowChange"/>
-        <StyleSelector :animationStyle="animationStyle" :discordEyes="discordEyes" ref="styleselector" class="box" customLink="#" :isRainbow="isRainbow"  @rainbowChange="onRainbowChange" @styleChange="onStyleChange" :discordfill="colors.discordfill" :discordcolor="colors.discordcolor" />
-        <DiscordLogo :discordEyes="discordEyes" class="box" customLink="#" :animationStyle="animationStyle" :isRainbow="isRainbow" @click.native="setPreviewType('standard')" :discordfill="colors.discordfill" :discordcolor="colors.discordcolor"/>
+        <ColorSelector
+          :discord-eyes="discordEyes"
+          class="box"
+          custom-link="#"
+          :animation-style="animationStyle"
+          @colorChange="onColorChange"
+          @rainbowChange="onRainbowChange"
+        />
+        <StyleSelector
+          ref="styleselector"
+          :animation-style="animationStyle"
+          :discord-eyes="discordEyes"
+          class="box"
+          custom-link="#"
+          :is-rainbow="isRainbow"
+          :discordfill="colors.discordfill"
+          :discordcolor="colors.discordcolor"
+          @rainbowChange="onRainbowChange"
+          @styleChange="onStyleChange"
+        />
+        <DiscordLogo
+          :discord-eyes="discordEyes"
+          class="box"
+          custom-link="#"
+          :animation-style="animationStyle"
+          :is-rainbow="isRainbow"
+          :discordfill="colors.discordfill"
+          :discordcolor="colors.discordcolor"
+          @click.native="setPreviewType('standard')"
+        />
       </div>
-      <EyeSelector :discordEyes="discordEyes" :animationStyle="animationStyle" @activeEyeChange="onActiveEyeChange" customLink="#" :isRainbow="isRainbow" :discordfill="colors.discordfill" :discordcolor="colors.discordcolor"/>
-      <br/>
-      <DiscordText :discordEyes="discordEyes" :isRainbow="isRainbow" customLink="#" :animationStyle="animationStyle" ref="discordtext" :standardText="standardText" @click.native="updateSpeechBubble() + setPreviewType('speechbubble')" :discordfill="colors.discordfill" :discordcolor="colors.discordcolor" />
+      <EyeSelector
+        :discord-eyes="discordEyes"
+        :animation-style="animationStyle"
+        custom-link="#"
+        :is-rainbow="isRainbow"
+        :discordfill="colors.discordfill"
+        :discordcolor="colors.discordcolor"
+        @activeEyeChange="onActiveEyeChange"
+      />
+      <br>
+      <DiscordText
+        ref="discordtext"
+        :discord-eyes="discordEyes"
+        :is-rainbow="isRainbow"
+        custom-link="#"
+        :animation-style="animationStyle"
+        :standard-text="standardText"
+        :discordfill="colors.discordfill"
+        :discordcolor="colors.discordcolor"
+        @click.native="updateSpeechBubble() + setPreviewType('speechbubble')"
+      />
     </div>
-    <MainBody :discordEyes="discordEyes" ref="mainbody" :animationStyle="animationStyle" :isRainbow="isRainbow" :previewDiscordType="previewDiscordType"/>
+    <MainBody
+      ref="mainbody"
+      :discord-eyes="discordEyes"
+      :animation-style="animationStyle"
+      :is-rainbow="isRainbow"
+      :preview-discord-type="previewDiscordType"
+    />
   </div>
 </template>
 
@@ -27,7 +93,7 @@ import DiscordText from './components/DiscordText.vue'
 import EyeSelector from './components/EyeSelector.vue'
 
 export default {
-  name: 'app',
+  name: 'App',
   components: {
     DiscordLogo, GithubCorner, DiscordCorner, ColorSelector,
     StyleSelector, MainBody, DiscordText, EyeSelector
@@ -45,6 +111,18 @@ export default {
         }
   		}
   	},
+  computed: {
+    getBackgroundColor: {
+			get: function () {
+				return {
+					backgroundColor: this.colors.discordfill
+				}
+			}
+		}
+  },
+  created: function() {
+    this.updateSpeechBubble()
+  },
   methods: {
     updateSpeechBubble: function () {
       var myArray = ['Click me to get the speech bubble code generator!',
@@ -86,18 +164,6 @@ onActiveEyeChange (value) {
         this.$refs.mainbody.updatePreviewCode();
       })
     }
-  },
-  computed: {
-    getBackgroundColor: {
-			get: function () {
-				return {
-					backgroundColor: this.colors.discordfill
-				}
-			}
-		}
-  },
-  created: function() {
-    this.updateSpeechBubble()
   }
 }
 </script>
