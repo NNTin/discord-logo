@@ -1,11 +1,71 @@
 <template>
   <div class="buttons">
-    <DiscordLogo class="button" :discordEyes="discordEyes" :animationStyle="animationStyle" :customLink="customLink" @click.native="setColor('#7289DA','#FFFFFF') + setRainbow(false)" :width="size" :height="size" discordfill="#7289DA" discordcolor="#FFFFFF"/>
-    <DiscordLogo class="button" :discordEyes="discordEyes" :animationStyle="animationStyle" :customLink="customLink" @click.native="setColor('#7289DA','#2C2F33') + setRainbow(false)" :width="size" :height="size" discordfill="#7289DA" discordcolor="#2C2F33"/><br/>
-    <DiscordLogo class="button" :discordEyes="discordEyes" :animationStyle="animationStyle" :customLink="customLink" @click.native="setColor('#FFFFFF','#7289DA') + setRainbow(false)" :width="size" :height="size" discordfill="#FFFFFF" discordcolor="#7289DA"/>
-    <DiscordLogo class="button" :discordEyes="discordEyes" :animationStyle="animationStyle" :customLink="customLink" @click.native="setColor('#FFFFFF','#2C2F33') + setRainbow(false)" :width="size" :height="size" discordfill="#FFFFFF" discordcolor="#2C2F33"/><br/>
-    <DiscordLogo class="button" :discordEyes="discordEyes" :animationStyle="animationStyle" :customLink="customLink" @click.native="setColor('#2C2F33','#7289DA') + setRainbow(false)" :width="size" :height="size" discordfill="#2C2F33" discordcolor="#7289DA"/>
-    <DiscordLogo class="button" :discordEyes="discordEyes" :animationStyle="animationStyle" :customLink="customLink" @click.native="setColor('#2C2F33','#FFFFFF') + setRainbow(false)" :width="size" :height="size" discordfill="#2C2F33" discordcolor="#FFFFFF"/>
+    <DiscordLogo
+      class="button"
+      :discord-eyes="discordEyes"
+      :animation-style="animationStyle"
+      :custom-link="customLink"
+      :width="size"
+      :height="size"
+      discordfill="#7289DA"
+      discordcolor="#FFFFFF"
+      @click.native="setColor('#7289DA','#FFFFFF') + setRainbow(false)"
+    />
+    <DiscordLogo
+      class="button"
+      :discord-eyes="discordEyes"
+      :animation-style="animationStyle"
+      :custom-link="customLink"
+      :width="size"
+      :height="size"
+      discordfill="#7289DA"
+      discordcolor="#2C2F33"
+      @click.native="setColor('#7289DA','#2C2F33') + setRainbow(false)"
+    /><br>
+    <DiscordLogo
+      class="button"
+      :discord-eyes="discordEyes"
+      :animation-style="animationStyle"
+      :custom-link="customLink"
+      :width="size"
+      :height="size"
+      discordfill="#FFFFFF"
+      discordcolor="#7289DA"
+      @click.native="setColor('#FFFFFF','#7289DA') + setRainbow(false)"
+    />
+    <DiscordLogo
+      class="button"
+      :discord-eyes="discordEyes"
+      :animation-style="animationStyle"
+      :custom-link="customLink"
+      :width="size"
+      :height="size"
+      discordfill="#FFFFFF"
+      discordcolor="#2C2F33"
+      @click.native="setColor('#FFFFFF','#2C2F33') + setRainbow(false)"
+    /><br>
+    <DiscordLogo
+      class="button"
+      :discord-eyes="discordEyes"
+      :animation-style="animationStyle"
+      :custom-link="customLink"
+      :width="size"
+      :height="size"
+      discordfill="#2C2F33"
+      discordcolor="#7289DA"
+      @click.native="setColor('#2C2F33','#7289DA') + setRainbow(false)"
+    />
+    <DiscordLogo
+      class="button"
+      :discord-eyes="discordEyes"
+      :animation-style="animationStyle"
+      :custom-link="customLink"
+      :width="size"
+      :height="size"
+      discordfill="#2C2F33"
+      discordcolor="#FFFFFF"
+      @click.native="setColor('#2C2F33','#FFFFFF') + setRainbow(false)"
+    />
   </div>
 </template>
 
@@ -16,15 +76,6 @@ export default {
   name: 'ColorSelector',
   components: {
     DiscordLogo
-  },
-  data () {
-    return {
-      size: 48,
-      colors: {
-        discordcolor: '#FFFFFF',
-        discordfill: '#7289DA',
-      }
-    }
   },
   props: {
     customLink: {
@@ -40,6 +91,17 @@ export default {
       default: 'none' //none wink angry noeyes
     }
   },
+  data () {
+    return {
+      size: 48,
+      colors: {
+        discordcolor: '#FFFFFF',
+        discordfill: '#7289DA',
+      }
+    }
+  },
+  computed: {
+  },
 	methods: {
     setColor: function (backgroundColor, textColor) {
       this.colors.discordcolor = textColor,
@@ -49,8 +111,6 @@ export default {
     setRainbow: function (value) {
       this.$emit('rainbowChange', value);
 		}
-  },
-  computed: {
   }
 }
 </script>

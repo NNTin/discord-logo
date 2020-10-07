@@ -1,14 +1,47 @@
 <template>
   <div ref="discordTextRootElement">
     <div class="discordtext">
-      <DiscordLogo :discordEyes="discordEyes" ref="discordLogoFromText" :isRainbow="isRainbow" :animationStyle="animationStyle" :customLink="customLink" :height="height *2" :width="height *2" :discordfill="discordfill" :discordcolor="discordcolor"/>
-      <svg v-show="standardText" class="speechbubble" :height="height" preserveAspectRatio="xMinYMin">
+      <DiscordLogo
+        ref="discordLogoFromText"
+        :discord-eyes="discordEyes"
+        :is-rainbow="isRainbow"
+        :animation-style="animationStyle"
+        :custom-link="customLink"
+        :height="height *2"
+        :width="height *2"
+        :discordfill="discordfill"
+        :discordcolor="discordcolor"
+      />
+      <svg
+        v-show="standardText"
+        class="speechbubble"
+        :height="height"
+        preserveAspectRatio="xMinYMin"
+      >
         <g class="pathElementGroup">
-          <path transform="scale(-1,1)" class="pathElement" :fill="discordcolor" d="M 154.5,0 L 20.5,0 C 9.2,0 0,9.2 0,20.6 L 0,155.8 C 0,167.2 9.2,177 20.5,176.4 L 133.9,176.4 L 128.6,157.9 L 141.4,169.8 L 153.5,181 L 175,200 L 175,20.6 C 175,9.2 165.8,0 154.5,0 Z"/>
+          <path
+            transform="scale(-1,1)"
+            class="pathElement"
+            :fill="discordcolor"
+            d="M 154.5,0 L 20.5,0 C 9.2,0 0,9.2 0,20.6 L 0,155.8 C 0,167.2 9.2,177 20.5,176.4 L 133.9,176.4 L 128.6,157.9 L 141.4,169.8 L 153.5,181 L 175,200 L 175,20.6 C 175,9.2 165.8,0 154.5,0 Z"
+          />
         </g>
-        <text :fill="discordfill" font-size="90" class="textElement" x="95" y="57%" >{{bubbleText}}</text>
-        <a v-if="customLink" :href="customLink">
-          <rect width="100%" height="100%" fill-opacity="0" />
+        <text
+          :fill="discordfill"
+          font-size="90"
+          class="textElement"
+          x="95"
+          y="57%"
+        >{{ bubbleText }}</text>
+        <a
+          v-if="customLink"
+          :href="customLink"
+        >
+          <rect
+            width="100%"
+            height="100%"
+            fill-opacity="0"
+          />
         </a>
       </svg>
     </div>
@@ -22,14 +55,6 @@ export default {
   name: 'DiscordText',
   components: {
     DiscordLogo
-  },
-  data () {
-    return {
-      delay: 60,
-      isTyping: false,
-      bubbleText: '',
-      width: 0
-    }
   },
 	props: {
     height: {
@@ -69,6 +94,34 @@ export default {
       default: 'none' //none wink angry noeyes
     }
 	},
+  data () {
+    return {
+      delay: 60,
+      isTyping: false,
+      bubbleText: '',
+      width: 0
+    }
+  },
+  computed: {
+  },
+  watch: {
+    standardText: function () {
+      if (!this.isTyping) {
+        this.typeText(0, this.standardText);
+      } else {
+        this.delay = 0;
+        this.sleep(500).then(() => {
+          this.delay = 60;
+        })
+      }
+    }
+  },
+  created: function() {
+    this.$nextTick( function () {
+      this.$refs.discordLogoFromText.update();
+      this.typeText(0, this.standardText);
+    })
+  },
   methods: {
     typeText: function(position, text) {
       if (this.writeText) {
@@ -132,26 +185,6 @@ export default {
     },
     updateSVGContainer: function () {
     }
-  },
-  computed: {
-  },
-  watch: {
-    standardText: function () {
-      if (!this.isTyping) {
-        this.typeText(0, this.standardText);
-      } else {
-        this.delay = 0;
-        this.sleep(500).then(() => {
-          this.delay = 60;
-        })
-      }
-    }
-  },
-  created: function() {
-    this.$nextTick( function () {
-      this.$refs.discordLogoFromText.update();
-      this.typeText(0, this.standardText);
-    })
   }
 }
 </script>
