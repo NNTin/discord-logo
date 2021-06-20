@@ -13,7 +13,7 @@
       height="100%"
       fill="currentfill"
     />
-    <foreignObject v-if="background !== 'none'">
+    <foreignObject v-if="background !== 'none'" style="width:100%; height:100%">
       <body xmlns="http://www.w3.org/1999/xhtml">
         <canvas :ref="canvasID" id="discordCanvas" />
       </body>
