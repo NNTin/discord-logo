@@ -301,9 +301,9 @@ export default {
       this.colors.discordcolor = {hex: discordcolor, a: 1}
       this.colors.discordfill = {hex: discordfill, a: 1}
     },
-    changeBackground: function (background) {
-      this.background = background
-    },
+    //changeBackground: function (background) {
+    //  this.background = background
+    //},
     updatePreviewCode:  function() {
       this.$nextTick(function () {
         // => 'DOM loaded and ready'

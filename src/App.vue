@@ -31,15 +31,15 @@
         />
         <BackgroundSelector
           :background="background"
-          :discordEyes="discordEyes"
+          :discord-eyes="discordEyes"
           class="box"
-          customLink="#"
-          :animationStyle="animationStyle"
+          custom-link="#"
+          :animation-style="animationStyle"
           @backgroundChange="onBackgroundChange"
           @rainbowChange="onRainbowChange"
           :discordfill="colors.discordfill"
           :discordcolor="colors.discordcolor"
-          :isRainbow="isRainbow"
+          :is-rainbow="isRainbow"
         />
         <StyleSelector
           ref="styleselector"
