@@ -2,6 +2,7 @@
   <div ref="discordTextRootElement">
     <div class="discordtext">
       <DiscordLogo
+        :background="background"
         ref="discordLogoFromText"
         :discord-eyes="discordEyes"
         :is-rainbow="isRainbow"
@@ -99,7 +100,11 @@ export default {
       delay: 60,
       isTyping: false,
       bubbleText: '',
-      width: 0
+      width: 0,
+      background: {
+        type: String,
+        default: 'none'
+      }
     }
   },
   computed: {
