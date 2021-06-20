@@ -295,7 +295,7 @@ export default {
     },
     draw () {
       let t=this.frames/200
-      let s, i, X, Y, Z = 0, j, p, w, W, V
+      let s, i, X, Z = 0, j, p, w, W, V
       let r=q=>this.ctx[q?"lineTo":"moveTo"](w+(X-7)/Z*w*2,2/Z*w)
       switch(this.background) {
         case 'starfield':
