@@ -10,6 +10,7 @@
       />
       <DiscordCorner
         id="discordcorner"
+        :background="background"
         :discord-eyes="discordEyes"
         custom-link="#"
         :is-rainbow="isRainbow"
@@ -21,14 +22,28 @@
       <div id="container">
         <ColorSelector
           :discord-eyes="discordEyes"
+          :background="background"
           class="box"
           custom-link="#"
           :animation-style="animationStyle"
           @colorChange="onColorChange"
           @rainbowChange="onRainbowChange"
         />
+        <BackgroundSelector
+          :background="background"
+          :discord-eyes="discordEyes"
+          class="box"
+          custom-link="#"
+          :animation-style="animationStyle"
+          @backgroundChange="onBackgroundChange"
+          @rainbowChange="onRainbowChange"
+          :discordfill="colors.discordfill"
+          :discordcolor="colors.discordcolor"
+          :is-rainbow="isRainbow"
+        />
         <StyleSelector
           ref="styleselector"
+          :background="background"
           :animation-style="animationStyle"
           :discord-eyes="discordEyes"
           class="box"
@@ -42,6 +57,7 @@
         <DiscordLogo
           :discord-eyes="discordEyes"
           class="box"
+          :background="background"
           custom-link="#"
           :animation-style="animationStyle"
           :is-rainbow="isRainbow"
@@ -53,6 +69,7 @@
       <EyeSelector
         :discord-eyes="discordEyes"
         :animation-style="animationStyle"
+        :background="background"
         custom-link="#"
         :is-rainbow="isRainbow"
         :discordfill="colors.discordfill"
@@ -64,6 +81,7 @@
         ref="discordtext"
         :discord-eyes="discordEyes"
         :is-rainbow="isRainbow"
+        :background="background"
         custom-link="#"
         :animation-style="animationStyle"
         :standard-text="standardText"
@@ -74,6 +92,7 @@
     </div>
     <MainBody
       ref="mainbody"
+      :background="background"
       :discord-eyes="discordEyes"
       :animation-style="animationStyle"
       :is-rainbow="isRainbow"
@@ -91,15 +110,17 @@ import StyleSelector from './components/StyleSelector.vue'
 import MainBody from './components/MainBody.vue'
 import DiscordText from './components/DiscordText.vue'
 import EyeSelector from './components/EyeSelector.vue'
+import BackgroundSelector from './components/BackgroundSelector.vue'
 
 export default {
   name: 'App',
   components: {
     DiscordLogo, GithubCorner, DiscordCorner, ColorSelector,
-    StyleSelector, MainBody, DiscordText, EyeSelector
+    StyleSelector, MainBody, DiscordText, EyeSelector, BackgroundSelector
   },
   data () {
   		return {
+        background: new URL(document.URL).searchParams.get("background") ? new URL(document.URL).searchParams.get("background") : 'none', //none starfield grid rush
         discordEyes: new URL(document.URL).searchParams.get("eyes") ? new URL(document.URL).searchParams.get("eyes") : 'none', //none wink angry noeyes
         isRainbow: new URL(document.URL).searchParams.get("rainbow") ? true : false,
         animationStyle: new URL(document.URL).searchParams.get("animation") ? new URL(document.URL).searchParams.get("animation") : 'swirl', //swirl rotateX rotateY shake softshake
@@ -134,12 +155,12 @@ export default {
       var rand = myArray[Math.floor(Math.random() * myArray.length)];
       this.standardText = rand;
     },
-onActiveEyeChange (value) {
-  this.discordEyes = value;
-  this.$nextTick(function () {
-    this.$refs.mainbody.updatePreviewCode();
-  })
-},
+    onActiveEyeChange (value) {
+      this.discordEyes = value;
+      this.$nextTick(function () {
+        this.$refs.mainbody.updatePreviewCode();
+      })
+    },
     onColorChange (value) {
       this.colors = value
       this.$refs.mainbody.changeColor(this.colors.discordcolor, this.colors.discordfill)
@@ -161,6 +182,12 @@ onActiveEyeChange (value) {
     this.previewDiscordType = value;
       this.$nextTick(function () {
         this.$refs.mainbody.refreshSlider();
+        this.$refs.mainbody.updatePreviewCode();
+      })
+    },
+    onBackgroundChange (value) {
+      this.background = value
+      this.$nextTick(function () {
         this.$refs.mainbody.updatePreviewCode();
       })
     }
