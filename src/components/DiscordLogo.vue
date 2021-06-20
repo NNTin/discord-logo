@@ -1,6 +1,18 @@
 <template>
-  <svg ref="discordLogoRootElement" :color="discordcolor" :fill="discordfill" :width="width" :height="height" class="discord-logo-container" viewBox="0 0 48 48" >
-    <rect width="100%" height="100%" fill="currentfill" />
+  <svg
+    ref="discordLogoRootElement"
+    :color="discordcolor"
+    :fill="discordfill"
+    :width="width"
+    :height="height"
+    class="discord-logo-container"
+    viewBox="0 0 48 48"
+  >
+    <rect
+      width="100%"
+      height="100%"
+      fill="currentfill"
+    />
     <foreignObject  v-if="background !== 'none'">
       <body xmlns="http://www.w3.org/1999/xhtml">
         <canvas :ref="canvasID" id="discordCanvas"></canvas>
@@ -9,46 +21,131 @@
     <defs>
       <g>
         <defs>
-          <path id="discord-def-face" fill="currentcolor" d="M40,12C40,12,35.415,8.412,30,8L29.512,8.976C34.408,10.174,36.654,11.891,39,14C34.955,11.935,30.961,10,24,10S13.045,11.935,9,14C11.346,11.891,14.018,9.985,18.488,8.976L18,8C12.319,8.537,8,12,8,12S2.879,19.425,2,34C7.162,39.953,15,40,15,40L16.639,37.815C13.857,36.848,10.715,35.121,8,32C11.238,34.45,16.125,37,24,37S36.762,34.45,40,32C37.285,35.121,34.143,36.848,31.361,37.815L33,40C33,40,40.838,39.953,46,34C45.121,19.425,40,12,40,12Z" />
+          <path
+            id="discord-def-face"
+            fill="currentcolor"
+            d="M40,12C40,12,35.415,8.412,30,8L29.512,8.976C34.408,10.174,36.654,11.891,39,14C34.955,11.935,30.961,10,24,10S13.045,11.935,9,14C11.346,11.891,14.018,9.985,18.488,8.976L18,8C12.319,8.537,8,12,8,12S2.879,19.425,2,34C7.162,39.953,15,40,15,40L16.639,37.815C13.857,36.848,10.715,35.121,8,32C11.238,34.45,16.125,37,24,37S36.762,34.45,40,32C37.285,35.121,34.143,36.848,31.361,37.815L33,40C33,40,40.838,39.953,46,34C45.121,19.425,40,12,40,12Z"
+          />
           <g id="discord-def-face-eyes">
-            <path id="discord-def-face-left-eye" fill="currentfill" d="M17.5,30C15.567,30,14,28.209,14,26C14,23.791,15.567,22,17.5,22S21,23.791,21,26C21,28.209,19.433,30,17.5,30Z" />
-            <path id="discord-def-face-right-eye" fill="currentfill" d="M30.5,30C28.567,30,27,28.209,27,26C27,23.791,28.567,22,30.5,22S34,23.791,34,26C34,28.209,32.433,30,30.5,30Z" />
+            <path
+              id="discord-def-face-left-eye"
+              fill="currentfill"
+              d="M17.5,30C15.567,30,14,28.209,14,26C14,23.791,15.567,22,17.5,22S21,23.791,21,26C21,28.209,19.433,30,17.5,30Z"
+            />
+            <path
+              id="discord-def-face-right-eye"
+              fill="currentfill"
+              d="M30.5,30C28.567,30,27,28.209,27,26C27,23.791,28.567,22,30.5,22S34,23.791,34,26C34,28.209,32.433,30,30.5,30Z"
+            />
           </g>
         </defs>
         <g :id="discordFaceID"> <!--id="discordLogoID"-->
           <use href="#discord-def-face" />
           <g id="discord-logo-eyes">
             <mask id="mask-right-eye-wink">
-              <ellipse fill="#FFFFFF" ry="15" rx="15" cy="39.7" cx="35" />
-              <ellipse fill="#000000" ry="15" rx="15" cy="40.5" cx="34" />
+              <ellipse
+                fill="#FFFFFF"
+                ry="15"
+                rx="15"
+                cy="39.7"
+                cx="35"
+              />
+              <ellipse
+                fill="#000000"
+                ry="15"
+                rx="15"
+                cy="40.5"
+                cx="34"
+              />
             </mask>
             <mask id="mask-eyes-angry">
-              <rect height="48" width="48" y="0" x="0" fill="#FFFFFF"/>
-              <rect transform="rotate(45 24,14.5)" height="24" width="24" y="2.5" x="12" fill="#000000"/>
+              <rect
+                height="48"
+                width="48"
+                y="0"
+                x="0"
+                fill="#FFFFFF"
+              />
+              <rect
+                transform="rotate(45 24,14.5)"
+                height="24"
+                width="24"
+                y="2.5"
+                x="12"
+                fill="#000000"
+              />
             </mask>
-            <g class="discord-eyes"/>
+            <g class="discord-eyes" />
           </g>
         </g>
         <mask id="mask-outer-layer">
-          <rect width="100%" height="100%" fill="#FFFFFF" />
-          <circle r="42%" cx="50%" cy="50%" fill="#000000" />
+          <rect
+            width="100%"
+            height="100%"
+            fill="#FFFFFF"
+          />
+          <circle
+            r="42%"
+            cx="50%"
+            cy="50%"
+            fill="#000000"
+          />
         </mask>
         <mask id="mask-middle-layer">
-          <rect width="100%" height="100%" fill="#000000" />
-          <circle r="43%" cx="50%" cy="50%" fill="#FFFFFF" />
-          <circle r="32%" cx="50%" cy="50%" fill="#000000" />
+          <rect
+            width="100%"
+            height="100%"
+            fill="#000000"
+          />
+          <circle
+            r="43%"
+            cx="50%"
+            cy="50%"
+            fill="#FFFFFF"
+          />
+          <circle
+            r="32%"
+            cx="50%"
+            cy="50%"
+            fill="#000000"
+          />
         </mask>
         <mask id="mask-inner-layer">
-          <rect width="100%" height="100%" fill="#000000" />
-          <circle r="32%" cx="50%" cy="50%" fill="#FFFFFF" />
+          <rect
+            width="100%"
+            height="100%"
+            fill="#000000"
+          />
+          <circle
+            r="32%"
+            cx="50%"
+            cy="50%"
+            fill="#FFFFFF"
+          />
         </mask>
       </g>
     </defs>
     <g class="discord-logo" />
-    <a v-if="customLink" :href="customLink">
-      <rect width="100%" height="100%" fill-opacity="0" />
+    <a
+      v-if="customLink"
+      :href="customLink"
+    >
+      <rect
+        width="100%"
+        height="100%"
+        fill-opacity="0"
+      />
     </a>
-    <animate v-if="isRainbow" fill="freeze" dur="4000ms" begin="0s" values="#DA7272;#DABF72;#A6DA72;#72DA8C;#72DADA;#728CDA;#A672DA;#DA72C0;#DA7272" calMode="linear" attributeName="color" repeatCount="indefinite" />
+    <animate
+      v-if="isRainbow"
+      fill="freeze"
+      dur="4000ms"
+      begin="0s"
+      values="#DA7272;#DABF72;#A6DA72;#72DA8C;#72DADA;#728CDA;#A672DA;#DA72C0;#DA7272"
+      calMode="linear"
+      attributeName="color"
+      repeatCount="indefinite"
+    />
   </svg>
 </template>
 
@@ -56,20 +153,6 @@
 export default {
 //TODO: add animationStyle and angry/wink discord logo via JavaScript! (define a root element, get ID from there)
   name: 'DiscordLogo',
-  data () {
-    return {
-      discordFaceID: null,
-      canvasID: null,
-      canvas: '',
-      ctx: '',
-      frames: 0,
-      RAF: null
-    }
-  },
-  mounted() {
-    this.discordFaceID = "discordFaceID"+this._uid
-    this.wireUpCanvas()
-  },
 	props: {
 		width: {
 			type: Number,
@@ -108,18 +191,35 @@ export default {
       default: 'none'
     }
 	},
-  methods: {
-    wireUpCanvas () {
-      if(this.background !== 'none') {
-        this.canvasID = "canvasID" + this._uid
-        this.$nextTick(function () {
-          this.canvas = this.$refs[this.canvasID]
-          this.ctx = this.canvas.getContext('2d')
-          if(this.RAF !== null ) cancelAnimationFrame(this.RAF)
-          this.draw()
-        });
-      }
+  data () {
+    return {
+      discordFaceID: null,
+      canvasID: null,
+      canvas: '',
+      ctx: '',
+      frames: 0,
+      RAF: null
+    }
+  },
+  watch: {
+    animationStyle: function () {
+      this.updateAnimation();
     },
+    discordEyes: function () {
+      this.updateEyes();
+    },
+    background: function (val) {
+      this.wireUpCanvas()
+    }
+  },
+  mounted() {
+    this.discordFaceID = "discordFaceID"+this._uid
+    this.wireUpCanvas()
+  },
+  created: function() {
+    this.update();
+  },
+  methods: {
     update: function() {
       this.updateAnimation();
       this.updateEyes();
@@ -182,7 +282,19 @@ export default {
         }
       })
     },
+    wireUpCanvas () {
+      if(this.background !== 'none') {
+        this.canvasID = "canvasID" + this._uid
+        this.$nextTick(function () {
+          this.canvas = this.$refs[this.canvasID]
+          this.ctx = this.canvas.getContext('2d')
+          if(this.RAF !== null ) cancelAnimationFrame(this.RAF)
+          this.draw()
+        });
+      }
+    },
     draw () {
+      let Z=0
       switch(this.background) {
         case 'starfield':
           this.canvas.style.width = "50px"
@@ -191,7 +303,7 @@ export default {
           this.canvas.height = 250
           this.ctx.fillStyle="#fffa"
           for(let j=250, w=100, p=0; j--;){
-            let Z=1-(j*j/w+this.frames/100)%1
+            Z=1-(j*j/w+this.frames/100)%1
             let s = 1 + Math.pow(3*(1-Z),2)
             this.ctx.beginPath()
             this.ctx.arc(w+(99-j%199)/Z,100+(99-j*j*7%198)/Z,s,0,7)
@@ -204,7 +316,7 @@ export default {
           this.canvas.width = 250
           this.canvas.height = 250
           this.ctx.strokeStyle="#fff4"
-          let w=120,i=200,t=this.frames/70,X=0,Y=0,Z=0
+          let w=120,i=200,t=this.frames/70,X=0,Y=0
           let r=q=>this.ctx[q?"lineTo":"moveTo"](w+(X-7)/Z*w*2,2/Z*w)
           for(;i--;this.ctx.lineWidth=0.5+8/(1+Z),r(Z++),r(X--),this.ctx.stroke())this.ctx.beginPath(),X=(i+Math.sin(t)*4)%14,Z=1+(i/14|0)-t*5%1,r()
         break;
@@ -214,26 +326,12 @@ export default {
           this.canvas.width = 250
           this.canvas.height = 250
           this.ctx.fillStyle="#fff3"
-          var W=120,j=10,p=0,V=0,Z=0,s=0,t=this.frames/200
+          var W=120,j=10,p=0,V=0,s=0,t=this.frames/200
           for(;--j;)for(let i=16;i--;this.ctx.fillRect(W+Math.sin(p=.39*i+j/8-6.03*V-Math.sin(t*2)*3)/Z*W-s/2,120+Math.cos(p)/Z*W-s/2,s,s))Z=.5+j/2-t*6+(V=(t*6)|0),s=200/(1+Z)/(1+Z)/(1+Z)
         break;
       }
       this.frames++;
       this.RAF = requestAnimationFrame(this.draw)
-    }
-  },
-  created: function() {
-    this.update();
-  },
-  watch: {
-    animationStyle: function () {
-      this.updateAnimation();
-    },
-    discordEyes: function () {
-      this.updateEyes();
-    },
-    background: function (val) {
-      this.wireUpCanvas()
     }
   }
 }

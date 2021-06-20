@@ -1,9 +1,53 @@
 <template>
   <div class="eyeSelector">
-    <DiscordLogo :background="background" :style="isActive('wink')"   @click.native="setEye('wink')"   discordEyes="wink"   :customLink="customLink" :width="size" :height="size" :discordfill="discordfill" :discordcolor="discordcolor" :animationStyle="animationStyle" :isRainbow="isRainbow"/>
-    <DiscordLogo :background="background" :style="isActive('none')"   @click.native="setEye('none')"   discordEyes="none"   :customLink="customLink" :width="size" :height="size" :discordfill="discordfill" :discordcolor="discordcolor" :animationStyle="animationStyle" :isRainbow="isRainbow"/>
-    <DiscordLogo :background="background" :style="isActive('angry')"  @click.native="setEye('angry')"  discordEyes="angry"  :customLink="customLink" :width="size" :height="size" :discordfill="discordfill" :discordcolor="discordcolor" :animationStyle="animationStyle" :isRainbow="isRainbow"/>
-    <DiscordLogo :background="background" :style="isActive('noeyes')" @click.native="setEye('noeyes')" discordEyes="noeyes" :customLink="customLink" :width="size" :height="size" :discordfill="discordfill" :discordcolor="discordcolor" :animationStyle="animationStyle" :isRainbow="isRainbow"/>
+    <DiscordLogo
+      :style="isActive('wink')"
+      discord-eyes="wink"
+      :custom-link="customLink"
+      :width="size"
+      :height="size"
+      :discordfill="discordfill"
+      :discordcolor="discordcolor"
+      @click.native="setEye('wink')"
+      :animation-style="animationStyle"
+:is-rainbow="isRainbow"
+    />
+    <DiscordLogo
+      :style="isActive('none')"
+      discord-eyes="none"
+      :custom-link="customLink"
+      :width="size"
+      :height="size"
+      :discordfill="discordfill"
+      :discordcolor="discordcolor"
+      @click.native="setEye('none')"
+      :animation-style="animationStyle"
+:is-rainbow="isRainbow"
+    />
+    <DiscordLogo
+      :style="isActive('angry')"
+      discord-eyes="angry"
+      :custom-link="customLink"
+      :width="size"
+      :height="size"
+      :discordfill="discordfill"
+      :discordcolor="discordcolor"
+      @click.native="setEye('angry')"
+      :animation-style="animationStyle"
+:is-rainbow="isRainbow"
+    />
+    <DiscordLogo
+      :style="isActive('noeyes')"
+      discord-eyes="noeyes"
+      :custom-link="customLink"
+      :width="size"
+      :height="size"
+      :discordfill="discordfill"
+      :discordcolor="discordcolor"
+      :animation-style="animationStyle"
+      @click.native="setEye('noeyes')"
+      :is-rainbow="isRainbow"
+    />
   </div>
 </template>
 
@@ -14,11 +58,6 @@ export default {
   name: 'EyeSelector',
   components: {
     DiscordLogo
-  },
-  data () {
-    return {
-      size: 100
-    }
   },
   props: {
     customLink: {
@@ -44,11 +83,16 @@ export default {
     animationStyle: {
       type: String,
       default: 'swirl'
-    },
-    background: {
-      type: String,
-      default: 'none'
     }
+  },
+  data () {
+    return {
+      size: 100
+    }
+  },
+  computed: {
+  },
+  created: function() {
   },
 	methods: {
     setEye: function (eyeStyle) {
@@ -65,10 +109,6 @@ export default {
         return { border: "solid 2px transparent" }
       }
     }
-  },
-  computed: {
-  },
-  created: function() {
   }
 }
 </script>

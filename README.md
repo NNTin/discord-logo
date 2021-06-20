@@ -1,4 +1,5 @@
 # Animated Discord Logo
+[![Linting CI Actions Status](https://github.com/NNTin/discord-logo/workflows/Linting%20CI/badge.svg)](https://github.com/NNTin/discord-logo/actions)
 
 This project was inspired by [Discord's loading logo](https://canary.discordapp.com/assets/0bdc0497eb3a19e66f2b1e3d5741634c.webm).
 
@@ -26,6 +27,6 @@ This project is neither built nor endorsed by Discord.
 
 Github corner template: [tholman](https://github.com/tholman/github-corners)
 
-Starfield background: [cantelope](https://cantelope.ml/), [GitHub](https://github.com/srmcgann)
+Various backgrounds: [cantelope](https://cantelope.ml/), [GitHub](https://github.com/srmcgann)
 
 [The MIT License](https://github.com/NNTin/discord-logo/blob/master/LICENSE)

@@ -1,11 +1,85 @@
 <template>
-  <div ref="rootElement" class="buttons">
-    <DiscordLogo :background="background" :discordEyes="discordEyes" class="button" :isRainbow="isRainbow" :customLink="customLink" :style="isActive('swirl')" @click.native="setStyle('swirl')" animationStyle="swirl" :width="size" :height="size" :discordfill="discordfill" :discordcolor="discordcolor"/>
-    <DiscordLogo :background="background" :discordEyes="discordEyes" class="button" :isRainbow="isRainbow" :customLink="customLink" :style="isActive('rotateX')" @click.native="setStyle('rotateX')" animationStyle="rotateX" :width="size" :height="size" :discordfill="discordfill" :discordcolor="discordcolor"/><br/>
-    <DiscordLogo :background="background" :discordEyes="discordEyes" class="button" :isRainbow="isRainbow" :customLink="customLink" :style="isActive('rotateY')" @click.native="setStyle('rotateY')" animationStyle="rotateY" :width="size" :height="size" :discordfill="discordfill" :discordcolor="discordcolor"/>
-    <DiscordLogo :background="background" :discordEyes="discordEyes" class="button" :isRainbow="isRainbow" :customLink="customLink" :style="isActive('shake')" @click.native="setStyle('shake')" animationStyle="shake" :width="size" :height="size" :discordfill="discordfill" :discordcolor="discordcolor"/><br/>
-    <DiscordLogo :background="background" :discordEyes="discordEyes" class="button" :isRainbow="isRainbow" :customLink="customLink" :style="isActive('softshake')" @click.native="setStyle('softshake')" animationStyle="softshake" :width="size" :height="size" :discordfill="discordfill" :discordcolor="discordcolor"/>
-    <DiscordLogo :background="background" :discordEyes="discordEyes" class="button" :isRainbow="true"      :customLink="customLink" :style="rainbowActiveStyle" @click.native="setRainbow(true)" animationStyle="none" :width="size" :height="size" :discordfill="discordfill" />
+  <div
+    ref="rootElement"
+    class="buttons"
+  >
+    <DiscordLogo
+      :discord-eyes="discordEyes"
+      class="button"
+      :is-rainbow="isRainbow"
+      :custom-link="customLink"
+      :style="isActive('swirl')"
+      animation-style="swirl"
+      :width="size"
+      :height="size"
+      :discordfill="discordfill"
+      :discordcolor="discordcolor"
+@click.native="setStyle('swirl')"
+    />
+    <DiscordLogo
+      :discord-eyes="discordEyes"
+      class="button"
+      :is-rainbow="isRainbow"
+      :custom-link="customLink"
+      :style="isActive('rotateX')"
+      animation-style="rotateX"
+      :width="size"
+      :height="size"
+      :discordfill="discordfill"
+      :discordcolor="discordcolor"
+@click.native="setStyle('rotateX')"
+    /><br>
+    <DiscordLogo
+      :discord-eyes="discordEyes"
+      class="button"
+      :is-rainbow="isRainbow"
+      :custom-link="customLink"
+      :style="isActive('rotateY')"
+      animation-style="rotateY"
+      :width="size"
+      :height="size"
+      :discordfill="discordfill"
+      :discordcolor="discordcolor"
+@click.native="setStyle('rotateY')"
+    />
+    <DiscordLogo
+      :discord-eyes="discordEyes"
+      class="button"
+      :is-rainbow="isRainbow"
+      :custom-link="customLink"
+      :style="isActive('shake')"
+      animation-style="shake"
+      :width="size"
+      :height="size"
+      :discordfill="discordfill"
+      :discordcolor="discordcolor"
+@click.native="setStyle('shake')"
+    /><br>
+    <DiscordLogo
+      :discord-eyes="discordEyes"
+      class="button"
+      :is-rainbow="isRainbow"
+      :custom-link="customLink"
+      :style="isActive('softshake')"
+      animation-style="softshake"
+      :width="size"
+      :height="size"
+      :discordfill="discordfill"
+      :discordcolor="discordcolor"
+@click.native="setStyle('softshake')"
+    />
+    <DiscordLogo
+      :discord-eyes="discordEyes"
+      class="button"
+      :is-rainbow="true"
+      :custom-link="customLink"
+      :style="rainbowActiveStyle"
+      animation-style="none"
+      :width="size"
+      :height="size"
+      :discordfill="discordfill"
+      @click.native="setRainbow(true)"
+    />
   </div>
 </template>
 
@@ -16,11 +90,6 @@ export default {
   name: 'StyleSelector',
   components: {
     DiscordLogo
-  },
-  data () {
-    return {
-      size: 48
-    }
   },
   props: {
     customLink: {
@@ -46,11 +115,32 @@ export default {
     animationStyle: {
       type: String,
       default: 'swirl'
-    },
-    background: {
-      type: String,
-      default: 'none'
     }
+  },
+  data () {
+    return {
+      size: 48
+    }
+  },
+  computed: {
+    rainbowActiveStyle: {
+      get: function () {
+        if (this.isRainbow) {
+          return { border: "solid 2px " + this.discordcolor}
+        }
+        else {
+          return { border: "solid 2px transparent" }
+        }
+      }
+    }
+  },
+  created: function() {
+    this.$nextTick(function () {
+      setInterval(function () {
+          this.addAnimatedClass();
+          this.sleep(2500).then(() => {this.removeAnimatedClass();});
+      }.bind(this), 5000);
+    });
   },
 	methods: {
     setStyle: function (animationStyle) {
@@ -89,26 +179,6 @@ export default {
         this.$emit('rainbowChange', !this.isRainbow);
       }
 		}
-  },
-  computed: {
-    rainbowActiveStyle: {
-      get: function () {
-        if (this.isRainbow) {
-          return { border: "solid 2px " + this.discordcolor}
-        }
-        else {
-          return { border: "solid 2px transparent" }
-        }
-      }
-    }
-  },
-  created: function() {
-    this.$nextTick(function () {
-      setInterval(function () {
-          this.addAnimatedClass();
-          this.sleep(2500).then(() => {this.removeAnimatedClass();});
-      }.bind(this), 5000);
-    });
   }
 }
 </script>

@@ -1,13 +1,38 @@
 <template>
-  <svg :color="discordcolor" :fill="discordfill" :width="width" :height="height" viewBox="0 0 250 250">
+  <svg
+    :color="discordcolor"
+    :fill="discordfill"
+    :width="width"
+    :height="height"
+    viewBox="0 0 250 250"
+  >
     <g>
-      <a v-if="this.customLink" v-bind:href="this.customLink">
-        <path d="M0,0 L0,250 L250,0 Z" :fill="discordfill"/>
+      <a
+        v-if="this.customLink"
+        :href="this.customLink"
+      >
+        <path
+          d="M0,0 L0,250 L250,0 Z"
+          :fill="discordfill"
+        />
       </a>
-      <path v-else d="M0,0 L0,250 L250,0 Z" :fill="discordfill"/>
+      <path
+        v-else
+        d="M0,0 L0,250 L250,0 Z"
+        :fill="discordfill"
+      />
     </g>
     <g class="discord-corner">
-      <DiscordLogo :background="background" :discordEyes="discordEyes" :isRainbow="isRainbow" :animationStyle="animationStyle" :customLink="customLink" :color="discordcolor" :fill="discordfill" :width="120" :height="120" />
+      <DiscordLogo
+        :discordEyes="discordEyes"
+        :isRainbow="isRainbow"
+        :animationStyle="animationStyle"
+        :customLink="customLink"
+        :color="discordcolor"
+        :fill="discordfill"
+        :width="120"
+        :height="120"
+      />
     </g>
   </svg>
 </template>
@@ -19,10 +44,6 @@ export default {
   name: 'DiscordCorner',
   components: {
     DiscordLogo
-  },
-  data () {
-    return {
-    }
   },
   props: {
 		width: {
@@ -56,10 +77,10 @@ export default {
     discordEyes: {
       type: String,
       default: 'none' //none wink angry noeyes
-    },
-    background: {
-      type: String,
-      default: 'none'
+    }
+  },
+  data () {
+    return {
     }
   }
 }
