@@ -14,7 +14,7 @@
       :style="isActive('none')"
       :is-rainbow="isRainbow"
     />
-    <br/>
+    <br>
     <DiscordLogo
       background="starfield"
       :animation-style="animationStyle"
@@ -43,7 +43,7 @@
       :style="isActive('grid')"
       :is-rainbow="isRainbow"
     />
-    <br/>
+    <br>
     <DiscordLogo
       background="rush"
       :animation-style="animationStyle"
@@ -58,7 +58,7 @@
       :style="isActive('rush')"
       :is-rainbow="isRainbow"
     />
-    <br/>
+    <br>
   </div>
 </template>
 
@@ -69,11 +69,6 @@ export default {
   name: 'BackgroundSelector',
   components: {
     DiscordLogo
-  },
-  data () {
-    return {
-      size: 48
-    }
   },
   props: {
     customLink: {
@@ -105,6 +100,19 @@ export default {
       default: 'none'
     }
   },
+  data () {
+    return {
+      size: 48
+    }
+  },
+  created: function() {
+    this.$nextTick(function () {
+      setInterval(function () {
+          this.addAnimatedClass();
+          this.sleep(2500).then(() => {this.removeAnimatedClass();});
+      }.bind(this), 5000);
+    });
+  },
 	methods: {
     setBackground: function (background) {
       this.$emit('backgroundChange', background);
@@ -134,14 +142,6 @@ export default {
         return { border: "solid 2px transparent" }
       }
     }
-  },
-  created: function() {
-    this.$nextTick(function () {
-      setInterval(function () {
-          this.addAnimatedClass();
-          this.sleep(2500).then(() => {this.removeAnimatedClass();});
-      }.bind(this), 5000);
-    });
   }
 }
 </script>
