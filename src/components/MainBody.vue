@@ -330,4 +330,8 @@ footer {
   font-size: 15px;
   padding-bottom: 5px;
 }
+foreignObject{
+  width: 100%;
+  height: 100%;
+}
 </style>

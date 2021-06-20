@@ -391,4 +391,8 @@ export default {
   visibility: hidden;
   transition-delay: 0ms;
 }
+foreignObject{
+  width: 100%;
+  height: 100%;
+}
 </style>
