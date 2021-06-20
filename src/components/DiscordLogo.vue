@@ -13,9 +13,9 @@
       height="100%"
       fill="currentfill"
     />
-    <foreignObject  v-if="background !== 'none'">
+    <foreignObject v-if="background !== 'none'">
       <body xmlns="http://www.w3.org/1999/xhtml">
-        <canvas :ref="canvasID" id="discordCanvas"></canvas>
+        <canvas :ref="canvasID" id="discordCanvas" />
       </body>
     </foreignObject>
     <defs>
@@ -208,7 +208,7 @@ export default {
     discordEyes: function () {
       this.updateEyes();
     },
-    background: function (val) {
+    background: function () {
       this.wireUpCanvas()
     }
   },
@@ -296,6 +296,7 @@ export default {
     draw () {
       let t=this.frames/200
       let s, i, X, Y, Z = 0, j, p, w, W, V
+      let r=q=>this.ctx[q?"lineTo":"moveTo"](w+(X-7)/Z*w*2,2/Z*w)
       switch(this.background) {
         case 'starfield':
           this.canvas.style.width = "50px"
@@ -303,7 +304,7 @@ export default {
           this.canvas.width = 250
           this.canvas.height = 250
           this.ctx.fillStyle="#fffa"
-          for(let j=250, w=100, p=0; j--;){
+          for(let j=250, w=100; j--;){
             Z=1-(j*j/w+this.frames/100)%1
             s = 1 + Math.pow(3*(1-Z),2)
             this.ctx.beginPath()
@@ -317,8 +318,7 @@ export default {
           this.canvas.width = 250
           this.canvas.height = 250
           this.ctx.strokeStyle="#fff4"
-          w=120,i=200,t=this.frames/70,X=0,Y=0
-          let r=q=>this.ctx[q?"lineTo":"moveTo"](w+(X-7)/Z*w*2,2/Z*w)
+          w=120,i=200,t=this.frames/70,X=0
           for(;i--;this.ctx.lineWidth=0.5+8/(1+Z),r(Z++),r(X--),this.ctx.stroke())this.ctx.beginPath(),X=(i+Math.sin(t)*4)%14,Z=1+(i/14|0)-t*5%1,r()
         break;
         case 'rush':
